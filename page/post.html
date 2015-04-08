@@ -60,13 +60,15 @@
 	</div>
 	<script src="/javascripts/scale.fix.js"></script>
 	<script>
-		var appendPost = function(json) {
+		var appendPost = function(json, type) {
 			var el = document.querySelector("#post_list");
 			el.innerHTML = "";
 			for (var i = 0; i < json.length; i++) {
-				var newLi = document.createElement("li");
-				newLi.innerHTML = "<p>"+json[i].userName+"</p>";
-				el.appendChild(newLi);
+				if(type === "menu_all" || type === json[i].type) {
+					var newLi = document.createElement("li");
+					newLi.innerHTML = "<p>"+json[i].name+"</p>";
+					el.appendChild(newLi);
+				}
 			}
 		}
 		
@@ -88,23 +90,12 @@
 		}
 
 		var clickEvent = function(e) {
-/* 			switch (e.target.id) {
-			case "menu_all":
-				break;
-			case "menu_webserver":
-				break;
-			case "menu_webui":
-				break;
-			case "menu_android":
-				break;
-			}
-			 */
 			ajax({
 				method:"get",
 				url:"/post/post_list.json",
 				success:
 				  function(req) {
-					appendPost(JSON.parse(req.responseText));
+					appendPost(JSON.parse(req.responseText), e.target.id);
 			      }	
 			});
 
