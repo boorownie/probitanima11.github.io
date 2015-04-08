@@ -28,9 +28,13 @@
 		</header>
 		<section>
 			<div class="sub_menu">
-				<a class="post_menu" href="post/web.html"> #Web </a> <a
-					class="post_menu" href="post/android.html"> #Android </a>
+				<a id="menu_all" class="post_menu" href="#"> #ALL </a> <a
+					id="menu_webserver" class="post_menu" href="#"> #Web Server </a> <a
+					id="menu_webui" class="post_menu" href="#"> #Web UI </a> <a
+					id="menu_android" class="post_menu" href="#"> #Android </a>
 			</div>
+			<ul id="post_list">
+			</ul>
 			<h3>
 				<a id="welcome-to-github-pages" class="anchor"
 					href="#welcome-to-github-pages" aria-hidden="true"> <span
@@ -55,6 +59,65 @@
 		</footer>
 	</div>
 	<script src="/javascripts/scale.fix.js"></script>
+	<script>
+		var appendPost = function(json) {
+			var el = document.querySelector("#post_list");
+			el.innerHTML = "";
+			for (var i = 0; i < json.length; i++) {
+				var newLi = document.createElement("li");
+				newLi.innerHTML = "<p>"+json[i].userName+"</p>";
+				el.appendChild(newLi);
+			}
+		}
+		
+		var ajax = function(o) {
+			if (o.method === undefined || o.url === undefined
+					|| o.success === undefined) {
+				console.log("ajax Exception");
+			}
+			var req = new XMLHttpRequest();
+			req.onreadystatechange = function() {
+				if (req.readyState == 4) {
+					if (req.status == 200) {
+						o.success(req);
+					}
+				}
+			};
+			req.open(o.method, o.url, true);
+			req.send();
+		}
 
+		var clickEvent = function(e) {
+/* 			switch (e.target.id) {
+			case "menu_all":
+				break;
+			case "menu_webserver":
+				break;
+			case "menu_webui":
+				break;
+			case "menu_android":
+				break;
+			}
+			 */
+			ajax({
+				method:"get",
+				url:"/post/post_list.json",
+				success:
+				  function(req) {
+					appendPost(JSON.parse(req.responseText));
+			      }	
+			});
+
+		}
+
+		document.querySelector("#menu_all").addEventListener("click",
+				clickEvent);
+		document.querySelector("#menu_webserver").addEventListener("click",
+				clickEvent);
+		document.querySelector("#menu_webui").addEventListener("click",
+				clickEvent);
+		document.querySelector("#menu_android").addEventListener("click",
+				clickEvent);
+	</script>
 </body>
 </html>
