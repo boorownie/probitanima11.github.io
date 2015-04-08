@@ -51,8 +51,7 @@
 			for (var i = 0; i < json.length; i++) {
 				if(type === "menu_all" || type === json[i].type) {
 					var newLi = document.createElement("li");
-					newLi.setAttribute("href", "/post/"+json[i].type+"/"+json[i].id)
-					newLi.innerHTML = "<p>"+json[i].name+"</p>";
+					newLi.innerHTML = "<a href='/post/"+json[i].type+"/"+json[i].id+"''>"+json[i].name+"</a>";
 					el.appendChild(newLi);
 				}
 			}
