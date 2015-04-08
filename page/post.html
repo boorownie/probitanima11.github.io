@@ -85,7 +85,16 @@
 			});
 
 		}
-
+		
+		window.addEventListener('load', ajax({
+			method:"get",
+			url:"/post/post_list.json",
+			success:
+			  function(req) {
+				appendPost(JSON.parse(req.responseText), "menu_all");
+		      }	
+		}));
+		
 		document.querySelector("#menu_all").addEventListener("click",
 				clickEvent);
 		document.querySelector("#menu_webserver").addEventListener("click",
