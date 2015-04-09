@@ -1,1 +1,5 @@
-[{"id":"s1", "type":"menu_webserver","name":"webserver test 1"}, {"id":"u1", "type":"menu_webui","name":"webui test 2"}, {"id":"a1", "type":"menu_android","name":"android test 3"}]
+[
+	{"id":"s1", "type":"menu_webserver","name":"webserver test 1"}, 
+	{"id":"u1", "type":"menu_webui","name":"webui test 2"}, 
+	{"id":"a1", "type":"menu_android","name":"android test 3"}
+]
