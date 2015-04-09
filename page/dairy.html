@@ -26,23 +26,7 @@
 				<a href="https://github.com/probitanima11"> GitHub </a>
 			</p>
 		</header>
-		<section>
-			<h3>
-				<a id="welcome-to-github-pages" class="anchor"
-					href="#welcome-to-github-pages" aria-hidden="true"> <span
-					class="octicon octicon-link"></span>
-				</a>Welcome to Dairy Pages.
-			</h3>
-
-			<p>This automatic page generator is the easiest way to create
-				beautiful pages for all of your projects. Author your page content
-				here using GitHub Flavored Markdown, select a template crafted by a
-				designer, and publish. After your page is generated, you can check
-				out the new branch:</p>
-
-			<p>If you're using the GitHub for Mac, simply sync your
-				repository and you'll see the new branch.</p>
-		</section>
+		<section></section>
 		<footer>
 			<p>
 				<small>Hosted on GitHub Pages &mdash; Theme by <a
@@ -51,5 +35,37 @@
 		</footer>
 	</div>
 	<script src="/javascripts/scale.fix.js"></script>
+	<script src="/javascripts/utils.js"></script>
+	<script>
+	
+	var appendDairy = function(json) {
+		var el = document.querySelector("section");
+		for (var i = 0; i < json.length; i++) {
+			utils.ajax({
+				method : "get",
+				url : "/dairy/"+json[i].date+".html",
+				success : function(req) {
+					var h3El = document.createElement("div");
+					h3El.innerHTML = req.responseText;
+					el.appendChild(h3El);
+				}
+			});
+		}
+	}
+	
+	var getDairyList = function() {
+		utils.ajax({
+			method : "get",
+			url : "/dairy/dairy_list.json",
+			success : function(req) {
+				var json = JSON.parse(req.responseText);
+				if (json !== "" || json !== undefined) {
+					appendDairy(JSON.parse(req.responseText));
+				}
+			}
+		});
+	}
+	window.addEventListener('load', getDairyList);
+	</script>
 </body>
 </html>
