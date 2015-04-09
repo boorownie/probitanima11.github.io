@@ -59,10 +59,13 @@
 			for (var i = 0; i < json.length; i++) {
 				if (type === "menu_all" || type === json[i].type) {
 					var newLi = document.createElement("li");
-					newLi.setAttribute("class", "post_list_item");
-					newLi.setAttribute("type", json[i].type);
-					newLi.setAttribute("id", json[i].id);
-					newLi.innerHTML="<a href='#'>"+json[i].name+"</a>";
+					var cEl = document.createElement("a");
+					cEl.setAttribute("class", "post_list_item");
+					cEl.setAttribute("type", json[i].type);
+					cEl.setAttribute("id", json[i].id);
+					cEl.setAttribute("href", "#");
+					cEl.innerHTML=json[i].name;
+					newLi.appendChild(cEl);
 					el.appendChild(newLi);
 				}
 			}
