@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<title>멘땅에 코딩</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="/stylesheets/styles.css">
+<link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<h1>멘땅에 코딩</h1>
+			<p class="menu">
+				<a href="/"> Home </a>
+			</p>
+			<p class="menu">
+				<a href="/page/post.html"> Post </a>
+			</p>
+			<p class="menu">
+				<a href="/page/dairy.html"> Dairy </a>
+			</p>
+			<p class="menu">
+				<a href="https://github.com/probitanima11"> GitHub </a>
+			</p>
+		</header>
+		<section>
+			<div class="sub_menu">
+				<a id="menu_all" class="post_menu" href="#"> #ALL </a> <a
+					id="menu_webserver" class="post_menu" href="#"> #Web Server </a> <a
+					id="menu_webui" class="post_menu" href="#"> #Web UI </a> <a
+					id="menu_android" class="post_menu" href="#"> #Android </a>
+			</div>
+			<ul id="post_list"></ul>
+			<div id="content"></div>
+		</section>
+		<footer>
+			<p>
+				<small>Hosted on GitHub Pages &mdash; Theme by <a
+					href="https://github.com/orderedlist">orderedlist</a></small>
+			</p>
+		</footer>
+	</div>
+	<script src="/javascripts/scale.fix.js"></script>
+	<script>
+	
+		var clickItemEvent = function() {
+			
+		}
+		
+		var appendPost = function(json, type) {
+			var el = document.querySelector("#post_list");
+			el.innerHTML = "";
+			for (var i = 0; i < json.length; i++) {
+				if (type === "menu_all" || type === json[i].type) {
+					var newLi = document.createElement("li");
+					newLi.setAttribute("class", "post_list_item");
+					newLi.innerHTML = "<a href='/post/"+json[i].type+"/"+json[i].id+"''>"
+							+ json[i].name + "</a>";
+					el.appendChild(newLi);
+				}
+			}
+			document.querySelector(".post_list_item").addEventListener("click",
+					clickItemEvent);
+		}
+
+		var ajax = function(menu_flag) {
+			var method = "get";
+			var url = "/post/post_list.json";
+
+			var req = new XMLHttpRequest();
+			req.onreadystatechange = function() {
+				if (req.readyState == 4) {
+					if (req.status == 200) {
+						appendPost(JSON.parse(req.responseText), menu_flag);
+					}
+				}
+			};
+			req.open(method, url, true);
+			req.send();
+		}
+
+		var clickEvent = function(e) {
+			ajax(e.target.id);
+		}
+
+		window.addEventListener('load', ajax("menu_all"));
+
+		document.querySelector("#menu_all").addEventListener("click",
+				clickEvent);
+		document.querySelector("#menu_webserver").addEventListener("click",
+				clickEvent);
+		document.querySelector("#menu_webui").addEventListener("click",
+				clickEvent);
+		document.querySelector("#menu_android").addEventListener("click",
+				clickEvent);
+	</script>
+</body>
+</html>

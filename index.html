@@ -14,25 +14,24 @@
 		<header>
 			<h1>멘땅에 코딩</h1>
 			<p class="menu">
-				<a href="/"> Post </a>
+				<a href="/"> Home </a>
 			</p>
 			<p class="menu">
-				<a href="/dairy.html"> Dairy </a>
+				<a href="/page/post.html"> Post </a>
+			</p>
+			<p class="menu">
+				<a href="/page/dairy.html"> Dairy </a>
 			</p>
 			<p class="menu">
 				<a href="https://github.com/probitanima11"> GitHub </a>
 			</p>
 		</header>
-		<section>
-			<div class="sub_menu">
-				<a id="menu_all" class="post_menu" href="#"> #ALL </a> <a
-					id="menu_webserver" class="post_menu" href="#"> #Web Server </a> <a
-					id="menu_webui" class="post_menu" href="#"> #Web UI </a> <a
-					id="menu_android" class="post_menu" href="#"> #Android </a>
-			</div>
-			<ul id="post_list">
-			</ul>
-		</section>
+		<h3>
+			<a id="welcome-to-github-pages" class="anchor"
+				href="#welcome-to-github-pages" aria-hidden="true"> <span
+				class="octicon octicon-link"></span>
+			</a> 멘땅에 헤딩
+		</h3>
 		<footer>
 			<p>
 				<small>Hosted on GitHub Pages &mdash; Theme by <a
@@ -41,50 +40,5 @@
 		</footer>
 	</div>
 	<script src="/javascripts/scale.fix.js"></script>
-	<script>
-		var appendPost = function(json, type) {
-			var el = document.querySelector("#post_list");
-			el.innerHTML = "";
-			for (var i = 0; i < json.length; i++) {
-				if (type === "menu_all" || type === json[i].type) {
-					var newLi = document.createElement("li");
-					newLi.innerHTML = "<a href='/post/"+json[i].type+"/"+json[i].id+"''>"
-							+ json[i].name + "</a>";
-					el.appendChild(newLi);
-				}
-			}
-		}
-
-		var ajax = function(menu_flag) {
-			var method = "get";
-			var url = "/post/post_list.json";
-
-			var req = new XMLHttpRequest();
-			req.onreadystatechange = function() {
-				if (req.readyState == 4) {
-					if (req.status == 200) {
-						appendPost(JSON.parse(req.responseText), menu_flag);
-					}
-				}
-			};
-			req.open(method, url, true);
-			req.send();
-		}
-
-		var clickEvent = function(e) {
-			ajax(e.target.id);
-		}
-
-		window.addEventListener('load', ajax("menu_all"));
-
-		document.querySelector("#menu_all").addEventListener("click",
-				clickEvent);
-		document.querySelector("#menu_webserver").addEventListener("click",
-				clickEvent);
-		document.querySelector("#menu_webui").addEventListener("click",
-				clickEvent);
-		document.querySelector("#menu_android").addEventListener("click",
-				clickEvent);
-	</script>
 </body>
 </html>
