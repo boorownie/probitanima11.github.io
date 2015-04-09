@@ -37,6 +37,7 @@
 		  success: 
 			function(req) {
 			  var header = document.querySelector("header");
+			  console.log(req.responseText);
 			  header.innerHTML = req.responseText;
 			}  
 	  }));
