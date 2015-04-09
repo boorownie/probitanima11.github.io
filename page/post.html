@@ -45,12 +45,49 @@
 	</div>
 	<script src="/javascripts/scale.fix.js"></script>
 	<script>
-	
-		var clickItemEvent = function() {
-			
+		var ajax = function(o) {
+			if (o.method === undefined || o.url === undefined || o.success === undefined) {
+				console.log("ajax Exception");
+			}
+			var req = new XMLHttpRequest();
+			req.onreadystatechange = function() {
+				if (req.readyState == 4) {
+					if (req.status == 200) {
+						o.success(req);
+					} 
+				}
+			};
+			req.open(o.method, o.url, true);
+			req.send();
 		}
-		
-		var appendPost = function(json, type) {
+		var appendPost = function(json) {
+			var el = document.querySelector("#content");
+			el.innerHTML = "";
+			for (var i = 0; i < json.length; i++) {
+				if (type === "menu_all" || type === json[i].type) {
+					var newLi = document.createElement("li");
+					newLi.setAttribute("class", "post_list_item");
+					newLi.innerHTML = "<a href='/post/"+json[i].type+"/"+json[i].id+"''>"
+							+ json[i].name + "</a>";
+					el.appendChild(newLi);
+				}
+			}
+		}
+		var clickItemEvent = function(e) {
+			ajax({ 
+			  method: "get", 
+			  url: "/post/post_list.json"
+			  success: 
+				function(req) {
+				  var json = JSON.parse(req.responseText);
+				  if (json !== "" || json !== undefined) {
+					  appendPost(JSON.parse(req.responseText), e.target.id);
+				  }
+				}  
+		  });
+		}
+
+		var appendPostList = function(json, type) {
 			var el = document.querySelector("#post_list");
 			el.innerHTML = "";
 			for (var i = 0; i < json.length; i++) {
@@ -65,37 +102,41 @@
 			document.querySelector(".post_list_item").addEventListener("click",
 					clickItemEvent);
 		}
-
-		var ajax = function(menu_flag) {
-			var method = "get";
-			var url = "/post/post_list.json";
-
-			var req = new XMLHttpRequest();
-			req.onreadystatechange = function() {
-				if (req.readyState == 4) {
-					if (req.status == 200) {
-						appendPost(JSON.parse(req.responseText), menu_flag);
-					}
-				}
-			};
-			req.open(method, url, true);
-			req.send();
+		
+		var clickMenuEvent = function(e) {
+			ajax({ 
+				  method: "get", 
+				  url: "/post/post_list.json"
+				  success: 
+					function(req) {
+					  var json = JSON.parse(req.responseText);
+					  if (json !== "" || json !== undefined) {
+						  appendPostList(JSON.parse(req.responseText), e.target.id);
+					  }
+					}  
+			  });
 		}
 
-		var clickEvent = function(e) {
-			ajax(e.target.id);
-		}
-
-		window.addEventListener('load', ajax("menu_all"));
+		window.addEventListener('load', ajax({ 
+			  method: "get", 
+			  url: "/post/post_list.json"
+			  success: 
+				function(req) {
+				  var json = JSON.parse(req.responseText);
+				  if (json !== "" || json !== undefined) {
+					  appendPostList(JSON.parse(req.responseText), "menu_all");
+				  }
+				}  
+		  }));
 
 		document.querySelector("#menu_all").addEventListener("click",
-				clickEvent);
+				clickMenuEvent);
 		document.querySelector("#menu_webserver").addEventListener("click",
-				clickEvent);
+				clickMenuEvent);
 		document.querySelector("#menu_webui").addEventListener("click",
-				clickEvent);
+				clickMenuEvent);
 		document.querySelector("#menu_android").addEventListener("click",
-				clickEvent);
+				clickMenuEvent);
 	</script>
 </body>
 </html>
