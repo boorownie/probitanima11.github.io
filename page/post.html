@@ -46,7 +46,7 @@
 		var clickItemEvent = function(e) {
 			utils.ajax({ 
 			  method: "get", 
-			  url: "/post/"+e.target.type+"/"+e.target.id+".html";
+			  url: "/post/"+e.target.type+"/"+e.target.id+".html",
 			  success: 
 				function(req) {
 				  req.responseText
