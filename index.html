@@ -1,18 +1,21 @@
 <!doctype html>
 <html>
 <head>
-<title>멘땅에 코딩</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="chrome=1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no">
-<link rel="stylesheet" href="/stylesheets/styles.css">
-<link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+<link rel="import" href="/common/nav.html">
 </head>
 <body>
 	<div class="wrapper">
 		<header>
-			<link rel="import" href="/common/nav.html">
+			<h1>멘땅에 코딩</h1>
+			<p class="menu">
+				<a href="/"> Post </a>
+			</p>
+			<p class="menu">
+				<a href="/page/dairy.html"> Dairy </a>
+			</p>
+			<p class="menu">
+				<a href="https://github.com/probitanima11"> GitHub </a>
+			</p>
 		</header>
 		<section>
 			<div class="sub_menu">
@@ -37,14 +40,15 @@
 			var el = document.querySelector("#post_list");
 			el.innerHTML = "";
 			for (var i = 0; i < json.length; i++) {
-				if(type === "menu_all" || type === json[i].type) {
+				if (type === "menu_all" || type === json[i].type) {
 					var newLi = document.createElement("li");
-					newLi.innerHTML = "<a href='/post/"+json[i].type+"/"+json[i].id+"''>"+json[i].name+"</a>";
+					newLi.innerHTML = "<a href='/post/"+json[i].type+"/"+json[i].id+"''>"
+							+ json[i].name + "</a>";
 					el.appendChild(newLi);
 				}
 			}
 		}
-		
+
 		var ajax = function(o) {
 			if (o.method === undefined || o.url === undefined
 					|| o.success === undefined) {
@@ -64,25 +68,23 @@
 
 		var clickEvent = function(e) {
 			ajax({
-				method:"get",
-				url:"/post/post_list.json",
-				success:
-				  function(req) {
+				method : "get",
+				url : "/post/post_list.json",
+				success : function(req) {
 					appendPost(JSON.parse(req.responseText), e.target.id);
-			      }	
+				}
 			});
 
 		}
-		
+
 		window.addEventListener('load', ajax({
-			method:"get",
-			url:"/post/post_list.json",
-			success:
-			  function(req) {
+			method : "get",
+			url : "/post/post_list.json",
+			success : function(req) {
 				appendPost(JSON.parse(req.responseText), "menu_all");
-		      }	
+			}
 		}));
-		
+
 		document.querySelector("#menu_all").addEventListener("click",
 				clickEvent);
 		document.querySelector("#menu_webserver").addEventListener("click",
