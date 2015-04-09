@@ -11,8 +11,7 @@
 </head>
 <body>
 	<div class="wrapper">
-		<header>
-		</header>
+		<header></header>
 		<section>
 			<h3>
 				<a id="welcome-to-github-pages" class="anchor"
@@ -38,7 +37,6 @@
 		  success: 
 			function(req) {
 			  var header = document.querySelector("header");
-			  console.log(req.responseText);
 			  header.innerHTML = req.responseText;
 			}  
 	  }));

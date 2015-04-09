@@ -11,21 +11,7 @@
 </head>
 <body>
 	<div class="wrapper">
-		<header>
-			<h1>멘땅에 코딩</h1>
-			<p class="menu">
-				<a href="/"> Home </a>
-			</p>
-			<p class="menu">
-				<a href="/page/post.html"> Post </a>
-			</p>
-			<p class="menu">
-				<a href="/page/dairy.html"> Dairy </a>
-			</p>
-			<p class="menu">
-				<a href="https://github.com/probitanima11"> GitHub </a>
-			</p>
-		</header>
+		<header></header>
 		<section>
 			<div class="sub_menu">
 				<a id="menu_all" class="post_menu" href="#"> #ALL </a> <a
@@ -44,22 +30,19 @@
 		</footer>
 	</div>
 	<script src="/javascripts/scale.fix.js"></script>
+	<script src="/javascripts/utils.js"></script>
 	<script>
-		var ajax = function(o) {
-			if (o.method === undefined || o.url === undefined || o.success === undefined) {
-				console.log("ajax Exception");
-			}
-			var req = new XMLHttpRequest();
-			req.onreadystatechange = function() {
-				if (req.readyState == 4) {
-					if (req.status == 200) {
-						o.success(req);
-					} 
-				}
-			};
-			req.open(o.method, o.url, true);
-			req.send();
-		}
+	window.addEventListener('load', utils.ajax({ 
+		  method: "get", 
+		  url: "/common/header.html",
+		  success: 
+			function(req) {
+			  var header = document.querySelector("header");
+			  header.innerHTML = req.responseText;
+			}  
+	  }));
+	</script>
+	<script>
 		var appendPost = function(json) {
 			var el = document.querySelector("#content");
 			el.innerHTML = "";
@@ -74,7 +57,7 @@
 			}
 		}
 		var clickItemEvent = function(e) {
-			ajax({ 
+			utils.ajax({ 
 			  method: "get", 
 			  url: "/post/post_list.json"
 			  success: 
@@ -104,7 +87,7 @@
 		}
 		
 		var clickMenuEvent = function(e) {
-			ajax({ 
+			utils.ajax({ 
 				  method: "get", 
 				  url: "/post/post_list.json"
 				  success: 
@@ -117,7 +100,7 @@
 			  });
 		}
 
-		window.addEventListener('load', ajax({ 
+		window.addEventListener('load', utils.ajax({ 
 			  method: "get", 
 			  url: "/post/post_list.json"
 			  success: 
@@ -138,5 +121,6 @@
 		document.querySelector("#menu_android").addEventListener("click",
 				clickMenuEvent);
 	</script>
+
 </body>
 </html>
