@@ -62,8 +62,7 @@
 					newLi.setAttribute("class", "post_list_item");
 					newLi.setAttribute("type", json[i].type);
 					newLi.setAttribute("id", json[i].id);
-					newLi.setAttribute("href", "#");
-					newLi.innerHTML=json[i].name;
+					newLi.innerHTML="<a href='#'>"+json[i].name+"</a>";
 					el.appendChild(newLi);
 				}
 			}
