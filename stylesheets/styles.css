@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6 {
 
 p, ul, ol, table, pre, dl {
 	margin: 0 0 20px;
-	list-style:none;
+	list-style: none;
 }
 
 h1, h2, h3 {
@@ -181,9 +181,15 @@ hr {
 .sub_menu {
 	padding-bottom: 20px;
 }
+
 .post_menu {
 	padding-right: 20px;
 	font-size: 20px;
+}
+
+#post_list {
+	overflow: scroll;
+	height: 120px;
 }
 
 footer {
