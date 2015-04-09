@@ -1,8 +1,13 @@
 <!doctype html>
 <html>
 <head>
-<link rel="import" href="/common/nav.html">
 <title>멘땅에 코딩</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="/stylesheets/styles.css">
+<link rel="stylesheet" href="/stylesheets/pygment_trac.css">
 </head>
 <body>
 	<div class="wrapper">
@@ -12,7 +17,7 @@
 				<a href="/"> Post </a>
 			</p>
 			<p class="menu">
-				<a href="/page/dairy.html"> Dairy </a>
+				<a href="/dairy.html"> Dairy </a>
 			</p>
 			<p class="menu">
 				<a href="https://github.com/probitanima11"> GitHub </a>
@@ -50,41 +55,27 @@
 			}
 		}
 
-		var ajax = function(o) {
-			if (o.method === undefined || o.url === undefined
-					|| o.success === undefined) {
-				console.log("ajax Exception");
-			}
+		var ajax = function(menu_flag) {
+			var method = "get";
+			var url = "/post/post_list.json";
+
 			var req = new XMLHttpRequest();
 			req.onreadystatechange = function() {
 				if (req.readyState == 4) {
 					if (req.status == 200) {
-						o.success(req);
+						appendPost(JSON.parse(req.responseText), menu_flag);
 					}
 				}
 			};
-			req.open(o.method, o.url, true);
+			req.open(method, url, true);
 			req.send();
 		}
 
 		var clickEvent = function(e) {
-			ajax({
-				method : "get",
-				url : "/post/post_list.json",
-				success : function(req) {
-					appendPost(JSON.parse(req.responseText), e.target.id);
-				}
-			});
-
+			ajax(e.target.id);
 		}
 
-		window.addEventListener('load', ajax({
-			method : "get",
-			url : "/post/post_list.json",
-			success : function(req) {
-				appendPost(JSON.parse(req.responseText), "menu_all");
-			}
-		}));
+		window.addEventListener('load', ajax("menu_all"));
 
 		document.querySelector("#menu_all").addEventListener("click",
 				clickEvent);
