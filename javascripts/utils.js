@@ -12,7 +12,7 @@ utils.ajax = function(o) {
 	  }
 	}
   };
-  req.open(o.method, o.url, true);
+  req.open(o.method, o.url, o.sync);
   req.send();
 }
 

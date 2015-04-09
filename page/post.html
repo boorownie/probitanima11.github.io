@@ -11,7 +11,21 @@
 </head>
 <body>
 	<div class="wrapper">
-		<header></header>
+		<header>
+			<h1>멘땅에 코딩</h1>
+			<p class="menu">
+				<a href="/"> Home </a>
+			</p>
+			<p class="menu">
+				<a href="#"> Post </a>
+			</p>
+			<p class="menu">
+				<a href="/page/dairy.html"> Dairy </a>
+			</p>
+			<p class="menu">
+				<a href="https://github.com/probitanima11"> GitHub </a>
+			</p>
+		</header>
 		<section>
 			<div class="sub_menu">
 				<a id="menu_all" class="post_menu" href="#"> #ALL </a> <a
@@ -31,16 +45,6 @@
 	</div>
 	<script src="/javascripts/scale.fix.js"></script>
 	<script src="/javascripts/utils.js"></script>
-	<script>
-		window.addEventListener('load', utils.ajax({
-			method : "get",
-			url : "/common/header.html",
-			success : function(req) {
-				var header = document.querySelector("header");
-				header.innerHTML = req.responseText;
-			}
-		}));
-	</script>
 	<script>
 		var clickItemEvent = function(e) {
 			utils.ajax({
@@ -64,8 +68,8 @@
 					cEl.setAttribute("type", json[i].type);
 					cEl.setAttribute("id", json[i].id);
 					cEl.setAttribute("href", "#");
-					cEl.innerHTML=json[i].name;
-					cEl.addEventListener("click",clickItemEvent);
+					cEl.innerHTML = json[i].name;
+					cEl.addEventListener("click", clickItemEvent);
 					newLi.appendChild(cEl);
 					el.appendChild(newLi);
 				}
