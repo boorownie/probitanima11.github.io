@@ -9,11 +9,11 @@ utils.ajax = function(o) {
 	if (req.readyState == 4) {
 	  if (req.status == 200) {
 		o.success(req);
+	  }
 	}
   };
   req.open(o.method, o.url, true);
   req.send();
 }
-
 
 
