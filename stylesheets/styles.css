@@ -191,8 +191,15 @@ hr {
 	overflow: scroll;
 	max-height: 120px;
 }
+
 #post_list li {
 	list-style: none;
+}
+
+#content {
+	border-top-style: solid;
+	border-top-width: thin;
+	padding-top: 10px;
 }
 
 footer {
