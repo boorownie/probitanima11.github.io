@@ -191,7 +191,7 @@ hr {
 	overflow: scroll;
 	max-height: 120px;
 }
-#post_list ul {
+#post_list li {
 	list-style: none;
 }
 
