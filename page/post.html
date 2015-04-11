@@ -45,18 +45,6 @@
 		<script src="/javascripts/scale.fix.js"></script>
 		<script src="/javascripts/utils.js"></script>
 		<script>
-			var clickItemEvent = function(e) {
-
-				/* 			utils.ajax({
-				 method : "get",
-				 url : "/post/" + e.target.type + "/" + e.target.id + ".html",
-				 success : function(req) {
-				 var header = document.querySelector("#content");
-				 header.innerHTML = req.responseText;
-				 }
-				 }); */
-			}
-
 			var appendPostList = function(json, type) {
 				var el = document.querySelector("#post_list");
 				el.innerHTML = "";
@@ -72,7 +60,7 @@
 						h3El.setAttribute("class", "post_name");
 						h3El.innerHTML = "#" + json[i].type.split("_")[1] + "_"
 								+ json[i].name;
-						if (json[i].desc !== 'undefined') {
+						if (json[i].desc !== undefined) {
 							var pEl = document.createElement("p");
 							pEl.setAttribute("class", "post_desc");
 							pEl.innerHTML = json[i].desc;
