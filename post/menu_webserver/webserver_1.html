@@ -69,7 +69,7 @@
 	<script>
  		utils.ajax({
 			method : "get",
-			url : "/post/md/" + location.pathname.split("/")[7] + ".md",
+			url : "/post/md/" + location.pathname.split("/")[3] + ".md",
 			success : function(req) {
 				var converter = new Showdown.converter();
 				var html = converter.makeHtml(req.responseText);
