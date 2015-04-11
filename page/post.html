@@ -59,7 +59,7 @@
 						var liEl = document.createElement("li");
 						var divEl = document.createElement("div");
 						divEl.setAttribute("class", "post_card");
-						var aTageEl = document.createElement("p");
+						var aTageEl = document.createElement("a");
 						aTageEl.setAttribute("class", "post_"+json[i].type.split("_")[1]);
 						aTageEl.innerHTML = "#" + json[i].type.split("_")[1];
 						divEl.appendChild(aTageEl);
