@@ -205,8 +205,8 @@ hr {
 	margin: 0 0 3px;
 }
 
-#post_list a:hover { 
-    background-color: yellow;
+#post_list div:hover { 
+    background-color: #dadad7;
 }
 
 footer {
