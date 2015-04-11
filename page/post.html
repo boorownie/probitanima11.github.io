@@ -62,12 +62,12 @@
 				el.innerHTML = "";
 				for (var i = 0; i < json.length; i++) {
 					if (type === "menu_all" || type === json[i].type) {
-						var liEl = document.createElement("li");
 						var aEl = document.createElement("a");
 						aEl.setAttribute("href", "/post/" + json[i].type + "/"
 								+ json[i].id);
+						var liEl = document.createElement("li");
 						var divEl = document.createElement("div");
-						divEl.setAttribute("class","post_card");
+						divEl.setAttribute("class", "post_card");
 						var h3El = document.createElement("h3");
 						h3El.setAttribute("class", "post_name");
 						h3El.innerHTML = "#" + json[i].type.split("_")[1] + "_"
@@ -82,9 +82,9 @@
 						divEl.appendChild(pEl);
 						divEl.appendChild(spanEl);
 						divEl.appendChild(spanEl);
-						aEl.appendChild(divEl);
-						liEl.appendChild(aEl);
-						el.appendChild(liEl);
+						liEl.appendChild(divEl);
+						aEl.appendChild(liEl);
+						el.appendChild(aEl);
 					}
 				}
 			}

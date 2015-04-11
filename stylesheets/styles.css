@@ -194,8 +194,7 @@ hr {
 
 #post_list li {
 	list-style: none;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding: 20px;
 	border-bottom-style: solid;
 	border-bottom-width: thin;
 	border-bottom-color: lightgray;
@@ -207,6 +206,7 @@ hr {
 
 #post_list li:hover { 
     background-color: #e5e4e0;
+    border-radius: 5px;
 }
 
 footer {
