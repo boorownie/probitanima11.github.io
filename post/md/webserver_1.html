@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+<title>멘땅에 코딩</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="/stylesheets/styles.css">
+<link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<h1>멘땅에 코딩</h1>
+			<p class="menu">
+				<a href="/"> Home </a>
+			</p>
+			<p class="menu">
+				<a href="/page/post.html"> Post </a>
+			</p>
+			<p class="menu">
+				<a href="/page/dairy.html"> Dairy </a>
+			</p>
+			<p class="menu">
+				<a href="https://github.com/probitanima11"> GitHub </a>
+			</p>
+		</header>
+		<section>
+			<a href="/page/post.html"> _back </a>
+			<h1>
+				<a id="welcome-to-github-pages" class="anchor"
+					href="#welcome-to-github-pages" aria-hidden="true"> <span
+					class="octicon octicon-link"></span>
+				</a>Embedded Tomcat
+			</h1>
+
+			<h3 id="embedded-tomcat-">Embedded Tomcat을 쓰는 이유</h3>
+			<p>WTP(Web Tools Platform)는 Eclipse에서 웹 개발을 하거나 Java EE 어플리케이션을
+				개발하기 위한 툴이다. WTP는 마법사와 built-in 어플리케이션을 통해 손쉽게 개발할 수 있게 해주고 개발한
+				어플리케이션을 배포, 실행, 테스트 하는데 필요한 툴과 API들을 포함하고 있다. 하지만 WTP는 JSP를 수정하였을 때
+				생기는 버그와 배포시 발생되는 버그 등 간혹 비정상적인 동작을 인해 불편함을 유발한다. 따라서 Embedded Tomcat
+				환경에서 개발하는 것을 추천 받아 사용해 보았다.</p>
+			<h3 id="embedded-tomcat-">Embedded Tomcat 적용하기</h3>
+			<ul>
+				<li>Maven이 적용된 프로젝트 : <a
+					href="http://www.slipp.net/wiki/pages/viewpage.action?pageId=16711743">slipp.net:
+						embedded tomcat 연결</a> 참조
+				</li>
+				<li>Maven이 아닌 경우 jar파일로 된 embedded tomcat library를 추가한다.</li>
+			</ul>
+			<h3 id="embedded-tomcat-">Embedded Tomcat 사용하기</h3>
+			<ul>
+				<li><p>launcher class 생성 후 실행</p></li>
+				<pre>
+					<code>public class Main {
+
+  public static void main(String[] args) throws Exception {
+
+      String webappDirLocation = &quot;src/main/webapp/&quot;;
+      Tomcat tomcat = new Tomcat();
+
+      //The port that we should run on can be set into an environment variable
+      //Look for that variable and default to 8080 if it isn&#39;t there.
+      String webPort = System.getenv(&quot;PORT&quot;);
+      if(webPort == null || webPort.isEmpty()) {
+          webPort = &quot;8080&quot;;
+      }
+
+      tomcat.setPort(Integer.valueOf(webPort));
+
+      tomcat.addWebapp(&quot;/&quot;, new File(webappDirLocation).getAbsolutePath());
+      System.out.println(&quot;configuring app with basedir: &quot; + new File(&quot;./&quot; + webappDirLocation).getAbsolutePath());
+
+      tomcat.start();
+      tomcat.getServer().await();
+  }
+}
+</code>
+				</pre>
+			</ul>
+			<p>
+				[출처] <a
+					href="http://www.slipp.net/wiki/pages/viewpage.action?pageId=16711743">slipp.net</a>
+				<a href="http://projects.eclipse.org/projects/webtools">Eclipse</a>
+				<a
+					href="https://devcenter.heroku.com/articles/create-a-java-web-application-using-embedded-tomcat">Devcenter</a>
+			</p>
+			<a href="/page/post.html"> _back </a>
+			<div id="disqus_thread"></div>
+			<script type="text/javascript">
+				/* * * CONFIGURATION VARIABLES * * */
+				var disqus_shortname = 'probitanima11';
+
+				/* * * DON'T EDIT BELOW THIS LINE * * */
+				(function() {
+					var dsq = document.createElement('script');
+					dsq.type = 'text/javascript';
+					dsq.async = true;
+					dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document
+							.getElementsByTagName('body')[0]).appendChild(dsq);
+				})();
+			</script>
+			<noscript>
+				Please enable JavaScript to view the <a
+					href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+					powered by Disqus.</a>
+			</noscript>
+	</div>
+	</section>
+	<footer>
+		<p>
+			<small>Hosted on GitHub Pages &mdash; Theme by <a
+				href="https://github.com/orderedlist">orderedlist</a></small>
+		</p>
+	</footer>
+	</div>
+	<script src="/javascripts/scale.fix.js"></script>
+</body>
+</html>
