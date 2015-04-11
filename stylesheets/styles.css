@@ -211,7 +211,7 @@ hr {
 
 .dairy_card img {
 	display: block;
-	margin: 5px;
+	margin: 5px auto;
 }
 
 footer {
