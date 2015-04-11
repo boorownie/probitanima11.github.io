@@ -46,14 +46,15 @@
 	<script src="/javascripts/utils.js"></script>
 	<script>
 		var clickItemEvent = function(e) {
-			utils.ajax({
+			
+/* 			utils.ajax({
 				method : "get",
 				url : "/post/" + e.target.type + "/" + e.target.id + ".html",
 				success : function(req) {
 					var header = document.querySelector("#content");
 					header.innerHTML = req.responseText;
 				}
-			});
+			}); */
 		}
 
 		var appendPostList = function(json, type) {
@@ -66,11 +67,11 @@
 					cEl.setAttribute("class", "post_list_item");
 					cEl.setAttribute("type", json[i].type);
 					cEl.setAttribute("id", json[i].id);
-					cEl.setAttribute("href", "#");
+					cEl.setAttribute("href", "/post/"+json[i].type+"/"+json[i].id);
 					cEl.innerHTML = "#" + json[i].type.split("_")[1] + "_"
 							+ json[i].name;
-					cEl.addEventListener("click", clickItemEvent);
-					newLi.appendChild(cEl);
+/* 					cEl.addEventListener("click", clickItemEvent);
+ */					newLi.appendChild(cEl);
 					el.appendChild(newLi);
 				}
 			}
