@@ -60,7 +60,7 @@
 						var divEl = document.createElement("div");
 						divEl.setAttribute("class", "post_card");
 						var aTageEl = document.createElement("a");
-						aTageEl.setAttribute("class", "post_"+json[i].type.split("_")[1]);
+						aTageEl.setAttribute("class", "post_menu_"+json[i].type.split("_")[1]);
 						aTageEl.innerHTML = "#" + json[i].type.split("_")[1];
 						divEl.appendChild(aTageEl);
 						var h3El = document.createElement("h3");
