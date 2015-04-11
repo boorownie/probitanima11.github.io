@@ -177,6 +177,10 @@ hr {
 	margin: 0 0 20px;
 }
 
+.sub_menu {
+	padding-bottom: 20px;
+}
+
 .post_menu {
 	padding-right: 20px;
 	font-size: 15px;
@@ -201,8 +205,8 @@ hr {
 	margin: 0 0 3px;
 }
 
-#post_list a {
-	color: rgba(179, 174, 169, 0.31);
+#post_list a:hover { 
+    background-color: yellow;
 }
 
 footer {
