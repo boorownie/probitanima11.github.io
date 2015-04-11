@@ -1,5 +1,5 @@
 [
-	{"id":"webserver_1", "type":"menu_webserver","name":"Embedded Tomcat", "date":"20150403", "desc":"내용내용내용"}, 
+	{"id":"webserver_1", "type":"menu_webserver","name":"Embedded Tomcat", "date":"20150403"}, 
 	{"id":"webserver_2", "type":"menu_webserver","name":"Servlet Container"}, 
 	{"id":"webserver_3", "type":"menu_webserver","name":"Servlet Instance"}, 
 	{"id":"webserver_4", "type":"menu_webserver","name":"Dependency Injection"}, 
