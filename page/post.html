@@ -59,10 +59,13 @@
 						var liEl = document.createElement("li");
 						var divEl = document.createElement("div");
 						divEl.setAttribute("class", "post_card");
+						var aTageEl = document.createElement("p");
+						aTageEl.setAttribute("class", "post_"+json[i].type.split("_")[1]);
+						aTageEl.innerHTML = "#" + json[i].type.split("_")[1];
+						divEl.appendChild(aTageEl);
 						var h3El = document.createElement("h3");
 						h3El.setAttribute("class", "post_name");
-						h3El.innerHTML = "#" + json[i].type.split("_")[1] + "_"
-								+ json[i].name;
+						h3El.innerHTML = "_" + json[i].name;
 						divEl.appendChild(h3El);
 						if (json[i].desc !== undefined) {
 							var pEl = document.createElement("p");

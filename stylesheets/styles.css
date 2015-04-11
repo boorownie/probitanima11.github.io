@@ -182,21 +182,25 @@ hr {
 }
 
 .post_menu_all {
+	color: rgb(226, 225, 225);
 	font-size: 15px;
 	color: rgb(144, 144, 144);
 	background-color: #185e60;
 }
 .post_menu_webserver {
+	color: rgb(226, 225, 225);
 	font-size: 15px;
 	color: rgb(144, 144, 144);
 	background-color: #6d9687;
 }
 .post_menu_webui {
+	color: rgb(226, 225, 225);
 	font-size: 15px;
 	color: rgb(144, 144, 144);
 	background-color: #afae8e;
 }
 .post_menu_android {
+	color: rgb(226, 225, 225);
 	font-size: 15px;
 	color: rgb(144, 144, 144);
 	background-color: #ebc68b;
