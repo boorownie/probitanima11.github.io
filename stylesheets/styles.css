@@ -209,6 +209,13 @@ hr {
 	border-radius: 5px;
 }
 
+.dairy_card {
+	border-bottom-style: solid;
+	border-bottom-width: thin;
+	border-bottom-color: lightgray;
+	padding: 20px;
+}
+
 .dairy_card img {
 	display: block;
 	margin: 5px auto;
