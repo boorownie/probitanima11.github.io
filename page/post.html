@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="chrome=1">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no">
-<link rel="stylesheet" href="/stylesheets/styles.css">
-<link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+<link rel="stylesheet" href="../stylesheets/styles.css">
+<link rel="stylesheet" href="../stylesheets/pygment_trac.css">
 </head>
 <body>
 	<div class="wrapper">
@@ -42,8 +42,8 @@
 					href="https://github.com/orderedlist">orderedlist</a></small>
 			</p>
 		</footer>
-	<script src="/javascripts/scale.fix.js"></script>
-	<script src="/javascripts/utils.js"></script>
+	<script src="../javascripts/scale.fix.js"></script>
+	<script src="../javascripts/utils.js"></script>
 	<script>
 		var clickItemEvent = function(e) {
 			
@@ -62,17 +62,33 @@
 			el.innerHTML = "";
 			for (var i = 0; i < json.length; i++) {
 				if (type === "menu_all" || type === json[i].type) {
-					var newLi = document.createElement("li");
-					var cEl = document.createElement("a");
+					var liEl = document.createElement("li");
+					var divEl = document.createElement("div");
+					divEl.setAttribute("href", "/post/"+json[i].type+"/"+json[i].id);
+					var h3El = document.createElement("h3");
+					h3El.setAttribute("class", "post_name");
+					h3El.innerHTML = json[i].name;
+					var pEl = document.createElement("p");
+					pEl.setAttribute("class", "post_desc");
+					pEl.innerHTML = json[i].desc;
+					var spanEl = document.createElement("span");
+					spanEl.setAttribute("class", "post_date");
+					spanEl.innerHTML = json[i].date;
+					divEl.appendChild(h3El);
+					divEl.appendChild(pEl);
+					divEl.appendChild(spanEl);
+					divEl.appendChild(spanEl);
+					liEl.appendChild(divEl);
+/* 					var cEl = document.createElement("a");
 					cEl.setAttribute("class", "post_list_item");
 					cEl.setAttribute("type", json[i].type);
 					cEl.setAttribute("id", json[i].id);
 					cEl.setAttribute("href", "/post/"+json[i].type+"/"+json[i].id);
 					cEl.innerHTML = "#" + json[i].type.split("_")[1] + "_"
 							+ json[i].name;
-/* 					cEl.addEventListener("click", clickItemEvent);
- */					newLi.appendChild(cEl);
-					el.appendChild(newLi);
+					cEl.addEventListener("click", clickItemEvent);
+					newLi.appendChild(cEl);
+					el.appendChild(newLi); */
 				}
 			}
 		}
