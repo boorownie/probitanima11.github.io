@@ -181,10 +181,25 @@ hr {
 	padding-bottom: 20px;
 }
 
-.post_menu {
-	padding-right: 20px;
+.post_menu_all {
 	font-size: 15px;
 	color: rgb(144, 144, 144);
+	background-color: #185e60;
+}
+.post_menu_webserver {
+	font-size: 15px;
+	color: rgb(144, 144, 144);
+	background-color: #6d9687;
+}
+.post_menu_webui {
+	font-size: 15px;
+	color: rgb(144, 144, 144);
+	background-color: #afae8e;
+}
+.post_menu_android {
+	font-size: 15px;
+	color: rgb(144, 144, 144);
+	background-color: #ebc68b;
 }
 
 #post_list {
@@ -207,6 +222,15 @@ hr {
 #post_list li:hover, .dairy_card:hover {
 	background-color: #e5e4e0;
 	border-radius: 5px;
+}
+
+.back_button {
+	font-size: 20px;
+	background-color: lightpink;
+	color: white;
+	margin-bottom: 10px;
+	display: block;
+	width: 20%;
 }
 
 .dairy_card {

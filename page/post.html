@@ -28,10 +28,13 @@
 		</header>
 		<section>
 			<div class="sub_menu">
-				<a id="menu_all" class="post_menu" href="#"> #ALL </a> <a
-					id="menu_webserver" class="post_menu" href="#"> #Web Server </a> <a
-					id="menu_webui" class="post_menu" href="#"> #Web UI </a> <a
-					id="menu_android" class="post_menu" href="#"> #Android </a>
+				<a id="menu_all" class="post_menu_all" href="#"> #ALL </a>
+				<a>&nbsp; &nbsp; </a>
+				<a id="menu_webserver" class="post_menu_webserver" href="#"> #Web Server </a>
+				<a>&nbsp; &nbsp; </a>
+				<a id="menu_webui" class="post_menu_webui" href="#"> #Web UI </a>
+				<a>&nbsp; &nbsp; </a>
+				<a id="menu_android" class="post_menu_android" href="#"> #Android </a>
 			</div>
 			<ul id="post_list"></ul>
 			<div id="content"></div>
@@ -51,26 +54,27 @@
 				for (var i = 0; i < json.length; i++) {
 					if (type === "menu_all" || type === json[i].type) {
 						var aEl = document.createElement("a");
-						aEl.setAttribute("href", "/post/" + json[i].type + "/"+ json[i].id);
-						
-							var liEl = document.createElement("li");
-								var divEl = document.createElement("div");
-								divEl.setAttribute("class", "post_card");
-								var h3El = document.createElement("h3");
-								h3El.setAttribute("class", "post_name");
-								h3El.innerHTML = "#" + json[i].type.split("_")[1] + "_"+ json[i].name;
-								divEl.appendChild(h3El);
-								if (json[i].desc !== undefined) {
-									var pEl = document.createElement("p");
-									pEl.setAttribute("class", "post_desc");
-									pEl.innerHTML = json[i].desc;
-									divEl.appendChild(pEl);
-								}
-								var spanEl = document.createElement("span");
-								spanEl.setAttribute("class", "post_date");
-								spanEl.innerHTML = json[i].date;
-								divEl.appendChild(spanEl);
-							liEl.appendChild(divEl);
+						aEl.setAttribute("href", "/post/" + json[i].type + "/"
+								+ json[i].id);
+						var liEl = document.createElement("li");
+						var divEl = document.createElement("div");
+						divEl.setAttribute("class", "post_card");
+						var h3El = document.createElement("h3");
+						h3El.setAttribute("class", "post_name");
+						h3El.innerHTML = "#" + json[i].type.split("_")[1] + "_"
+								+ json[i].name;
+						divEl.appendChild(h3El);
+						if (json[i].desc !== undefined) {
+							var pEl = document.createElement("p");
+							pEl.setAttribute("class", "post_desc");
+							pEl.innerHTML = json[i].desc;
+							divEl.appendChild(pEl);
+						}
+						var spanEl = document.createElement("span");
+						spanEl.setAttribute("class", "post_date");
+						spanEl.innerHTML = json[i].date;
+						divEl.appendChild(spanEl);
+						liEl.appendChild(divEl);
 						aEl.appendChild(liEl);
 						el.appendChild(aEl);
 					}
