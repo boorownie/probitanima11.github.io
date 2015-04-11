@@ -204,7 +204,7 @@ hr {
 	margin: 0 0 3px;
 }
 
-#post_list li:hover {
+#post_list li:hover, .dairy_card:hover {
 	background-color: #e5e4e0;
 	border-radius: 5px;
 }
