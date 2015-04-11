@@ -63,8 +63,9 @@
 			for (var i = 0; i < json.length; i++) {
 				if (type === "menu_all" || type === json[i].type) {
 					var liEl = document.createElement("li");
+					var aEl = document.createElement("a");
+					aEl.setAttribute("href", "/post/"+json[i].type+"/"+json[i].id);
 					var divEl = document.createElement("div");
-					divEl.setAttribute("href", "/post/"+json[i].type+"/"+json[i].id);
 					var h3El = document.createElement("h3");
 					h3El.setAttribute("class", "post_name");
 					h3El.innerHTML = json[i].name;
@@ -78,18 +79,9 @@
 					divEl.appendChild(pEl);
 					divEl.appendChild(spanEl);
 					divEl.appendChild(spanEl);
-					liEl.appendChild(divEl);
+					aEl.appendChild(divEl);
+					liEl.appendChild(aEl);
 					el.appendChild(liEl);
-/* 					var cEl = document.createElement("a");
-					cEl.setAttribute("class", "post_list_item");
-					cEl.setAttribute("type", json[i].type);
-					cEl.setAttribute("id", json[i].id);
-					cEl.setAttribute("href", "/post/"+json[i].type+"/"+json[i].id);
-					cEl.innerHTML = "#" + json[i].type.split("_")[1] + "_"
-							+ json[i].name;
-					cEl.addEventListener("click", clickItemEvent);
-					newLi.appendChild(cEl);
-					el.appendChild(newLi); */
 				}
 			}
 		}
