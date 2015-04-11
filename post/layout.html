@@ -30,8 +30,7 @@
 			<!-- 상단 뒤로 돌아가기 버튼 -->
 			<a href="/page/post.html"> _back </a>
 			<!-- 내용 넣기 -->
-
-
+			<div id="content"></div>
 			<!-- 하단 뒤로 돌아가기 버튼 -->
 			<a href="/page/post.html"> _back </a>
 			<!-- 댓글 -->
@@ -65,5 +64,19 @@
 		</footer>
 	</div>
 	<script src="/javascripts/scale.fix.js"></script>
+	<script src="/javascripts/utils.js"></script>
+	<script src="/javascripts/showdown.js"></script>
+	<script>
+		utils.ajax({
+			method : "get",
+			url : "/post/md/" + location.pathname.split("/")[3] + ".md",
+			success : function(req) {
+				var converter = new Showdown.converter();
+				var html = converter.makeHtml(req.responseText);
+				var header = document.querySelector("#content");
+				header.innerHTML = html;
+			}
+		});
+	</script>
 </body>
 </html>

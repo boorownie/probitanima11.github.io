@@ -204,9 +204,14 @@ hr {
 	margin: 0 0 3px;
 }
 
-#post_list li:hover { 
-    background-color: #e5e4e0;
-    border-radius: 5px;
+#post_list li:hover {
+	background-color: #e5e4e0;
+	border-radius: 5px;
+}
+
+.dairy {
+	display: block;
+	margin: 5px;
 }
 
 footer {
