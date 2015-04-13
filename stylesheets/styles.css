@@ -186,16 +186,19 @@ hr {
 	font-size: 15px;
 	background-color: #185e60;
 }
+
 .post_menu_webserver {
 	color: rgb(226, 225, 225);
 	font-size: 15px;
 	background-color: #6d9687;
 }
+
 .post_menu_webui {
 	color: rgb(226, 225, 225);
 	font-size: 15px;
 	background-color: #afae8e;
 }
+
 .post_menu_android {
 	color: rgb(247, 247, 247);
 	font-size: 15px;
@@ -243,6 +246,16 @@ hr {
 .dairy_card img {
 	display: block;
 	margin: 5px auto;
+}
+
+.img_height {
+	max-width: 270px;
+	width: 70%;
+}
+
+.img_width {
+	max-width: 480px;
+	width: 90%;
 }
 
 footer {
