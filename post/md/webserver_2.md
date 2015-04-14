@@ -16,8 +16,6 @@ JSTL을 사용하지 않으면 HTML 소스에 스크립틀릿을 이용한 자�
 
 # 함수 태그
 
-|||
-| :---| :--- |
 |<c:out >|Like <%= ... >, but for expressions.|
 |<c:set >|Sets the result of an expression evaluation in a 'scope'|
 |<c:remove >|Removes a scoped variable (from a particular scope, if specified).|
