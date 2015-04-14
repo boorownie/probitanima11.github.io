@@ -205,6 +205,12 @@ hr {
 	background-color: #ebc68b;
 }
 
+.post_menu_etc {
+	color: rgb(226, 225, 225);
+	font-size: 15px;
+	background-color: #F87269;
+}
+
 #post_list {
 	padding-left: 5px;
 	padding-right: 5px;
