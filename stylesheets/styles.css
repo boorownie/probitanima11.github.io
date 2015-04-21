@@ -205,10 +205,16 @@ hr {
 	background-color: #ebc68b;
 }
 
-.tag_etc {
+.tag_java {
 	color: rgb(226, 225, 225);
 	font-size: 15px;
 	background-color: #F87269;
+}
+
+.tag_spring {
+	color: rgb(226, 225, 225);
+	font-size: 15px;
+	background-color: #eeba46;
 }
 
 #post_list {
