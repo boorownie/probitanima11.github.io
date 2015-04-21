@@ -29,15 +29,15 @@
 		<section>
 			<div class="sub_menu">
 				<a class="tag_all" href="#"> #all </a>
-				<a>&nbsp; &nbsp; </a>
+				<span>&nbsp; &nbsp; </span>
 				<a class="tag_webserver" href="#"> #webserver </a>
-				<a>&nbsp; &nbsp; </a>
+				<span>&nbsp; &nbsp; </span>
 				<a class="tag_webui" href="#"> #webui </a>
-				<a>&nbsp; &nbsp; </a>
+				<span>&nbsp; &nbsp; </span>
 				<a class="tag_android" href="#"> #android </a>
-				<a>&nbsp; &nbsp; </a>
+				<span>&nbsp; &nbsp; </span>
 				<a class="tag_java" href="#"> #java </a>
-				<a>&nbsp; &nbsp; </a>
+				<span>&nbsp; &nbsp; </span>
 				<a class="tag_spring" href="#"> #spring </a>
 			</div>
 			<ul id="post_list"></ul>
@@ -111,12 +111,10 @@
 			}
 
 			window.addEventListener('load', getPostList("all"));
-			document.querySelector(".tag_all").addEventListener("click", clickMenuEvent);
-			document.querySelector(".tag_webserver").addEventListener("click", clickMenuEvent);
-			document.querySelector(".tag_webui").addEventListener("click", clickMenuEvent);
-			document.querySelector(".tag_android").addEventListener("click", clickMenuEvent);
-			document.querySelector(".tag_java").addEventListener("click", clickMenuEvent);
-			document.querySelector(".tag_spring").addEventListener("click", clickMenuEvent);
+			var tagMenus = document.querySelectorAll(".sub_menu > a");
+			for(var i=0; i<tagMenus.lenght; i++) {
+				tagMenus[i].addEventListener("click", clickMenuEvent);
+			}
 		</script>
 </body>
 </html>
