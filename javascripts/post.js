@@ -20,13 +20,13 @@ Post.prototype.checkIncludeTag = function(type) {
 
 Post.prototype.getTagDivElement = function() {
 	var divTagEl = document.createElement("div");
-	for (var tagEach in tags) {
+	for (var i = 0; i<this.tags.length; i++) {
 		var aTageEl = document.createElement("a");
 		aTageEl.setAttribute("class", "tag_"+tagEach.tag);
 		aTageEl.innerHTML = "#" + tagEach.tag;
 		divTagEl.appendChild(aTageEl);
 		var aSpaceEl = document.createElement("a");
-		aTageEl.innerHTML = "&nbsp; &nbsp;"; 
+		aSpaceEl.innerHTML = "&nbsp; &nbsp;"; 
 		divTagEl.appendChild(aSpaceEl);
 	}
 	return divTagEl;
