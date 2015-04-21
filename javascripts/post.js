@@ -22,8 +22,8 @@ Post.prototype.getTagDivElement = function() {
 	var divTagEl = document.createElement("div");
 	for (var i = 0; i<this.tags.length; i++) {
 		var aTageEl = document.createElement("a");
-		aTageEl.setAttribute("class", "tag_"+tagEach.tag);
-		aTageEl.innerHTML = "#" + tagEach.tag;
+		aTageEl.setAttribute("class", "tag_"+this.tags[i].tag);
+		aTageEl.innerHTML = "#" + this.tags[i].tag;
 		divTagEl.appendChild(aTageEl);
 		var aSpaceEl = document.createElement("a");
 		aSpaceEl.innerHTML = "&nbsp; &nbsp;"; 
