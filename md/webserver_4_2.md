@@ -1,0 +1,41 @@
+# JUnit 기반 스프링 클래스 테스트
+
+##1. 메이븐으로 spring-test 추가
+
+```
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-test</artifactId>
+    <version>4.1.6.RELEASE</version>
+</dependency>
+```
+
+##2. 테스트 클래스 생성
+
+```
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:/applicationContext.xml")
+public class UserDaoTest {
+    @Autowired
+    private UserDao userDao;
+	@Test
+	public void ExistCreateUserTest() throws ClassNotFoundException {
+		assertEquals(null, userDao.readUser("h@s.com"));
+	}
+```
+
+###2-1. @RunWith(SpringJUnit4ClassRunner.class)
+
+JUnit의 러너클래스를 지정한다.
+
+###2-2. @ContextConfiguration("스프링 설정파일")
+
+AppcationContext 위치를 지정한다. 지정하지 않으면 테스트 클래스파일이 있는 패키지 내에서 클래스이름 + "-context.xml"이 디폴트로 사용된다.
+
+###2-3. 클래스 필드에 @Autowired 선언
+
+ContextConfiguration에 선언한 스프링 설정파일에서 필드와 일치하는 인스턴스가 있으면 그 인스턴스를 해당 필드에 주입을 해준다.    
+
+##3. 템플릿을 이용하면 RunWith와 ContextConfiguration을 손쉽게 사용할 수 있다.
+
+(추후 업로드)

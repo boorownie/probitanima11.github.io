@@ -28,18 +28,15 @@
 		</header>
 		<section>
 			<div class="sub_menu">
-				<a id="menu_all" class="post_menu_all" href="#"> #ALL </a>
+				<a class="tag_all" href="#"> #all </a>
 				<a>&nbsp; &nbsp; </a>
-				<a id="menu_webserver" class="post_menu_webserver" href="#"> #webserver </a>
+				<a class="tag_webserver" href="#"> #webserver </a>
 				<a>&nbsp; &nbsp; </a>
-				<a id="menu_webui" class="post_menu_webui" href="#"> #webui </a>
+				<a class="tag_webui" href="#"> #webui </a>
 				<a>&nbsp; &nbsp; </a>
-				<a id="menu_android" class="post_menu_android" href="#"> #android </a>
-				<a>&nbsp; &nbsp; </a>
-				<a id="menu_etc" class="post_menu_etc" href="#"> #etc </a>
+				<a class="tag_android" href="#"> #android </a>
 			</div>
 			<ul id="post_list"></ul>
-			<div id="content"></div>
 		</section>
 		<footer>
 			<p>
@@ -49,71 +46,72 @@
 		</footer>
 		<script src="/javascripts/scale.fix.js"></script>
 		<script src="/javascripts/utils.js"></script>
+		<script src="/javascripts/post.js"></script>
 		<script>
-			var appendPostList = function(json, type) {
+			var appendPostList = function(postList) {
 				var el = document.querySelector("#post_list");
 				el.innerHTML = "";
-				for (var i = 0; i < json.length; i++) {
-					if (type === "menu_all" || type === json[i].type) {
-						var aEl = document.createElement("a");
-						aEl.setAttribute("href", "/post/" + json[i].type + "/"
-								+ json[i].id);
-						var liEl = document.createElement("li");
-						var divEl = document.createElement("div");
-						divEl.setAttribute("class", "post_card");
-						var aTageEl = document.createElement("a");
-						aTageEl.setAttribute("class", "post_menu_"+json[i].type.split("_")[1]);
-						aTageEl.innerHTML = "#" + json[i].type.split("_")[1];
-						divEl.appendChild(aTageEl);
-						var h3El = document.createElement("h3");
-						h3El.setAttribute("class", "post_name");
-						h3El.innerHTML = "_" + json[i].name;
-						divEl.appendChild(h3El);
-						if (json[i].desc !== undefined) {
-							var pEl = document.createElement("p");
-							pEl.setAttribute("class", "post_desc");
-							pEl.innerHTML = json[i].desc;
-							divEl.appendChild(pEl);
-						}
-						var spanEl = document.createElement("span");
-						spanEl.setAttribute("class", "post_date");
-						spanEl.innerHTML = json[i].date;
-						divEl.appendChild(spanEl);
-						liEl.appendChild(divEl);
-						aEl.appendChild(liEl);
-						el.appendChild(aEl);
+				for(var post in postList) {
+					var aEl = document.createElement("a");
+					aEl.setAttribute("href", "/post/" + post.idx);
+					var liEl = document.createElement("li");
+					var divEl = document.createElement("div");
+					divEl.setAttribute("class", "post_card");
+					var divTagEl = post.getTagDivElement();
+					var h3El = document.createElement("h3");
+					h3El.setAttribute("class", "post_name");
+					h3El.innerHTML = "_" + post.name;
+					divEl.appendChild(h3El);
+					if (post.desc !== undefined) {
+						var pEl = document.createElement("p");
+						pEl.setAttribute("class", "post_desc");
+						pEl.innerHTML = post.desc;
+						divEl.appendChild(pEl);
 					}
+					var spanEl = document.createElement("span");
+					spanEl.setAttribute("class", "post_date");
+					spanEl.innerHTML = post.date;
+					divEl.appendChild(spanEl);
+					liEl.appendChild(divEl);
+					aEl.appendChild(liEl);
+					el.appendChild(aEl);
 				}
 			}
 
-			var getPostList = function(type) {
+			var getPostList = function(e) {
+				var type = e.target.id.split("_")[1];
 				utils.ajax({
 					method : "get",
 					url : "/post/post_list.json",
 					success : function(req) {
-						var json = JSON.parse(req.responseText);
-						if (json !== "" || json !== undefined) {
-							appendPostList(JSON.parse(req.responseText), type);
+						var jsonArray = JSON.parse(req.responseText);
+						if (jsonArray === "" || jsonArray === undefined) {
+							return;
 						}
+						
+						if (type == "all") {
+							appendPostList(list);
+							return;
+						}
+						
+						var list = new Array();
+						for(var jsonObj in jsonArray) {
+							var postObj = new Post(jsonObj);
+							if(postObj.checkIncludeTag(type)) {
+								list.push(postObj);
+							}
+						}
+						appendPostList(list);
 					}
 				});
 			}
 
-			var clickMenuEvent = function(e) {
-				getPostList(e.target.id);
-			}
-
-			window.addEventListener('load', getPostList("menu_all"));
-			document.querySelector("#menu_all").addEventListener("click",
-					clickMenuEvent);
-			document.querySelector("#menu_webserver").addEventListener("click",
-					clickMenuEvent);
-			document.querySelector("#menu_webui").addEventListener("click",
-					clickMenuEvent);
-			document.querySelector("#menu_android").addEventListener("click",
-					clickMenuEvent);
-			document.querySelector("#menu_etc").addEventListener("click",
-					clickMenuEvent);
+			window.addEventListener('load', getPostList("all"));
+			document.querySelector(".tag_all").addEventListener("click", getPostList);
+			document.querySelector(".tag_webserver").addEventListener("click", getPostList);
+			document.querySelector(".tag_webui").addEventListener("click", getPostList);
+			document.querySelector(".tag_android").addEventListener("click", getPostList);
+			document.querySelector(".tag_etc").addEventListener("click", getPostList);
 		</script>
 </body>
 </html>

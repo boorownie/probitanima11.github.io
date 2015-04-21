@@ -1,0 +1,29 @@
+# 부모 스프링 설정하기(applicationContext.xml)
+
+사용할 bean들의 인스턴스를 정의해준다.
+
+##1. 아래의 코드 작성(예시)
+
+-> /src/main/resources/applicationContext.xml
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	<context:property-placeholder location="classpath*:application-properties.xml" />
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		p:driverClassName="${database.driverClassName}" p:url="${database.url}"
+		p:username="${database.username}" p:password="${database.password}" />
+	<bean id="UserDao" class="org.nhnnext.guinness.model.UserDao"
+		p:dataSource-ref="dataSource" />
+	<bean id="CommentDao" class="org.nhnnext.guinness.model.CommentDao"
+		p:dataSource-ref="dataSource" />
+	<bean id="GroupDao" class="org.nhnnext.guinness.model.GroupDao"
+		p:dataSource-ref="dataSource" />
+	<bean id="NoteDao" class="org.nhnnext.guinness.model.NoteDao"
+		p:dataSource-ref="dataSource" />
+</beans>
+```

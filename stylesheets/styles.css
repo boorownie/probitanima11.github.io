@@ -181,31 +181,31 @@ hr {
 	padding-bottom: 20px;
 }
 
-.post_menu_all {
+.tag_all {
 	color: rgb(226, 225, 225);
 	font-size: 15px;
 	background-color: #185e60;
 }
 
-.post_menu_webserver {
+.tag_webserver {
 	color: rgb(226, 225, 225);
 	font-size: 15px;
 	background-color: #6d9687;
 }
 
-.post_menu_webui {
+.tag_webui {
 	color: rgb(226, 225, 225);
 	font-size: 15px;
 	background-color: #afae8e;
 }
 
-.post_menu_android {
+.tag_android {
 	color: rgb(247, 247, 247);
 	font-size: 15px;
 	background-color: #ebc68b;
 }
 
-.post_menu_etc {
+.tag_etc {
 	color: rgb(226, 225, 225);
 	font-size: 15px;
 	background-color: #F87269;
