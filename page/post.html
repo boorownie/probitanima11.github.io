@@ -88,15 +88,10 @@
 							return;
 						}
 						
-						if (type == "all") {
-							appendPostList(list);
-							return;
-						}
-						
 						var list = new Array();
 						for(var jsonObj in jsonArray) {
 							var postObj = new Post(jsonObj);
-							if(postObj.checkIncludeTag(type)) {
+							if(type == "all" || postObj.checkIncludeTag(type)) {
 								list.push(postObj);
 							}
 						}
