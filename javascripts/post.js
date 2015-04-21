@@ -10,8 +10,8 @@ function Post(json) {
 }
 
 Post.prototype.checkIncludeTag = function(type) {
-	for(var tag in tags) {
-		if(tag.tag == type) {
+	for (var i = 0; i<this.tags.length; i++) {
+		if(this.tags[i] == type) {
 			return true;
 		}
 	}
