@@ -182,39 +182,39 @@ hr {
 }
 
 .tag_all {
-	color: rgb(226, 225, 225);
+	/* color: rgb(226, 225, 225); */
 	font-size: 15px;
-	background-color: #185e60;
+	color: #185e60;
 }
 
 .tag_webserver {
-	color: rgb(226, 225, 225);
+	/* color: rgb(226, 225, 225); */
 	font-size: 15px;
-	background-color: #6d9687;
+	color: #6d9687;
 }
 
 .tag_webui {
-	color: rgb(226, 225, 225);
+	/* color: rgb(226, 225, 225); */
 	font-size: 15px;
-	background-color: #afae8e;
+	color: #afae8e;
 }
 
 .tag_android {
-	color: rgb(247, 247, 247);
+	/* color: rgb(247, 247, 247); */
 	font-size: 15px;
-	background-color: #ebc68b;
+	color: #ebc68b;
 }
 
 .tag_java {
-	color: rgb(226, 225, 225);
+	/* color: rgb(226, 225, 225); */
 	font-size: 15px;
-	background-color: #F87269;
+	color: #F87269;
 }
 
 .tag_spring {
-	color: rgb(226, 225, 225);
+	/* color: rgb(226, 225, 225); */
 	font-size: 15px;
-	background-color: #eeba46;
+	color: #eeba46;
 }
 
 #post_list {
