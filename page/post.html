@@ -51,7 +51,7 @@
 			var appendPostList = function(postList) {
 				var el = document.querySelector("#post_list");
 				el.innerHTML = "";
-				for(var i=0; i<postList.length; i++)
+				for(var i=0; i<postList.length; i++) {
 					var aEl = document.createElement("a");
 					aEl.setAttribute("href", "/post/" + postList[i].idx);
 					var liEl = document.createElement("li");
@@ -89,7 +89,7 @@
 						}
 						
 						var list = new Array();
-						for(var i=0; i<jsonArray.length; i++)
+						for(var i=0; i<jsonArray.length; i++) {
 							var postObj = new Post(jsonArray[i]);
 							if(type == "all" || postObj.checkIncludeTag(type)) {
 								list.push(postObj);
