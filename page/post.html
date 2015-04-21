@@ -54,25 +54,26 @@
 				for(var i=0; i<postList.length; i++) {
 					var aEl = document.createElement("a");
 					aEl.setAttribute("href", "/post/" + postList[i].idx);
-					var liEl = document.createElement("li");
-					var divEl = document.createElement("div");
-					divEl.setAttribute("class", "post_card");
-					var divTagEl = postList[i].getTagDivElement();
-					var h3El = document.createElement("h3");
-					h3El.setAttribute("class", "post_name");
-					h3El.innerHTML = "_" + postList[i].name;
-					divEl.appendChild(h3El);
-					if (postList[i].desc !== undefined) {
-						var pEl = document.createElement("p");
-						pEl.setAttribute("class", "post_desc");
-						pEl.innerHTML = postList[i].desc;
-						divEl.appendChild(pEl);
-					}
-					var spanEl = document.createElement("span");
-					spanEl.setAttribute("class", "post_date");
-					spanEl.innerHTML = postList[i].date;
-					divEl.appendChild(spanEl);
-					liEl.appendChild(divEl);
+						var liEl = document.createElement("li");
+							var divEl = document.createElement("div");
+							divEl.setAttribute("class", "post_card");
+								var divTagEl = postList[i].getTagDivElement();
+								divEl.appendChild(divTagEl);
+								var h3El = document.createElement("h3");
+								h3El.setAttribute("class", "post_name");
+								h3El.innerHTML = "_" + postList[i].name;
+								divEl.appendChild(h3El);
+								if (postList[i].desc !== undefined) {
+									var pEl = document.createElement("p");
+									pEl.setAttribute("class", "post_desc");
+									pEl.innerHTML = postList[i].desc;
+									divEl.appendChild(pEl);
+								}
+								var spanEl = document.createElement("span");
+								spanEl.setAttribute("class", "post_date");
+								spanEl.innerHTML = postList[i].date;
+							divEl.appendChild(spanEl);
+						liEl.appendChild(divEl);
 					aEl.appendChild(liEl);
 					el.appendChild(aEl);
 				}
