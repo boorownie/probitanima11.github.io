@@ -106,7 +106,7 @@
 			}
 			
 			var clickMenuEvent = function(e) {
-				var type = e.target.id.split("_")[1];
+				var type = e.target.getAttribute("class").split("_")[1];
 				getPostList(type);
 			}
 
@@ -116,6 +116,7 @@
 			document.querySelector(".tag_webui").addEventListener("click", clickMenuEvent);
 			document.querySelector(".tag_android").addEventListener("click", clickMenuEvent);
 			document.querySelector(".tag_java").addEventListener("click", clickMenuEvent);
+			document.querySelector(".tag_spring").addEventListener("click", clickMenuEvent);
 		</script>
 </body>
 </html>
