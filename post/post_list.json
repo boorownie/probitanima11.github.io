@@ -1,10 +1,4 @@
 [
-	{"id":"webserver_1", "type":"menu_webserver","name":"Embedded Tomcat", "date":"20150403"}, 
-	{"id":"webserver_2", "type":"menu_webserver","name":"Expression Languge & JSTL", "date":"20150413"}
-]
-
-
-[
 	{"idx":"1", "name":"Embedded Tomcat", "date":"20150403", "tags":["webserver"]},
 	{"idx":"2", "name":"Expression Languge & JSTL", "date":"20150413", "tags":["webserver","java"]}
 ]
