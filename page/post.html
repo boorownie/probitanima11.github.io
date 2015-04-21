@@ -78,8 +78,7 @@
 				}
 			}
 
-			var getPostList = function(e) {
-				var type = e.target.id.split("_")[1];
+			var getPostList = function(type) {
 				utils.ajax({
 					method : "get",
 					url : "/post/post_list.json",
@@ -105,13 +104,18 @@
 					}
 				});
 			}
+			
+			var clickMenuEvent = function(e) {
+				var type = e.target.id.split("_")[1];
+				getPostList(type);
+			}
 
-			window.addEventListener('load', getPostList("tag_all"));
-			document.querySelector(".tag_all").addEventListener("click", getPostList);
-			document.querySelector(".tag_webserver").addEventListener("click", getPostList);
-			document.querySelector(".tag_webui").addEventListener("click", getPostList);
-			document.querySelector(".tag_android").addEventListener("click", getPostList);
-			document.querySelector(".tag_etc").addEventListener("click", getPostList);
+			window.addEventListener('load', getPostList("all"));
+			document.querySelector(".tag_all").addEventListener("click", clickMenuEvent);
+			document.querySelector(".tag_webserver").addEventListener("click", clickMenuEvent);
+			document.querySelector(".tag_webui").addEventListener("click", clickMenuEvent);
+			document.querySelector(".tag_android").addEventListener("click", clickMenuEvent);
+			document.querySelector(".tag_etc").addEventListener("click", clickMenuEvent);
 		</script>
 </body>
 </html>
