@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+<head>
+<title>멘땅에 코딩</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="/stylesheets/styles.css">
+<link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<h1>멘땅에 코딩</h1>
+			<p class="menu">
+				<a href="/"> Home </a>
+			</p>
+			<p class="menu">
+				<a href="/page/post.html"> Post </a>
+			</p>
+			<p class="menu">
+				<a href="/page/dairy.html"> Dairy </a>
+			</p>
+			<p class="menu">
+				<a href="https://github.com/probitanima11"> GitHub </a>
+			</p>
+		</header>
+		<section>
+			<!-- 상단 뒤로 돌아가기 버튼 -->
+			<a class="back_button" href="/page/post.html"> _back </a>
+			<!-- 내용 넣기 -->
+			<div id="content">
+				<h2>※ 스프링 MVC 라이브러리와 테스트 라이브러리 추가</h2>
+
+				<h3>스프링 프레임워크</h3>
+
+				<p>-> /pom.xml</p>
+
+				<p>
+					<code> &lt;dependency&gt;
+						&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+						&lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+						&lt;version&gt;4.1.6.RELEASE&lt;/version&gt; &lt;/dependency&gt; </code>
+				</p>
+
+				<h3>스프링 프레임워크 테스트</h3>
+
+				<p>-> /pom.xml</p>
+
+				<p>
+					<code> &lt;dependency&gt;
+						&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+						&lt;artifactId&gt;spring-test&lt;/artifactId&gt;
+						&lt;version&gt;4.1.6.RELEASE&lt;/version&gt; &lt;/dependency&gt; </code>
+				</p>
+
+				<h1>스프링 설정하기(web.xml)</h1>
+
+				<p>서블릿 컨테이너가 시작되면 web.xml을 읽는다. web.xml는 Web Application
+					Deployment Descriptor(DD파일)로서 웹 어플리케이션의 환경설정파일이다.</p>
+
+				<p>-> /WEB-INF/jsp/web.xml</p>
+
+				<p>
+					<code> &lt;listener&gt;
+						&lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;
+						&lt;/listener&gt; &lt;context-param&gt;
+						&lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+						&lt;param-value&gt; classpath:/applicationContext.xml
+						&lt;/param-value&gt; &lt;/context-param&gt; &lt;servlet&gt;
+						&lt;servlet-name&gt;guinness&lt;/servlet-name&gt;
+						&lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+						&lt;load-on-startup&gt;1&lt;/load-on-startup&gt; &lt;/servlet&gt;
+						&lt;servlet-mapping&gt;
+						&lt;servlet-name&gt;guinness&lt;/servlet-name&gt;
+						&lt;url-pattern&gt;/&lt;/url-pattern&gt; &lt;/servlet-mapping&gt;
+					</code>
+				</p>
+
+				<p>web.xml에는 다음과 같은 정보를 설정할 수 있다.</p>
+
+				<h2>1. 리스너 정보</h2>
+
+				<p>특정 이벤트 발생 시 호출을 하게 한다.</p>
+
+				<ul>
+					<li>ServletContextListener : 웹컨테이너 시작/종료 시 호출</li>
+					<li>ServletContextAttributeListener : 컨테이너에 저장된 속성 값 변경 시 호출</li>
+					<li>HttpSessionListener : HTTP 세션 활성화/비활성화 시 호출</li>
+					<li>HttpSessionAttributeListener : HTTP 세션 속성 값 변경 시 호출</li>
+				</ul>
+
+				<p>... (추후 업로드)</p>
+
+				<p>아래와 같이 등록 할 수 있다.</p>
+
+				<p>
+					<code> &lt;listener&gt;
+						&lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;
+						&lt;/listener&gt; </code>
+				</p>
+
+				<h3>1-1. context param으로 전달하기</h3>
+
+				<p>
+					<code> &lt;context-param&gt;
+						&lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+						&lt;param-value&gt;classpath:/applicationContext.xml&lt;/param-value&gt;
+						&lt;/context-param&gt; </code>
+				</p>
+
+				<p>ContextLoaderListener를 등록하면 ServletContextListener클래스의
+					contextInitialized method를 실행하여 부모 스프링 컨테이너를 생성한다. 이때
+					contextConfigLocation 설정을 변경하면 부모 스프링 컨테이너의 정보를 가지는 xml파일의 경로를 변경할
+					수 있다.(applicationContext.xml에 대한 설명은 다른 포스트에서 상세히)</p>
+
+				<p>org.springframework.web.context.ContextLoaderListener 클래스</p>
+
+				<p>
+					<code> public void contextInitialized(ServletContextEvent
+						event) { ServletContext servletContext =
+						event.getServletContext(); String location =
+						servletContext.getInitParameter("contextConfigLocation"); if
+						(location == null) { location = "/WEB-INF/applicationContext.xml";
+						} ... } </code>
+				</p>
+
+				<h2>2. 서블릿 정보</h2>
+
+				<p>모든경로("/")의 접근을 스프링에서 제공하는 DispatcherServlet으로 맵핑을 한다.</p>
+
+				<p>
+					<code> &lt;servlet&gt;
+						&lt;servlet-name&gt;guinness&lt;/servlet-name&gt;
+						&lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+						&lt;load-on-startup&gt;1&lt;/load-on-startup&gt; &lt;/servlet&gt;
+						&lt;servlet-mapping&gt;
+						&lt;servlet-name&gt;guinness&lt;/servlet-name&gt;
+						&lt;url-pattern&gt;/&lt;/url-pattern&gt; &lt;/servlet-mapping&gt;
+					</code>
+				</p>
+
+				<h3>2-1. load-on-startup 태그</h3>
+
+				<p>
+					'
+					<servlet />
+					' 설정 시 load-onstartup이 설정되어 있으면 HttpServlet.init method 실행하여 자식 스프링
+					컨테이너를 생성한다. 자식 스프링 컨테이너의 정보를 가지는 xml파일의 경로를 변경할 수
+					있다.(서블릿이름+-servlet.xml에 대한 설명은 다른 포스트에서 상세히)
+				</p>
+
+				<p>org.springframework.web.servlet.DispatcherServlet 클래스</p>
+
+				<p>
+					<code> public void init() { String location =
+						getInitParameter("contextConfigLocation"); if (location == null) {
+						location = "/WEB-INF/" + getServletName() + "-servlet.xml" } } </code>
+				</p>
+
+				<h2>3. PostConstruct 사용 시 context:annotation-config 추가</h2>
+
+				<p>
+					<code> &lt;context:annotation-config /&gt; </code>
+				</p>
+			</div>
+			<!-- 하단 뒤로 돌아가기 버튼 -->
+			<a class="back_button" href="/page/post.html"> _back </a>
+			<!-- 댓글 -->
+			<div id="disqus_thread"></div>
+			<script type="text/javascript">
+				/* * * CONFIGURATION VARIABLES * * */
+				var disqus_shortname = 'probitanima11';
+
+				/* * * DON'T EDIT BELOW THIS LINE * * */
+				(function() {
+					var dsq = document.createElement('script');
+					dsq.type = 'text/javascript';
+					dsq.async = true;
+					dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document
+							.getElementsByTagName('body')[0]).appendChild(dsq);
+				})();
+			</script>
+			<noscript>
+				Please enable JavaScript to view the <a
+					href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+					powered by Disqus.</a>
+			</noscript>
+		</section>
+
+		<footer>
+			<p>
+				<small>Hosted on GitHub Pages &mdash; Theme by <a
+					href="https://github.com/orderedlist">orderedlist</a></small>
+			</p>
+		</footer>
+	</div>
+	<script src="/javascripts/scale.fix.js"></script>
+</body>
+</html>

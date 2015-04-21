@@ -30,7 +30,66 @@
 			<!-- 상단 뒤로 돌아가기 버튼 -->
 			<a class="back_button" href="/page/post.html"> _back </a>
 			<!-- 내용 넣기 -->
-			<div id="content"></div>
+			<div id="content">
+				<h1>Embedded Tomcat을 쓰는 이유</h1>
+
+				<p>WTP(Web Tools Platform)는 Eclipse에서 웹 개발을 하거나 Java EE 어플리케이션을
+					개발하기 위한 툴이다. WTP는 마법사와 built-in 어플리케이션을 통해 손쉽게 개발할 수 있게 해주고 개발한
+					어플리케이션을 배포, 실행, 테스트 하는데 필요한 툴과 API들을 포함하고 있다. 하지만 WTP는 JSP를 수정하였을 때
+					생기는 버그와 배포시 발생되는 버그 등 간혹 비정상적인 동작을 인해 불편함을 유발한다. 따라서 Embedded
+					Tomcat 환경에서 개발하는 것을 추천 받아 사용해 보았다.</p>
+
+				<h1>Embedded Tomcat 적용하기</h1>
+
+				<ul>
+					<li>Maven이 적용된 프로젝트 : <a
+						href="http://www.slipp.net/wiki/pages/viewpage.action?pageId=16711743">slipp.net:
+							embedded tomcat 연결</a> 참조
+					</li>
+					<li>Maven이 아닌 경우 jar파일로 된 embedded tomcat library를 추가한다.</li>
+				</ul>
+
+				<h1>Embedded Tomcat 사용하기</h1>
+
+				<ul>
+					<li><p>launcher class 생성 후 실행 ``` public class Main {</p>
+
+						<p>public static void main(String[] args) throws Exception {</p> <pre>
+							<code>String webappDirLocation = "src/main/webapp/";
+Tomcat tomcat = new Tomcat();
+
+
+//The port that we should run on can be set into an environment variable
+//Look for that variable and default to 8080 if it isn't there.
+String webPort = System.getenv("PORT");
+if(webPort == null || webPort.isEmpty()) {
+    webPort = "8080";
+}
+
+
+tomcat.setPort(Integer.valueOf(webPort));
+
+
+tomcat.addWebapp("/", new File(webappDirLocation).getAbsolutePath());
+System.out.println("configuring app with basedir: " + new File("./" + webappDirLocation).getAbsolutePath());
+
+
+tomcat.start();
+tomcat.getServer().await();
+</code>
+						</pre>
+
+						<p>} } ```</p></li>
+				</ul>
+
+				<p>
+					[출처] <a
+						href="http://www.slipp.net/wiki/pages/viewpage.action?pageId=16711743">slipp.net</a>
+					<a href="http://projects.eclipse.org/projects/webtools">Eclipse</a>
+					<a
+						href="https://devcenter.heroku.com/articles/create-a-java-web-application-using-embedded-tomcat">Devcenter</a>
+				</p>
+			</div>
 			<!-- 하단 뒤로 돌아가기 버튼 -->
 			<a class="back_button" href="/page/post.html"> _back </a>
 			<!-- 댓글 -->
@@ -64,19 +123,5 @@
 		</footer>
 	</div>
 	<script src="/javascripts/scale.fix.js"></script>
-	<script src="/javascripts/utils.js"></script>
-	<script src="/javascripts/showdown.js"></script>
-	<script>
-		utils.ajax({
-			method : "get",
-			url : "/post/md/" + location.pathname.split("/")[3] + ".md",
-			success : function(req) {
-				var converter = new Showdown.converter();
-				var html = converter.makeHtml(req.responseText);
-				var header = document.querySelector("#content");
-				header.innerHTML = html;
-			}
-		});
-	</script>
 </body>
 </html>
