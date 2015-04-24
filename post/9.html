@@ -44,7 +44,7 @@
 				</p>
 
 				<pre>
-					<code>&lt;context:property-placeholder location="classpath*:application-properties.xml" /&gt;
+<code>&lt;context:property-placeholder location="classpath*:application-properties.xml" /&gt;
 
 &lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
     p:driverClassName="${database.driverClassName}" p:url="${database.url}"
@@ -63,7 +63,7 @@
 				<h2>2. JdbcDataSupport를 상속 UserDao 작성</h2>
 
 				<pre>
-					<code>public class UserDao extends JdbcDaoSupport {
+<code>public class UserDao extends JdbcDaoSupport {
     private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
 
     @PostConstruct

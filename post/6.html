@@ -40,7 +40,7 @@
 				</p>
 
 				<pre>
-					<code>&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"/&gt;
+<code>&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"/&gt;
 &lt;bean id="UserDao" class="org.nhnnext.guinness.model.dao.UserDao" /&gt;
 </code>
 				</pre>
@@ -57,7 +57,7 @@
 				</p>
 
 				<pre>
-					<code>&lt;context-param&gt;
+<code>&lt;context-param&gt;
     &lt;param-name&gt;
         contextConfigLocation
     &lt;/param-name&gt;
@@ -75,7 +75,7 @@
 				</p>
 
 				<pre>
-					<code>&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+<code>&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
     p:driverClassName="${database.driverClassName}" p:url="${database.url}"
     p:username="${database.username}" p:password="${database.password}" /&gt;
 
@@ -89,7 +89,7 @@
 				<h2>3. 자바코드에서 ApplicationContext자원 사용하기</h2>
 
 				<pre>
-					<code>public UserDao getServletContextParams() {
+<code>public UserDao getServletContextParams() {
     ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
     UserDao userDao = ac.getBean("UserDao");
     return userDao;
