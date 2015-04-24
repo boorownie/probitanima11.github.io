@@ -33,50 +33,75 @@
 			<div id="content">
 				<h1>JDBC 적용하기</h1>
 
+				<p>
+					<code>&gt;컨트롤러에서 데이터베이스에 데이터를 저장하기</code>
+				</p>
+
 				<h2>1. h2 dependency 추가(maven)</h2>
 
 				<p>
-					<code> &lt;dependency&gt;
-						&lt;groupId&gt;com.h2database&lt;/groupId&gt;
-						&lt;artifactId&gt;h2&lt;/artifactId&gt;
-						&lt;version&gt;1.4.187&lt;/version&gt; &lt;/dependency&gt; </code>
+					<code>&gt;pom.xml</code>
 				</p>
 
-				<h2>2. JDBC설정파일 생성(application-properties.xml)</h2>
+				<pre>
+					<code>&lt;dependency&gt;
+    &lt;groupId&gt;com.h2database&lt;/groupId&gt;
+    &lt;artifactId&gt;h2&lt;/artifactId&gt;
+    &lt;version&gt;1.4.187&lt;/version&gt;
+&lt;/dependency&gt;
+</code>
+				</pre>
+
+				<h2>2. JDBC설정파일 생성</h2>
 
 				<p>데이터베이스에 대한 JDBC설정을 스프링 프레임워크를 통해 따로 관리할 수 있어 기존에 자바소스에서 하던
 					작업을 분리 할 수 있다.</p>
 
 				<p>
-					<code> &lt;entry
-						key="database.driverClassName"&gt;org.h2.Driver&lt;/entry&gt;
-						&lt;entry key="database.url"&gt;jdbc:h2:~/slipp-user&lt;/enrty&gt;
-						&lt;entry key="database.username"&gt;sa&lt;/entry&gt; &lt;entry
-						key="database.password"&gt;&lt;/entry&gt; </code>
+					<code>&gt;application-properties.xml</code>
 				</p>
+
+				<pre>
+					<code>&lt;entry key="database.driverClassName"&gt;org.h2.Driver&lt;/entry&gt;
+&lt;entry key="database.url"&gt;jdbc:h2:~/slipp-user&lt;/enrty&gt;
+&lt;entry key="database.username"&gt;sa&lt;/entry&gt;
+&lt;entry key="database.password"&gt;&lt;/entry&gt;
+</code>
+				</pre>
 
 				<h2>3. connection pool 추가(maven)</h2>
 
 				<p>
-					<code> &lt;dependency&gt;
-						&lt;groupId&gt;org.apache.tomcat&lt;/groupId&gt;
-						&lt;artifactId&gt;dbcp&lt;/artifactId&gt;
-						&lt;version&gt;6.0.43&lt;/version&gt; &lt;/dependency&gt; </code>
+					<code>&gt;pom.xml</code>
 				</p>
 
-				<h2>4. Spring 설정파일 추가(applicationContext.xml)</h2>
+				<pre>
+					<code>&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.tomcat&lt;/groupId&gt;
+    &lt;artifactId&gt;dbcp&lt;/artifactId&gt;
+    &lt;version&gt;6.0.43&lt;/version&gt;
+&lt;/dependency&gt;
+</code>
+				</pre>
+
+				<h2>4. Spring 설정파일 추가</h2>
 
 				<p>Spring Configuation file을 생성하여 아래의 코드를 작성한다.</p>
 
 				<p>
-					<code> &lt;context:property-placeholder
-						location="classpath*:application-properties.xml" /&gt; &lt;bean
-						id="dataSource" class="BasicDataSource"
-						p:driverClassName="${database.driverClassName}"
-						p:url="${database.url}" p:username="${database.username"
-						p:password="${database.password" /&gt;
-						&lt;/context:property-placeholder&gt; </code>
+					<code>&gt;applicationContext.xml</code>
 				</p>
+
+				<pre>
+					<code>&lt;context:property-placeholder location="classpath*:application-properties.xml" /&gt;
+    &lt;bean id="dataSource" class="BasicDataSource" 
+        p:driverClassName="${database.driverClassName}"
+        p:url="${database.url}" 
+        p:username="${database.username" 
+        p:password="${database.password" /&gt;
+&lt;/context:property-placeholder&gt;
+</code>
+				</pre>
 
 				<h3>4.1 context:property-placeholder</h3>
 

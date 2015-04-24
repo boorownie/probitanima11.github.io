@@ -1,12 +1,11 @@
 [
 	{"idx":"1", "name":"Embedded Tomcat", "date":"20150403", "tags":["webserver"]},
 	{"idx":"2", "name":"Expression Languge & JSTL", "date":"20150413", "tags":["webserver","java"]},
-	{"idx":"3", "name":"[Spring] 스프링 설정하기(web.xml)", "date":"20150414", "tags":["webserver","spring"]},
-	{"idx":"4", "name":"[Spring] 부모 스프링 설정하기(applicationContext.xml)", "date":"20150414", "tags":["webserver","spring"]},
-	{"idx":"5", "name":"[Spring] 자식 스프링 설정하기(서블릿명-servlet.xml)", "date":"20150414", "tags":["webserver","spring"]},
+	{"idx":"3", "name":"[Spring] 스프링 mvc 설정 연습", "date":"20150414", "tags":["webserver","spring"]},
+	{"idx":"4", "name":"[Spring] 서블릿 등록 후 리소스 로드 실패할 경우 처리", "date":"20150414", "tags":["webserver","spring"]},
+	{"idx":"5", "name":"[Spring] 브라우저에서 jsp에 바로 접근하는 것을 막기", "date":"20150414", "tags":["webserver","spring"]},
 	{"idx":"6", "name":"[Spring] 스프링 프레임워크를 통한 DI 설정", "date":"20150415", "tags":["webserver","spring"]},
 	{"idx":"7", "name":"[Spring] JUnit 기반 스프링 테스트", "date":"20150415", "tags":["webserver","spring"]},
 	{"idx":"8", "name":"[Spring] JDBC 적용하기 ", "date":"20150416", "tags":["webserver","spring"]},
-	{"idx":"9", "name":"[Spring] Dao 클래스 구현", "date":"20150417", "tags":["webserver","spring"]},
-	{"idx":"10", "name":"[Spring] Controller 클래스 구현", "date":"20150417", "tags":["webserver","spring"]}
+	{"idx":"9", "name":"[Spring] Dao 클래스 구현", "date":"20150417", "tags":["webserver","spring"]}
 ]

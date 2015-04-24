@@ -31,39 +31,68 @@
 			<a class="back_button" href="/page/post.html"> _back </a>
 			<!-- 내용 넣기 -->
 			<div id="content">
-				<h1>부모 스프링 설정하기(applicationContext.xml)</h1>
+				<h1>서블릿 등록 후 리소스 로드 실패할 경우 처리</h1>
 
-				<p>사용할 bean들의 인스턴스를 정의해준다.</p>
-
-				<h2>1. 아래의 코드 작성(예시)</h2>
-
-				<p>-> /src/main/resources/applicationContext.xml</p>
+				<p>서블릿을 아래와 같이 등록한 뒤 프로그램을 실행하면 간혹 JS파일이나 CSS파일들이 불러오지 않는 경우가
+					있다.</p>
 
 				<p>
-					<code> &lt;beans
-						xmlns="http://www.springframework.org/schema/beans"
-						xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-						xmlns:p="http://www.springframework.org/schema/p"
-						xmlns:context="http://www.springframework.org/schema/context"
-						xsi:schemaLocation="http://www.springframework.org/schema/beans
-						http://www.springframework.org/schema/beans/spring-beans.xsd
-						http://www.springframework.org/schema/context
-						http://www.springframework.org/schema/context/spring-context.xsd"&gt;
-						&lt;context:property-placeholder
-						location="classpath*:application-properties.xml" /&gt; &lt;bean
-						id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-						p:driverClassName="${database.driverClassName}"
-						p:url="${database.url}" p:username="${database.username}"
-						p:password="${database.password}" /&gt; &lt;bean id="UserDao"
-						class="org.nhnnext.guinness.model.UserDao"
-						p:dataSource-ref="dataSource" /&gt; &lt;bean id="CommentDao"
-						class="org.nhnnext.guinness.model.CommentDao"
-						p:dataSource-ref="dataSource" /&gt; &lt;bean id="GroupDao"
-						class="org.nhnnext.guinness.model.GroupDao"
-						p:dataSource-ref="dataSource" /&gt; &lt;bean id="NoteDao"
-						class="org.nhnnext.guinness.model.NoteDao"
-						p:dataSource-ref="dataSource" /&gt; &lt;/beans&gt; </code>
+					<code>&gt;web.xml</code>
 				</p>
+
+				<pre>
+					<code>&lt;servlet&gt;
+    &lt;servlet-name&gt;guinness&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+&lt;/servlet&gt;
+
+&lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;guinness&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+</code>
+				</pre>
+
+				<p>
+					위와 같이 설정을 하면
+					<code>&lt;url-pattern&gt;/&lt;/url-pattern&gt;</code>
+					이 부분으로 인해 모든 요청은 DispatcherServlet으로 처리가 된다.
+				</p>
+
+				<p>이로인해 JS파일이나 CSS파일 뿐만 아니라 이미지나 HTML파일을 불러오는 요청 마저 컨트롤러로 넘어가는
+					문제점이 발생한다.</p>
+
+				<p>이런 경우 spring mvc(XXX-servlet.xml)에서 다음과 같이 설정을 할 수 있다.</p>
+
+				<pre>
+					<code>&lt;mvc:resources location="/css/" mapping="/css/**" /&gt;
+</code>
+				</pre>
+
+				<p>-> /css/로 시작하는 모든 요청은 /css 디렉토리에 있는 리소스를 참고하라.</p>
+
+				<p>
+					(예제)
+					<code>&gt;guinness-servlet.xml</code>
+				</p>
+
+				<pre>
+					<code>&lt;context:component-scan base-package="org.nhnnext.guinness.controller" /&gt;
+
+&lt;mvc:annotation-driven /&gt;
+
+&lt;mvc:resources location="/img/" mapping="/img/**" /&gt;
+&lt;mvc:resources location="/favicon/" mapping="/favicon/**" /&gt;
+&lt;mvc:resources location="/fonts/" mapping="/fonts/**" /&gt;
+&lt;mvc:resources location="/js/" mapping="/js/**" /&gt;
+&lt;mvc:resources location="/css/" mapping="/css/**" /&gt;
+
+&lt;bean id="viewResolver"
+    class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+    p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" /&gt;
+</code>
+				</pre>
 			</div>
 			<!-- 하단 뒤로 돌아가기 버튼 -->
 			<a class="back_button" href="/page/post.html"> _back </a>

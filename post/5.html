@@ -31,56 +31,24 @@
 			<a class="back_button" href="/page/post.html"> _back </a>
 			<!-- 내용 넣기 -->
 			<div id="content">
-				<h1>자식 스프링 설정하기(guinness-servlet.xml)</h1>
+				<h1>브라우저에서 jsp에 바로 접근하는 것을 막기</h1>
 
-				<h2>1. WEB-INF파일 안에 Spring Bean Configuration File형태의 파일을 생성</h2>
+				<p>jsp에 바로 접근하는 것을 막기 위해 다음과 같이 설정을 변경 할 수 있다.</p>
 
-				<p>WEB-INF파일 아래에 서블릿이름이 포함된 xml파일을 통해 설정을 할 수 있다 (서블릿 명이
-					guinness라면 WEB-INF/guinness-servlet.xml).</p>
+				<ol>
+					<li><p>모든 jsp자원을 WEB-INF 및으로 이동한다.</p></li>
+					<li><p>이동 후 viewResolver의 prefix를 변경해 준다.</p>
 
-				<h2>2. 파일의 네임스페이스(버전 정보 없는 context, mvc, p)를 선택</h2>
-
-				<p>Code Assistance를 이용해 실수를 방지 할 수 있다.</p>
-
-				<h2>3. 아래의 코드 작성(예시)</h2>
-
-				<p>-> /WEB-INF/guinness-servlet.xml</p>
+						<p>
+							<code>p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" /&gt;</code>
+						</p></li>
+				</ol>
 
 				<p>
-					<code> &lt;context:component-scan
-						base-package="org.nhnnext.guinness.controller" /&gt;
-						&lt;mvc:annotation-driven /&gt; &lt;mvc:resources location="/img/"
-						mapping="/img/**" /&gt; &lt;mvc:resources location="/favicon/"
-						mapping="/favicon/**" /&gt; &lt;mvc:resources location="/fonts/"
-						mapping="/fonts/**" /&gt; &lt;mvc:resources location="/js/"
-						mapping="/js/**" /&gt; &lt;mvc:resources location="/css/"
-						mapping="/css/**" /&gt; &lt;bean id="viewResolver"
-						class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-						p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" /&gt; </code>
+					웹 어플리케이션 서버를 구현 할 때 <strong>WEB-INF 내의 자원은 클라이언트에서 직접적으로
+						접근 할 수 없도록</strong>되어있다. 보안상 중요하다고 생각되는 자원은 WEB-INF안에서 관리 되는것이 좋은 방법이라고 할 수
+					있다.
 				</p>
-
-				<ul>
-					<li><p>
-							<code>&lt;context:component-scan base-package="경로" /&gt;</code>
-							: 특정 경로에 있는 컨트롤러에 해당하는 클래스들만 로딩하기 위해 경로를 설정
-						</p></li>
-					<li><p>
-							<code>&lt;mvc:annotation-driven /&gt;</code>
-							: 컨트롤러를 인식할 때 어노테이션 기반으로 지정
-						</p></li>
-					<li><p>
-							<code>&lt;mvc:resources location="위치" mapping="매핑할 문구"
-								/&gt;</code>
-							: 리소스 경로 지정
-						</p></li>
-					<li><p>viewResolver 빈 설정 : 컨트롤러에서 뷰 이름을 결정할때 자동으로 연결이 되어
-							물리적인 접근을 함</p></li>
-				</ul>
-
-				<h2>4. 파일로 직접 접근하는것을 막기</h2>
-
-				<p>jsp파일들을 WEB-INF폴더안에 넣고 p:prefix를 "/" 에서 "/WEB-INF/"로 변경해주면
-					클라이언트에서 파일로 직접 접근한 경우 접근을 막을 수 있음</p>
 			</div>
 			<!-- 하단 뒤로 돌아가기 버튼 -->
 			<a class="back_button" href="/page/post.html"> _back </a>

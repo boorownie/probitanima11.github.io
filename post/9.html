@@ -33,49 +33,82 @@
 			<div id="content">
 				<h1>Dao 클래스 구현하기</h1>
 
-				<h2>1. spring JDBC 메이븐 추가</h2>
+				<p>앞에서 적용한 JDBC를 이용하여 Dao를 만든다.</p>
 
-				<h2>2. UserDao에 JdbcDataSupport를 상속</h2>
+				<h2>1. UserDao 등록</h2>
 
-				<h2>3. UserDao의 인스턴스 생성</h2>
-
-				<p>
-					<code> &lt;bean id="userDao" class="org.probit.UserDao"
-						p:dataSource-ref="dataSource" /&gt; </code>
-				</p>
-
-				<p>ApplicationContext.xml파일에서 UserDao Bean을 선언하고 그 인자의 레퍼런스로
-					dataSource를 선언한다.</p>
-
-				<h2>4. @PostConstruct 선언</h2>
+				<h3>1-1. ApplicationContext에 bean 등록</h3>
 
 				<p>
-					<code> @PostConstruct public void initialize() {
-						ResourceDatabasePopulator populator = new
-						ResourceDatabasePopulator(); populator.addScript(new
-						ClassPathResource("sql파일"));
-						DatabasePopulatorUtils.execute(populator, getDataSource()); </code>
+					<code>&gt;applicationContext.xml</code>
 				</p>
+
+				<pre>
+					<code>&lt;context:property-placeholder location="classpath*:application-properties.xml" /&gt;
+
+&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+    p:driverClassName="${database.driverClassName}" p:url="${database.url}"
+    p:username="${database.username}" p:password="${database.password}" /&gt;
+
+&lt;bean id="UserDao" class="org.nhnnext.guinness.dao.UserDao"
+    p:dataSource-ref="dataSource" /&gt;
+</code>
+				</pre>
+
+				<p>UserDao는 JdbcDaoSupport를 상속 받고 있다. JdbcDaoSupport클래스는 인자로
+					JdbcTemplate를 가지고 있는데 이 클래스는 JDBC에 접근을 하는 JdbcAccessor를 상속 받고 있으며
+					JDBC의 접속을 담당하고 있다. 이 때 DataSource 정보가 필요한데 이를
+					applicationContext.xml에서 의존성 주입을 통해 초기화를 헤준다.</p>
+
+				<h2>2. JdbcDataSupport를 상속 UserDao 작성</h2>
+
+				<pre>
+					<code>public class UserDao extends JdbcDaoSupport {
+    private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
+
+    @PostConstruct
+    public void initialize() {
+        ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+        populator.addScript(new ClassPathResource("sql파일"));
+        DatabasePopulatorUtils.execute(populator, getDataSource()); 
+    }
+
+    public User readUser(String userId) throws ClassNotFoundException {
+        String sql = "select * from USERS where userId=?";
+        RowMapper&lt;User&gt; rowMapper = new RowMapper&lt;User&gt;() {
+            @Override
+            public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return new User(rs.getString("userId")
+                            , rs.getString("password")
+                            , rs.getString("name")
+                            , rs.getString("email"));
+            }
+        }
+        try {
+            return getJdbcTemplate().queryForObject(sql, rm, userId);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+}
+</code>
+				</pre>
+
+				<h3>2-1. @PostConstruct 선언</h3>
 
 				<p>클래스가 스프링에 의해서 인스턴스가 생성이 될 때, PostConstruct가 선언된 메소드를 호출하면서
 					초기화 작업을 수행한다.</p>
 
-				<h2>5. RowMapper</h2>
-
-				<p>
-					<code> RowMapper&lt;User&gt; rowMapper = new
-						RowMapper&lt;User&gt;() { @Override public User mapRow(ResultSet
-						rs, int rowNum) throws SQLException { return new
-						User(rs.getString("userId") , rs.getString("password") ,
-						rs.getString("name") , rs.getString("email")); } } </code>
-				</p>
+				<h3>2-2. RowMapper</h3>
 
 				<p>ResultSet에 담겨있는 데이터를 해당 클래스로 매핑한다.</p>
 
-				<h2>6. getJdbcTemplate.query</h2>
+				<h3>2-3. getJdbcTemplate.query</h3>
 
-				<p>(추후 업로드) update: 리턴이 없는 쿼리 실행 queryForObject를 이용하면 오브젝트로 리턴
-					받을 수 있다. query: queryForList:</p>
+				<p>(추후 업로드)</p>
+
+				<p>update: 리턴이 없는 쿼리 실행 queryForObject를 이용하면 오브젝트로 리턴 받을 수 있다.
+					query: queryForList:</p>
 			</div>
 			<!-- 하단 뒤로 돌아가기 버튼 -->
 			<a class="back_button" href="/page/post.html"> _back </a>

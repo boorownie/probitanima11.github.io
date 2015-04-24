@@ -36,21 +36,34 @@
 				<h2>1. 메이븐으로 spring-test 추가</h2>
 
 				<p>
-					<code> &lt;dependency&gt;
-						&lt;groupId&gt;org.springframework&lt;/groupId&gt;
-						&lt;artifactId&gt;spring-test&lt;/artifactId&gt;
-						&lt;version&gt;4.1.6.RELEASE&lt;/version&gt; &lt;/dependency&gt; </code>
+					<code>&gt;pom.xml</code>
 				</p>
+
+				<pre>
+					<code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-test&lt;/artifactId&gt;
+    &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+</code>
+				</pre>
 
 				<h2>2. 테스트 클래스 생성</h2>
 
-				<p>
-					<code> @RunWith(SpringJUnit4ClassRunner.class)
-						@ContextConfiguration("classpath:/applicationContext.xml") public
-						class UserDaoTest { @Autowired private UserDao userDao; @Test
-						public void ExistCreateUserTest() throws ClassNotFoundException {
-						assertEquals(null, userDao.readUser("h@s.com")); } </code>
-				</p>
+				<pre>
+					<code>@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:/applicationContext.xml")
+public class UserDaoTest {
+    @Autowired
+    private UserDao userDao;
+
+    @Test
+    public void ExistCreateUserTest() throws ClassNotFoundException {
+        assertEquals(null, userDao.readUser("h@s.com"));
+    }
+}
+</code>
+				</pre>
 
 				<h3>2-1. @RunWith(SpringJUnit4ClassRunner.class)</h3>
 
@@ -59,7 +72,7 @@
 				<h3>2-2. @ContextConfiguration("스프링 설정파일")</h3>
 
 				<p>AppcationContext 위치를 지정한다. 지정하지 않으면 테스트 클래스파일이 있는 패키지 내에서
-					클래스이름 + "-context.xml"이 디폴트로 사용된다.</p>
+					applicationContext.xml"이 디폴트로 사용된다.</p>
 
 				<h3>2-3. 클래스 필드에 @Autowired 선언</h3>
 
