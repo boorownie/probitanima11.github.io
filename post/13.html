@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+<title>멘땅에 코딩</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="/stylesheets/styles.css">
+<link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<h1>멘땅에 코딩</h1>
+			<p class="menu">
+				<a href="/"> Home </a>
+			</p>
+			<p class="menu">
+				<a href="/page/post.html"> Post </a>
+			</p>
+			<p class="menu">
+				<a href="/page/dairy.html"> Dairy </a>
+			</p>
+			<p class="menu">
+				<a href="https://github.com/probitanima11"> GitHub </a>
+			</p>
+		</header>
+		<section>
+			<!-- 상단 뒤로 돌아가기 버튼 -->
+			<a class="back_button" href="/page/post.html"> _back </a>
+			<!-- 내용 넣기 -->
+			<div id="content">
+				<h1>Spring mvc validation</h1>
+
+<h2>1. maven dependenvcy 추가</h2>
+
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+    &lt;artifactId&gt;hibernate-validator&lt;/artifactId&gt;
+    &lt;version&gt;4.1.0.Final&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<h2>2. 필드에 유효성 처리</h2>
+
+<pre><code>public class User {
+
+    @NotEmpty @Size(min=4, max=12)
+    private String userId;
+
+    @NotEmpty 
+    private String name;
+
+    @Email
+    private String email;
+
+    ...
+}
+</code></pre>
+
+<h2>3. 컨트롤러에서 유효성 검사</h2>
+
+<p><code>&gt;UserController.java</code></p>
+
+<pre><code>public String create(@Valid User user, BindingResult bindingResult) {
+    if(bindingResult.hasErrors()) {
+        List&lt;ObjectError&gt; errors = bindingResult.getAllErrors();
+    }
+}
+</code></pre>
+
+<h3>3-1. @Valid</h3>
+
+<p>클래스 필드에 선언된 어노테이션을 읽어서 유효성 검사를 한다.</p>
+
+<h3>3-2. BindingResult</h3>
+
+<p>유효성 검사의 결과를 저장한다.</p>
+
+<h2>4. error message 관리</h2>
+
+<p>형식: 어노테이션이름+클래스이름(소문자)+필드이름</p>
+
+<p>{0} : 필드</p>
+
+<p>{1}, {2} : 인자</p>
+
+<p><code>&gt; messages.properties</code></p>
+
+<pre><code>Size.user.userId=User {0} should be {2} and {1} characters long
+NotEmpty.user.userId=User {0} is required
+NotEmpty.user.name=User {0} is required
+</code></pre>
+
+<h3>4-1 이클립스에서 한글 편집 가능하게 하기</h3>
+
+<p>properties editor 플러그인을 설치</p>
+
+<h3>4-2 언어별 설정하기</h3>
+
+<p>파일명을 다르게 해주기</p>
+
+<p>ex)</p>
+
+<p>한국: messages_kr.properties</p>
+
+<p>미국: messages_en.properties</p>
+
+<h2>5. bean 추가</h2>
+
+<p><code>&gt;guinness-servlet.xml</code></p>
+
+<pre><code>&lt;bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"
+    p:basename="messages"
+    p:defaultEncoding="UTF-8"
+/&gt;
+</code></pre>
+
+<p>basename은 .properties 빼고 경로 지정 </p>
+
+<h2>6. jsp파일에 등록하기</h2>
+
+<p><code>&gt;form.jsp</code></p>
+
+<pre><code>&lt;form:errors path="userId" cssClass"error /&gt;
+</code></pre>
+			</div>
+			<!-- 하단 뒤로 돌아가기 버튼 -->
+			<a class="back_button" href="/page/post.html"> _back </a>
+			<!-- 댓글 -->
+			<div id="disqus_thread"></div>
+			<script type="text/javascript">
+				/* * * CONFIGURATION VARIABLES * * */
+				var disqus_shortname = 'probitanima11';
+
+				/* * * DON'T EDIT BELOW THIS LINE * * */
+				(function() {
+					var dsq = document.createElement('script');
+					dsq.type = 'text/javascript';
+					dsq.async = true;
+					dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document
+							.getElementsByTagName('body')[0]).appendChild(dsq);
+				})();
+			</script>
+			<noscript>
+				Please enable JavaScript to view the <a
+					href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+					powered by Disqus.</a>
+			</noscript>
+		</section>
+
+		<footer>
+			<p>
+				<small>Hosted on GitHub Pages &mdash; Theme by <a
+					href="https://github.com/orderedlist">orderedlist</a></small>
+			</p>
+		</footer>
+	</div>
+	<script src="/javascripts/scale.fix.js"></script>
+</body>
+</html>

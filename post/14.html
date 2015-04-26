@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+<title>멘땅에 코딩</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="/stylesheets/styles.css">
+<link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<h1>멘땅에 코딩</h1>
+			<p class="menu">
+				<a href="/"> Home </a>
+			</p>
+			<p class="menu">
+				<a href="/page/post.html"> Post </a>
+			</p>
+			<p class="menu">
+				<a href="/page/dairy.html"> Dairy </a>
+			</p>
+			<p class="menu">
+				<a href="https://github.com/probitanima11"> GitHub </a>
+			</p>
+		</header>
+		<section>
+			<!-- 상단 뒤로 돌아가기 버튼 -->
+			<a class="back_button" href="/page/post.html"> _back </a>
+			<!-- 내용 넣기 -->
+			<div id="content">
+				<h1>Spring mvc validation test</h1>
+
+<h2>1. maven dependency 추가</h2>
+
+<pre><code>&lt;dependency&gt;
+   &lt;groupId&gt;javax.el&lt;/groupId&gt;
+   &lt;artifactId&gt;javax.el-api&lt;/artifactId&gt;
+   &lt;version&gt;2.2.4&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+   &lt;groupId&gt;org.glassfish.web&lt;/groupId&gt;
+   &lt;artifactId&gt;javax.el&lt;/artifactId&gt;
+   &lt;version&gt;2.2.4&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<h2>2. Test class 만들기</h2>
+
+<pre><code>public class UserTest {
+
+private static Validator validator;
+
+    @BeforeClass
+    public static void setUp() {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validator = factory.getValidator();
+    }
+
+    @Test
+    public void userIdWhenIsEmpty() {
+        USer user = new User("", "pass", "name", "email@email.com");
+        Set&lt;ConstraintViolation&lt;Car&gt;&gt; constraintViolations =
+        validator.validate(user);
+
+        for(ConstraintViolation&lt;Car&gt; constraintViolation: constraintViolations) {
+            logger.debug("error message : {}", constraintViolation.getMessage());
+        }
+    }
+}
+</code></pre>
+
+<h3>2-1. @BeforeClass</h3>
+
+<p>테스트 메소드가 실행되기 전에 @BeforeClass가 선언된 메소드가 실행된다.</p>
+			</div>
+			<!-- 하단 뒤로 돌아가기 버튼 -->
+			<a class="back_button" href="/page/post.html"> _back </a>
+			<!-- 댓글 -->
+			<div id="disqus_thread"></div>
+			<script type="text/javascript">
+				/* * * CONFIGURATION VARIABLES * * */
+				var disqus_shortname = 'probitanima11';
+
+				/* * * DON'T EDIT BELOW THIS LINE * * */
+				(function() {
+					var dsq = document.createElement('script');
+					dsq.type = 'text/javascript';
+					dsq.async = true;
+					dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document
+							.getElementsByTagName('body')[0]).appendChild(dsq);
+				})();
+			</script>
+			<noscript>
+				Please enable JavaScript to view the <a
+					href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+					powered by Disqus.</a>
+			</noscript>
+		</section>
+
+		<footer>
+			<p>
+				<small>Hosted on GitHub Pages &mdash; Theme by <a
+					href="https://github.com/orderedlist">orderedlist</a></small>
+			</p>
+		</footer>
+	</div>
+	<script src="/javascripts/scale.fix.js"></script>
+</body>
+</html>
