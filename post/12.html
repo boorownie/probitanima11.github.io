@@ -50,10 +50,9 @@
 
 <p><code>&gt;form.jsp</code></p>
 
-<p><code>&lt;% taglib prefix="form" uri="http://www.springframework.org/tags/form"%&gt;</code>
-...</p>
-
-<pre><code>&lt;form:form modelAttribute="user" cssClass="form-login" action"/users" method="post"&gt;
+<pre><code>&lt;%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%&gt;
+    ...
+&lt;form:form modelAttribute="user" cssClass="form-login" action"/users" method="post"&gt;
     &lt;form:input path="userId" /&gt;
     &lt;form:password path="password" /&gt;
     &lt;form:input path="name" /&gt;
@@ -64,6 +63,17 @@
 <h3>2-1. modelAttribute</h3>
 
 <p>폼 태그에서 user클래스의 setter와 getter를 이용하여 각각의 속성들과 맵핑을 해준다.</p>
+
+<h2>3 컨트롤러에서 객체 사용</h2>
+
+<p>form 태그에서 넘겨 받은 객체를 메소드의 파라미터로 바로 받아서 사용할 수 있다.</p>
+
+<pre><code>@RequestMapping(value = "/users", method = RequestMethod.POST)
+protected String create(User user) throws AlreadyExistedUserIdException {
+    userDao.createUser(user);
+    return "groups";
+}
+</code></pre>
 			</div>
 			<!-- 하단 뒤로 돌아가기 버튼 -->
 			<a class="back_button" href="/page/post.html"> _back </a>

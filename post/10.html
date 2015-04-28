@@ -110,9 +110,10 @@ public class UserController {
 
 <h3>2-5. 반복되는 URL제거</h3>
 
+<p>컨트롤러 클래스에 RequestMapping을 걸어주면 메소드들에 걸려있는 URI에서 중복되는 경로를 제거할 수 있다.</p>
+
 <pre><code>@Controller
 @RequestMapping("/users")
-
 public class UserController {
     @Autowired
     private UserDao userDao;
