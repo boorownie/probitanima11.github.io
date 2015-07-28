@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+<title>멘땅에 코딩</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="/stylesheets/styles.css">
+<link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<h1>멘땅에 코딩</h1>
+			<p class="menu">
+				<a href="/"> Home </a>
+			</p>
+			<p class="menu">
+				<a href="/page/post.html"> Post </a>
+			</p>
+			<p class="menu">
+				<a href="/page/dairy.html"> Dairy </a>
+			</p>
+			<p class="menu">
+				<a href="https://github.com/probitanima11"> GitHub </a>
+			</p>
+		</header>
+		<section>
+			<!-- 상단 뒤로 돌아가기 버튼 -->
+			<a class="back_button" href="/page/post.html"> _back </a>
+			<!-- 내용 넣기 -->
+			<div id="content">
+				<h1><a id="comandroidcameraactioncrop____0"></a>com.android.camera.action.crop에 대한 몇가지 이슈</h1>
+<h2><a id="1__Config__2"></a>1.생성되는 비트맵 Config값 이슈</h2>
+<p>(다른 많은 버전의 API를 테스트 한 후 업데이트 하겠습니다.)</p>
+<p>com.android.camera.action.crop 통해 생성된 Bitmap의 config값이 버전별로 다르다.</p>
+<pre><code>protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    <span class="hljs-keyword">switch</span> (requestCode) {
+        case REQ_PICK_FROM_CAMERA:
+            <span class="hljs-keyword">if</span> (resultCode == RESULT_OK) {
+                Bundle extras = data.getExtras();
+                Bitmap cropImg = extras.getParcelable(“data”);
+                <span class="hljs-keyword">...</span>
+            }
+    }
+    
+}
+</code></pre>
+<p>extras.getParcelable(“data”)를 통해 cropImg Bitmap이 생성된다.<br>
+이 때, Android 4.2.2 이하에서는 config가 RGB565로 되어 투명값을 표현할 수 없다.<br>
+(Android 4.4 이상에서는 ARGB8888로 설정된다.)</p>
+<h2><a id="2____25"></a>2.이미지 크롭 결과 이슈</h2>
+<p>기존 com.android.camera.action.crop의 결과를 받는 방법으로 두가지가 있었다.</p>
+<ul>
+<li>번들을 통해 Bitmap으로 받는 방법</li>
+<li>특정 경로에 저장하는 방법</li>
+</ul>
+<p>하지만 Andorid 4.4이상에서는 crop결과를 특정 경로에 저장 할 수 없게 되었다.</p>
+			</div>
+			<!-- 하단 뒤로 돌아가기 버튼 -->
+			<a class="back_button" href="/page/post.html"> _back </a>
+			<!-- 댓글 -->
+			<div id="disqus_thread"></div>
+			<script type="text/javascript">
+				/* * * CONFIGURATION VARIABLES * * */
+				var disqus_shortname = 'probitanima11';
+
+				/* * * DON'T EDIT BELOW THIS LINE * * */
+				(function() {
+					var dsq = document.createElement('script');
+					dsq.type = 'text/javascript';
+					dsq.async = true;
+					dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document
+							.getElementsByTagName('body')[0]).appendChild(dsq);
+				})();
+			</script>
+			<noscript>
+				Please enable JavaScript to view the <a
+					href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+					powered by Disqus.</a>
+			</noscript>
+		</section>
+
+		<footer>
+			<p>
+				<small>Hosted on GitHub Pages &mdash; Theme by <a
+					href="https://github.com/orderedlist">orderedlist</a></small>
+			</p>
+		</footer>
+	</div>
+	<script src="/javascripts/scale.fix.js"></script>
+</body>
+</html>
