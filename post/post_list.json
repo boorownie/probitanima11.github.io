@@ -1,4 +1,5 @@
 [
+	{"idx":"16", "name":"[Android] 안드로이드 Xfermode", "date":"20150802", "tags":["android"]},
 	{"idx":"15", "name":"[Android] com.android.camera.action.crop에 대한 몇가지 이슈", "date":"20150729", "tags":["android"]},
 	{"idx":"14", "name":"[Spring] Spring mvc validation test", "date":"20150426", "tags":["webserver","spring"]},
 	{"idx":"13", "name":"[Spring] Spring mvc validation", "date":"20150426", "tags":["webserver","spring"]},
