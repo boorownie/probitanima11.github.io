@@ -1,0 +1,225 @@
+<!doctype html>
+<html>
+<head>
+<title>멘땅에 코딩</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="/stylesheets/styles.css">
+<link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<h1>멘땅에 코딩</h1>
+			<p class="menu">
+				<a href="/"> Home </a>
+			</p>
+			<p class="menu">
+				<a href="/page/post.html"> Post </a>
+			</p>
+			<p class="menu">
+				<a href="/page/dairy.html"> Dairy </a>
+			</p>
+			<p class="menu">
+				<a href="https://github.com/probitanima11"> GitHub </a>
+			</p>
+		</header>
+		<section>
+			<!-- 상단 뒤로 돌아가기 버튼 -->
+			<a class="back_button" href="/page/post.html"> _back </a>
+			<!-- 내용 넣기 -->
+			<div id="content">
+				<h1 id="안드로이드에서-ndk-설정하기">안드로이드에서 NDK 설정하기</h1>
+
+
+
+<h2 id="ndk-다운로드-및-설치">NDK 다운로드 및 설치</h2>
+
+<ul>
+<li><a href="https://developer.android.com/ndk/downloads/index.html">https://developer.android.com/ndk/downloads/index.html</a></li>
+<li>sdk가 저장된 디렉토리에 압축 풀기(위치는 마음대로) <br>
+ex) Mac일 경우 압축 풀기</li>
+</ul>
+
+<pre class="prettyprint"><code class=" hljs lasso">ndk$ chmod a<span class="hljs-subst">+</span>x android<span class="hljs-attribute">-ndk</span><span class="hljs-attribute">-r10c</span><span class="hljs-attribute">-darwin</span><span class="hljs-attribute">-x86_64</span><span class="hljs-built_in">.</span>bin
+ndk$ <span class="hljs-built_in">.</span>/android<span class="hljs-attribute">-ndk</span><span class="hljs-attribute">-r10c</span><span class="hljs-attribute">-darwin</span><span class="hljs-attribute">-x86_64</span><span class="hljs-built_in">.</span>bin</code></pre>
+
+
+
+<h2 id="자바코드-생성">자바코드 생성</h2>
+
+
+
+<pre class="prettyprint"><code class=" hljs cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> NDKTest {
+    <span class="hljs-keyword">static</span> {
+        <span class="hljs-comment">// NDK로 Build한 Native Library를 Load</span>
+        System.loadLibrary(<span class="hljs-string">"NDKTest"</span>);  
+    }
+    <span class="hljs-comment">// Native Library에서 구현한 Method의 Interface를 native keyword로 선언</span>
+    <span class="hljs-keyword">public</span> native <span class="hljs-keyword">int</span>[] <span class="hljs-title">doNDKTest</span>(<span class="hljs-keyword">int</span>[] pixels, <span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height);
+    <span class="hljs-keyword">public</span> Bitmap <span class="hljs-title">doEfect</span>(Bitmap bitmap, <span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height) {
+        <span class="hljs-keyword">int</span>[] pixels = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[width * height];
+        bitmap.getPixels(pixels, <span class="hljs-number">0</span>, width, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, width, height);
+        <span class="hljs-keyword">int</span>[] returnPixels = doNDKTest(pixels, width, height);
+        <span class="hljs-keyword">return</span> Bitmap.createBitmap(returnPixels, width, height, Bitmap.Config.ARGB_8888);
+    }
+}</code></pre>
+
+<h2 id="main에-jni-디렉토리-생성">main에 jni 디렉토리 생성</h2>
+
+
+
+<h2 id="external-tool-설정">External Tool 설정</h2>
+
+<p>(모든 체크박스 체크)</p>
+
+<table>
+<thead>
+<tr>
+  <th>Name</th>
+  <th>Group</th>
+  <th>Description</th>
+  <th>Program</th>
+  <th>Parameters</th>
+  <th>Workgin Directory</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>javah</td>
+  <td>NDK</td>
+  <td>javah</td>
+  <td>/usr/bin/javah</td>
+  <td>-classpath <script type="math/tex" id="MathJax-Element-281">Classpath</script> -v -jni <script type="math/tex" id="MathJax-Element-282">FileClass</script></td>
+  <td><script type="math/tex" id="MathJax-Element-283">SourcepathEntry</script>/../jni</td>
+</tr>
+<tr>
+  <td>ndk-build</td>
+  <td>NDK</td>
+  <td>ndk-build</td>
+  <td>(ndk경로) /ndk-build</td>
+  <td>(공란)</td>
+  <td><script type="math/tex" id="MathJax-Element-284">ProjectFileDir</script>/app/src/main</td>
+</tr>
+<tr>
+  <td>ndk-build</td>
+  <td>NDK</td>
+  <td>ndk-build</td>
+  <td>(ndk경로) /ndk-build</td>
+  <td>clean</td>
+  <td><script type="math/tex" id="MathJax-Element-285">ProjectFileDir</script>/app/src/main</td>
+</tr>
+</tbody></table>
+
+
+
+
+<h2 id="헤더-파일-생성">헤더 파일 생성</h2>
+
+<p>native 메서드를 호출하는 클래스를 우클릭 후 [NDK - javah]</p>
+
+
+
+<h2 id="cppc-파일-생성">cpp(c) 파일 생성</h2>
+
+<p>native 메서드 내부를 구현</p>
+
+
+
+<h2 id="androidmk-생성">Android.mk 생성</h2>
+
+
+
+<pre class="prettyprint"><code class=" hljs ruleslanguage">LOCAL_PATH := $(call my-dir)        <span class="hljs-array"># </span>현재 파일의 설정된 경로.
+include $(CLEAR_VARS)               <span class="hljs-array"># LOCAL </span>관련 변수를 clear
+LOCAL_MODULE        := hello        <span class="hljs-array"># </span>모듈 이름, 생성되는 파일 이름을 결정.
+LOCAL_CFLAGS        += -std=c++<span class="hljs-number">14</span>   <span class="hljs-array"># </span>컴파일 플래그. 여기서는 c++<span class="hljs-number">14</span> 사용.
+LOCAL_SRC_FILES     := HelloNDK.cpp <span class="hljs-array"># </span>컴파일 되는 파일 리스트.
+include $(BUILD_SHARED_LIBRARY)     <span class="hljs-array"># </span>동적 라이브러리로 사용.
+#
+<span class="hljs-array"># </span>현재 사용하지 않는 것들은 주석처리.
+<span class="hljs-array">#LOCAL</span>_CPP_EXTENSION  := .cpp       <span class="hljs-array"># c</span>++ 소스의 확장자 정의, 기본 cpp.                                              <span class="hljs-array"># </span>임의 변경 가능
+<span class="hljs-array">#LOCAL</span>_C_INCLUDES :=                <span class="hljs-array"># </span>헤더 파일의 include 경로.
+<span class="hljs-array">#LOCAL</span>_LDLIBS     :=                <span class="hljs-array"># </span>연결하고자 하는 링크 옵션
+<span class="hljs-array">#LOCAL</span>_STATIC_LIBRARIES             <span class="hljs-array"># </span>링크할 정적 라이브러리
+<span class="hljs-array">#LOCAL</span>_SHARED_LIBRARIES             <span class="hljs-array"># </span>링크할 정적 라이브러리
+<span class="hljs-array">#include </span>$(BUILD_STATIC_LIBRARY)    <span class="hljs-array"># </span>정적 라이브러리로 사용</code></pre>
+
+<h2 id="applicationmk-생성">Application.mk 생성</h2>
+
+
+
+<pre class="prettyprint"><code class=" hljs vala"><span class="hljs-preprocessor"># 모듈 이름.</span>
+APP_MODULES := hello 
+<span class="hljs-preprocessor"># 플랫폼 설정</span>
+<span class="hljs-preprocessor"># ANDROID_PLATFORM := android-9</span>
+<span class="hljs-preprocessor"># all 로 설정하면 안드로이드에서 사용되는 모든 종류의 cpu 로 빌드.</span>
+<span class="hljs-preprocessor"># 앱과 디바이스 특성별로 설정해 주는 것이 좋다. </span>
+APP_ABI := all #arm64-v8a armeabi armeabi-v7a mips x86 x86_64</code></pre>
+
+<h2 id="buildgradle-ndk-부분-추가">build.gradle ndk 부분 추가</h2>
+
+
+
+<pre class="prettyprint"><code class=" hljs r">android {
+    defaultConfig {
+       //<span class="hljs-keyword">...</span>생략
+        ndk {
+            moduleName <span class="hljs-string">"hello"</span>
+        }
+        sourceSets.main {
+            jni.srcDirs = [] 
+            jniLibs.srcDir <span class="hljs-string">'src/main/libs'</span>
+        }
+    }</code></pre>
+
+
+
+<h2 id="ndk-빌드">NDK 빌드</h2>
+
+<p>native 메서드를 호출하는 클래스를 우클릭 후 [NDK - ndk-build]</p>
+
+
+
+<h2 id="기타">기타.</h2>
+
+<p>NDK not configured error가 날 경우 local.properties파일에 다음을 추가한다.</p>
+
+<p><code>ndk.dir=(ndk 파일 경로)</code></p>
+			</div>
+			<!-- 하단 뒤로 돌아가기 버튼 -->
+			<a class="back_button" href="/page/post.html"> _back </a>
+			<!-- 댓글 -->
+			<div id="disqus_thread"></div>
+			<script type="text/javascript">
+				/* * * CONFIGURATION VARIABLES * * */
+				var disqus_shortname = 'probitanima11';
+
+				/* * * DON'T EDIT BELOW THIS LINE * * */
+				(function() {
+					var dsq = document.createElement('script');
+					dsq.type = 'text/javascript';
+					dsq.async = true;
+					dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document
+							.getElementsByTagName('body')[0]).appendChild(dsq);
+				})();
+			</script>
+			<noscript>
+				Please enable JavaScript to view the <a
+					href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+					powered by Disqus.</a>
+			</noscript>
+		</section>
+
+		<footer>
+			<p>
+				<small>Hosted on GitHub Pages &mdash; Theme by <a
+					href="https://github.com/orderedlist">orderedlist</a></small>
+			</p>
+		</footer>
+	</div>
+	<script src="/javascripts/scale.fix.js"></script>
+</body>
+</html>
