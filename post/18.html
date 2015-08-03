@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+<head>
+<title>멘땅에 코딩</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="/stylesheets/styles.css">
+<link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<h1>멘땅에 코딩</h1>
+			<p class="menu">
+				<a href="/"> Home </a>
+			</p>
+			<p class="menu">
+				<a href="/page/post.html"> Post </a>
+			</p>
+			<p class="menu">
+				<a href="/page/dairy.html"> Dairy </a>
+			</p>
+			<p class="menu">
+				<a href="https://github.com/probitanima11"> GitHub </a>
+			</p>
+		</header>
+		<section>
+			<!-- 상단 뒤로 돌아가기 버튼 -->
+			<a class="back_button" href="/page/post.html"> _back </a>
+			<!-- 내용 넣기 -->
+			<div id="content">
+				<h1 id="sts에서-maven-사용하기">Maven Lifecycle</h1>
+
+
+
+<h2 id="메이븐이란">메이븐이란?</h2>
+
+<p><img src="http://www.researchbeta.com/wp-content/uploads/2012/08/maven-phase.png" alt="maven" title=""></p>
+
+<ul>
+<li>페이즈라는 빌드 단계와 그 페이즈의 구현체인 골, 그리고 골을 가지고 있는 플러그인이 있다.</li>
+<li>유저는 플러그인을 pom.xml에 등록하고 골을 실행 시킨다.</li>
+<li>골을 실행 시키면 해당 골만 실행되는 것이 아니라 골이 매칭되어있는 페이즈 앞 단계의 빌드 단계를 모두 실행 한다.</li>
+</ul>
+
+
+
+<h2 id="plugin">plugin</h2>
+
+
+
+<h3 id="compiler-plugin">compiler plugin</h3>
+
+<table>
+<thead>
+<tr>
+  <th>goal</th>
+  <th>phase</th>
+  <th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>compiler:compile</td>
+  <td>compile</td>
+  <td>Compiles application sources</td>
+</tr>
+<tr>
+  <td>compiler:testCompile</td>
+  <td>test-compile</td>
+  <td>Compiles application test sources</td>
+</tr>
+</tbody></table>
+
+
+
+
+<h3 id="eclipse-plugin">eclipse plugin</h3>
+
+<table>
+<thead>
+<tr>
+  <th>goal</th>
+  <th>phase</th>
+  <th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>eclipse:eclipse</td>
+  <td>generate-resources</td>
+  <td>Generates the eclipse configuration files</td>
+</tr>
+<tr>
+  <td>eclipse:clean</td>
+  <td>-</td>
+  <td>Deletes the eclipse configuration files</td>
+</tr>
+</tbody></table>
+
+
+<p>eclipse configuration files</p>
+
+<ul>
+<li>.project</li>
+<li>.classpath files</li>
+<li>.setting/org.eclipse.jdt.core.prefs with project specific compiler settings</li>
+<li>various configuration files for WTP (Web Tools Project)</li>
+</ul>
+
+<h2 id="라이브러리-소스-다운로드">라이브러리 소스 다운로드</h2>
+
+<pre class="prettyprint"><code class=" hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">plugins</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">plugin</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">groupId</span>&gt;</span>org.apache.maven.plugins<span class="hljs-tag">&lt;/<span class="hljs-title">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">artifactId</span>&gt;</span>maven-eclipse-plugin<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">version</span>&gt;</span>2.10<span class="hljs-tag">&lt;/<span class="hljs-title">version</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">configuration</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">downloadSources</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">downloadSources</span>&gt;</span>
+                ...
+        <span class="hljs-tag">&lt;/<span class="hljs-title">configuration</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">plugin</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">plugins</span>&gt;</span></code></pre>
+			</div>
+			<!-- 하단 뒤로 돌아가기 버튼 -->
+			<a class="back_button" href="/page/post.html"> _back </a>
+			<!-- 댓글 -->
+			<div id="disqus_thread"></div>
+			<script type="text/javascript">
+				/* * * CONFIGURATION VARIABLES * * */
+				var disqus_shortname = 'probitanima11';
+
+				/* * * DON'T EDIT BELOW THIS LINE * * */
+				(function() {
+					var dsq = document.createElement('script');
+					dsq.type = 'text/javascript';
+					dsq.async = true;
+					dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document
+							.getElementsByTagName('body')[0]).appendChild(dsq);
+				})();
+			</script>
+			<noscript>
+				Please enable JavaScript to view the <a
+					href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+					powered by Disqus.</a>
+			</noscript>
+		</section>
+
+		<footer>
+			<p>
+				<small>Hosted on GitHub Pages &mdash; Theme by <a
+					href="https://github.com/orderedlist">orderedlist</a></small>
+			</p>
+		</footer>
+	</div>
+	<script src="/javascripts/scale.fix.js"></script>
+</body>
+</html>
