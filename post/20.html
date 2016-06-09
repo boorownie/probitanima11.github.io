@@ -17,10 +17,10 @@
 				<a href="/"> Home </a>
 			</p>
 			<p class="menu">
-				<a href="/list/post.html"> Post </a>
+				<a href="/page/post.html"> Post </a>
 			</p>
 			<p class="menu">
-				<a href="/list/dairy.html"> Dairy </a>
+				<a href="/page/dairy.html"> Dairy </a>
 			</p>
 			<p class="menu">
 				<a href="https://github.com/probitanima11"> GitHub </a>
@@ -28,30 +28,11 @@
 		</header>
 		<section>
 			<!-- 상단 뒤로 돌아가기 버튼 -->
-			<a class="back_button" href="/list/post.html"> _back </a>
+			<a class="back_button" href="/page/post.html"> _back </a>
 			<!-- 내용 넣기 -->
-			<div id="content">
-				<h1>주소창으로 jsp 직접 접근 막기</h1>
-
-				<p>jsp에 바로 접근하는 것을 막기 위해 다음과 같이 설정을 변경 할 수 있다.</p>
-
-				<ol>
-					<li><p>모든 jsp자원을 WEB-INF 및으로 이동한다.</p></li>
-					<li><p>이동 후 viewResolver의 prefix를 변경해 준다.</p>
-
-						<p>
-							<code>p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" /&gt;</code>
-						</p></li>
-				</ol>
-
-				<p>
-					웹 어플리케이션 서버를 구현 할 때 <strong>WEB-INF 내의 자원은 클라이언트에서 직접적으로
-						접근 할 수 없도록</strong>되어있다. 보안상 중요하다고 생각되는 자원은 WEB-INF안에서 관리 되는것이 좋은 방법이라고 할 수
-					있다.
-				</p>
-			</div>
+			<div id="content"></div>
 			<!-- 하단 뒤로 돌아가기 버튼 -->
-			<a class="back_button" href="/list/post.html"> _back </a>
+			<a class="back_button" href="/page/post.html"> _back </a>
 			<!-- 댓글 -->
 			<div id="disqus_thread"></div>
 			<script type="text/javascript">
