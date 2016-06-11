@@ -39,7 +39,11 @@
 <script src="./web/javascript/utils.js"></script>
 <script src="./web/javascript/post.js"></script>
 <script src="./web/lib/jquery-3.0.0.js"></script>
-<script> $(document).ready(function() {$('header').load('./web/html/include/_menu.html');}); </script>
+<script>
+	$(document).ready(function() {
+		$('header').load('/web/html/include/_menu.html');
+	});
+</script>
 <script>
 	var appendPostList = function(postList) {
 		var el = document.querySelector("#post_list");
