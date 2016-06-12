@@ -1,147 +1,43 @@
 <!doctype html>
 <html>
 <head>
-<title>맨땅에 코딩</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="chrome=1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no">
-<link rel="stylesheet" href="/web/css/styles.css">
-<link rel="stylesheet" href="/web/css/pygment_trac.css">
+	<title>맨땅에 코딩</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="probitanima11.github.io" />
+	<meta property="og:title" content="맨땅에 코딩">
+	<meta property="og:image" content="https://avatars0.githubusercontent.com/u/4353846?v=3&s=140" />
+	<link rel="stylesheet" href="../web/css/styles.css">
+	<link rel="stylesheet" href="../web/css/pygment_trac.css">
+	<link rel="stylesheet" href="../web/css/github.css">
+	<script src="../web/lib/jquery-3.0.0.js"></script>
+	<script src="../web/lib/showdown.js"></script>
+	<script src="../web/lib/highlight.pack.js"></script>
 </head>
 <body>
-	<div class="wrapper">
-		<header>
-			<h1>맨땅에 코딩</h1>
-			<p class="menu">
-				<a href="/"> Home </a>
-			</p>
-			<p class="menu">
-				<a href="/web/html/post.html"> Post </a>
-			</p>
-			<p class="menu">
-				<a href="/web/html/dairy.html"> Dairy </a>
-			</p>
-			<p class="menu">
-				<a href="https://github.com/probitanima11"> GitHub </a>
-			</p>
-		</header>
-		<section>
-			<!-- 상단 뒤로 돌아가기 버튼 -->
-			<a class="back_button" href="/web/html/post.html"> _back </a>
-			<!-- 내용 넣기 -->
-			<div id="content">
-				<h1>Dao 클래스 구현하기</h1>
-
-				<p>앞에서 적용한 JDBC를 이용하여 Dao를 만든다.</p>
-
-				<h2>1. UserDao 등록</h2>
-
-				<h3>1-1. ApplicationContext에 bean 등록</h3>
-
-				<p>
-					<code>&gt;applicationContext.xml</code>
-				</p>
-
-				<pre>
-<code>&lt;context:property-placeholder location="classpath*:application-properties.xml" /&gt;
-
-&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-    p:driverClassName="${database.driverClassName}" p:url="${database.url}"
-    p:username="${database.username}" p:password="${database.password}" /&gt;
-
-&lt;bean id="UserDao" class="org.nhnnext.guinness.dao.UserDao"
-    p:dataSource-ref="dataSource" /&gt;
-</code>
-				</pre>
-
-				<p>UserDao는 JdbcDaoSupport를 상속 받고 있다. JdbcDaoSupport클래스는 인자로
-					JdbcTemplate를 가지고 있는데 이 클래스는 JDBC에 접근을 하는 JdbcAccessor를 상속 받고 있으며
-					JDBC의 접속을 담당하고 있다. 이 때 DataSource 정보가 필요한데 이를
-					applicationContext.xml에서 의존성 주입을 통해 초기화를 헤준다.</p>
-
-				<h2>2. JdbcDataSupport를 상속 UserDao 작성</h2>
-
-				<pre>
-<code>public class UserDao extends JdbcDaoSupport {
-    private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
-
-    @PostConstruct
-    public void initialize() {
-        ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-        populator.addScript(new ClassPathResource("sql파일"));
-        DatabasePopulatorUtils.execute(populator, getDataSource()); 
-    }
-
-    public User readUser(String userId) throws ClassNotFoundException {
-        String sql = "select * from USERS where userId=?";
-        RowMapper&lt;User&gt; rowMapper = new RowMapper&lt;User&gt;() {
-            @Override
-            public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-                return new User(rs.getString("userId")
-                            , rs.getString("password")
-                            , rs.getString("name")
-                            , rs.getString("email"));
-            }
-        }
-        try {
-            return getJdbcTemplate().queryForObject(sql, rm, userId);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
-    }
-}
-</code>
-				</pre>
-
-				<h3>2-1. @PostConstruct 선언</h3>
-
-				<p>클래스가 스프링에 의해서 인스턴스가 생성이 될 때, PostConstruct가 선언된 메소드를 호출하면서
-					초기화 작업을 수행한다.</p>
-
-				<h3>2-2. RowMapper</h3>
-
-				<p>ResultSet에 담겨있는 데이터를 해당 클래스로 매핑한다.</p>
-
-				<h3>2-3. getJdbcTemplate.query</h3>
-
-				<p>(추후 업로드)</p>
-
-				<p>update: 리턴이 없는 쿼리 실행 queryForObject를 이용하면 오브젝트로 리턴 받을 수 있다.
-					query: queryForList:</p>
-			</div>
-			<!-- 하단 뒤로 돌아가기 버튼 -->
-			<a class="back_button" href="/web/html/post.html"> _back </a>
-			<!-- 댓글 -->
-			<div id="disqus_thread"></div>
-			<script type="text/javascript">
-				/* * * CONFIGURATION VARIABLES * * */
-				var disqus_shortname = 'probitanima11';
-
-				/* * * DON'T EDIT BELOW THIS LINE * * */
-				(function() {
-					var dsq = document.createElement('script');
-					dsq.type = 'text/javascript';
-					dsq.async = true;
-					dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-					(document.getElementsByTagName('head')[0] || document
-							.getElementsByTagName('body')[0]).appendChild(dsq);
-				})();
-			</script>
-			<noscript>
-				Please enable JavaScript to view the <a
-					href="https://disqus.com/?ref_noscript" rel="nofollow">comments
-					powered by Disqus.</a>
-			</noscript>
-		</section>
-
-		<footer>
-			<p>
-				<small>Hosted on GitHub Pages &mdash; Theme by <a
-					href="https://github.com/orderedlist">orderedlist</a></small>
-			</p>
-		</footer>
-	</div>
-	<script src="/web/javascript/scale.fix.js"></script>
+<div class="wrapper">
+	<header>
+		<!--include 'web/html/include/menu.html'-->
+	</header>
+	<section>
+		<!-- 상단 뒤로 돌아가기 버튼 -->
+		<a class="back_button" href="/"> _back </a>
+		<!-- 내용 넣기 -->
+		<div id="content"></div>
+		<!-- 하단 뒤로 돌아가기 버튼 -->
+		<a class="back_button" href="/"> _back </a>
+		<!-- 댓글 -->
+		<div id="disqus_thread"></div>
+	</section>
+	<footer>
+		<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+	</footer>
+</div>
 </body>
+<script src="../web/javascript/scale.fix.js"></script>
+<script src="../web/javascript/PostRead.js"></script>
+<script src="../web/javascript/Disqus.js"></script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </html>

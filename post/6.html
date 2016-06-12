@@ -1,134 +1,43 @@
 <!doctype html>
 <html>
 <head>
-<title>맨땅에 코딩</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="chrome=1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no">
-<link rel="stylesheet" href="/web/css/styles.css">
-<link rel="stylesheet" href="/web/css/pygment_trac.css">
+	<title>맨땅에 코딩</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="probitanima11.github.io" />
+	<meta property="og:title" content="맨땅에 코딩">
+	<meta property="og:image" content="https://avatars0.githubusercontent.com/u/4353846?v=3&s=140" />
+	<link rel="stylesheet" href="../web/css/styles.css">
+	<link rel="stylesheet" href="../web/css/pygment_trac.css">
+	<link rel="stylesheet" href="../web/css/github.css">
+	<script src="../web/lib/jquery-3.0.0.js"></script>
+	<script src="../web/lib/showdown.js"></script>
+	<script src="../web/lib/highlight.pack.js"></script>
 </head>
 <body>
-	<div class="wrapper">
-		<header>
-			<h1>맨땅에 코딩</h1>
-			<p class="menu">
-				<a href="/"> Home </a>
-			</p>
-			<p class="menu">
-				<a href="/web/html/post.html"> Post </a>
-			</p>
-			<p class="menu">
-				<a href="/web/html/dairy.html"> Dairy </a>
-			</p>
-			<p class="menu">
-				<a href="https://github.com/probitanima11"> GitHub </a>
-			</p>
-		</header>
-		<section>
-			<!-- 상단 뒤로 돌아가기 버튼 -->
-			<a class="back_button" href="/web/html/post.html"> _back </a>
-			<!-- 내용 넣기 -->
-			<div id="content">
-				<h1>스프링 프레임워크를 통한 DI 설정</h1>
-
-				<h2>1. 스프링 bean(객체)생성</h2>
-
-				<p>
-					<code>&gt;/src/main/resources/applicationContext.xml</code>
-				</p>
-
-				<pre>
-<code>&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"/&gt;
-&lt;bean id="UserDao" class="org.nhnnext.guinness.model.dao.UserDao" /&gt;
-</code>
-				</pre>
-
-				<p>classpath에 존재하는 applicationContext.xml파일은
-					ApplicationContext(ServletContext)의 설정 정보 파일이다. 이 파일에 위와 같이 bean을
-					선언하면 ApplicationContext에 해당 bean들이 생성이 되어 관리가 된다.</p>
-
-				<p>참고로 web.xml에서 아래와 같이 설정을 해 주면 servlet context 정보 파일의 경로를 변경 할
-					수 있다.</p>
-
-				<p>
-					<code>&gt;/WEB-INF/web.xml</code>
-				</p>
-
-				<pre>
-<code>&lt;context-param&gt;
-    &lt;param-name&gt;
-        contextConfigLocation
-    &lt;/param-name&gt;
-    &lt;param-value&gt;
-        classpath:/applicationContext.xml
-    &lt;/param-value&gt;
-&lt;/context-param&gt;
-</code>
-				</pre>
-
-				<h2>2. bean 객체 정보 설정하기</h2>
-
-				<p>
-					<code>&gt;/src/main/resources/applicationContext.xml</code>
-				</p>
-
-				<pre>
-<code>&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-    p:driverClassName="${database.driverClassName}" p:url="${database.url}"
-    p:username="${database.username}" p:password="${database.password}" /&gt;
-
-&lt;bean id="UserDao" class="org.nhnnext.guinness.model.dao.UserDao"
-    p:dataSource-ref="dataSource" /&gt;
-</code>
-				</pre>
-
-				<p>p NameSpace를 이용하면 bean객체에 값을 전달할 수 있다.</p>
-
-				<h2>3. 자바코드에서 ApplicationContext자원 사용하기</h2>
-
-				<pre>
-<code>public UserDao getServletContextParams() {
-    ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
-    UserDao userDao = ac.getBean("UserDao");
-    return userDao;
-}
-</code>
-				</pre>
-			</div>
-			<!-- 하단 뒤로 돌아가기 버튼 -->
-			<a class="back_button" href="/web/html/post.html"> _back </a>
-			<!-- 댓글 -->
-			<div id="disqus_thread"></div>
-			<script type="text/javascript">
-				/* * * CONFIGURATION VARIABLES * * */
-				var disqus_shortname = 'probitanima11';
-
-				/* * * DON'T EDIT BELOW THIS LINE * * */
-				(function() {
-					var dsq = document.createElement('script');
-					dsq.type = 'text/javascript';
-					dsq.async = true;
-					dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-					(document.getElementsByTagName('head')[0] || document
-							.getElementsByTagName('body')[0]).appendChild(dsq);
-				})();
-			</script>
-			<noscript>
-				Please enable JavaScript to view the <a
-					href="https://disqus.com/?ref_noscript" rel="nofollow">comments
-					powered by Disqus.</a>
-			</noscript>
-		</section>
-
-		<footer>
-			<p>
-				<small>Hosted on GitHub Pages &mdash; Theme by <a
-					href="https://github.com/orderedlist">orderedlist</a></small>
-			</p>
-		</footer>
-	</div>
-	<script src="/web/javascript/scale.fix.js"></script>
+<div class="wrapper">
+	<header>
+		<!--include 'web/html/include/menu.html'-->
+	</header>
+	<section>
+		<!-- 상단 뒤로 돌아가기 버튼 -->
+		<a class="back_button" href="/"> _back </a>
+		<!-- 내용 넣기 -->
+		<div id="content"></div>
+		<!-- 하단 뒤로 돌아가기 버튼 -->
+		<a class="back_button" href="/"> _back </a>
+		<!-- 댓글 -->
+		<div id="disqus_thread"></div>
+	</section>
+	<footer>
+		<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+	</footer>
+</div>
 </body>
+<script src="../web/javascript/scale.fix.js"></script>
+<script src="../web/javascript/PostRead.js"></script>
+<script src="../web/javascript/Disqus.js"></script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </html>

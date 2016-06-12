@@ -1,165 +1,43 @@
 <!doctype html>
 <html>
 <head>
-<title>맨땅에 코딩</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="chrome=1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no">
-<link rel="stylesheet" href="/web/css/styles.css">
-<link rel="stylesheet" href="/web/css/pygment_trac.css">
+	<title>맨땅에 코딩</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="probitanima11.github.io" />
+	<meta property="og:title" content="맨땅에 코딩">
+	<meta property="og:image" content="https://avatars0.githubusercontent.com/u/4353846?v=3&s=140" />
+	<link rel="stylesheet" href="../web/css/styles.css">
+	<link rel="stylesheet" href="../web/css/pygment_trac.css">
+	<link rel="stylesheet" href="../web/css/github.css">
+	<script src="../web/lib/jquery-3.0.0.js"></script>
+	<script src="../web/lib/showdown.js"></script>
+	<script src="../web/lib/highlight.pack.js"></script>
 </head>
 <body>
-	<div class="wrapper">
-		<header>
-			<h1>맨땅에 코딩</h1>
-			<p class="menu">
-				<a href="/"> Home </a>
-			</p>
-			<p class="menu">
-				<a href="/web/html/post.html"> Post </a>
-			</p>
-			<p class="menu">
-				<a href="/web/html/dairy.html"> Dairy </a>
-			</p>
-			<p class="menu">
-				<a href="https://github.com/probitanima11"> GitHub </a>
-			</p>
-		</header>
-		<section>
-			<!-- 상단 뒤로 돌아가기 버튼 -->
-			<a class="back_button" href="/web/html/post.html"> _back </a>
-			<!-- 내용 넣기 -->
-			<div id="content">
-				<h1>Spring Container에 bean등록하기</h1>
-
-<h2>1. applicationContext.xml 등록</h2>
-
-<p>tomcat서버가 뜰 때 파일을 읽어서 UserDao 인스턴스를 생성하게 한다. 을 로딩할 수 있도록 다음과 같이 설정한다.</p>
-
-<pre><code>&lt;context:annotation-config /&gt;
-
-&lt;listener&gt;
-    &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;
-&lt;/listener&gt;
-
-&lt;context-param&gt;
-    &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
-    &lt;param-value&gt;
-    classpath:/applicationContext.xml
-    &lt;/param-value&gt;
-&lt;/context-param&gt;
-</code></pre>
-
-<p>ContextLoaderListener에서 applicationContext.xml을 읽어서 초기화 작업을 진행한다.</p>
-
-<p>PostConstructor를 사용하려면 applicationContext.xml에서 다음의 태그를 추가해주어야 한다.</p>
-
-<p><code>&lt;context:annotation-config /&gt;</code></p>
-
-<h2>2. Controller 클래스 구현</h2>
-
-<p><code>&gt;UserController.java</code></p>
-
-<pre><code>@Controller
-public class UserController {
-    @Autowired
-    private UserDao userDao;
-
-    @RequestMapping("/users/form")
-    public String form() {
-        return "users/form";
-    }
-
-    @RequestMapping(value="/users" method=RequestMethod.POST)
-    public String create(User user) {
-        userDao.create(user);
-        return "users/form";
-    }
-}
-</code></pre>
-
-<h3>2-1. 컨트롤러 생성 경로</h3>
-
-<p>컨트롤러의 위치는 context:component-scan에 설정한 경로 안에 생성해야 한다.</p>
-
-<h3>2-2. 컨트롤러 클래스에 @Controller 추가</h3>
-
-<h3>2-3. @Autowired로 UserDao필드 선언</h3>
-
-<p>private이라도 스프링 프래임워크에서는 코드량을 줄이기 위해서 private 필드에 대해서도 자바 리플렉션을 활용해서 인스턴스를 인젝트 할 수 있도록 지원한다.</p>
-
-<p>참고로 세터메소드를 만들고 그 위에  Autowired를 선언해 사용할 수도 있다. </p>
-
-<pre><code>@Controller
-public class UserController {
-
-    private UserDao userDao;
-    @Autowired
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
-}
-</code></pre>
-
-<h3>2-4. @RequestMapping 맵핑을 하기 위한 어노테이션 추가</h3>
-
-<p>맵핑을 "/"로 주었기 때문에 최초 루트로 접근 시 home 메서드를 콜하게 된다. 이 때 return을 "home"으로 해주면 mint-servlet.xml에서 prefix와 suffix를 설정해 두었기 때문에 "WEB-INF/home.jsp"의 페이지를 응답한다.</p>
-
-<h1> </h1>
-
-<h3>2-5. 반복되는 URL제거</h3>
-
-<p>컨트롤러 클래스에 RequestMapping을 걸어주면 메소드들에 걸려있는 URI에서 중복되는 경로를 제거할 수 있다.</p>
-
-<pre><code>@Controller
-@RequestMapping("/users")
-public class UserController {
-    @Autowired
-    private UserDao userDao;
-    @RequestMapping("/form")
-    public String form() {
-        return "users/form";
-    @RequestMapping(value="" method=RequestMethod.POST)
-    public String create(User user) {
-        userDao.create(user);
-        return "users/form";
-    }
-}
-</code></pre>
-			</div>
-			<!-- 하단 뒤로 돌아가기 버튼 -->
-			<a class="back_button" href="/web/html/post.html"> _back </a>
-			<!-- 댓글 -->
-			<div id="disqus_thread"></div>
-			<script type="text/javascript">
-				/* * * CONFIGURATION VARIABLES * * */
-				var disqus_shortname = 'probitanima11';
-
-				/* * * DON'T EDIT BELOW THIS LINE * * */
-				(function() {
-					var dsq = document.createElement('script');
-					dsq.type = 'text/javascript';
-					dsq.async = true;
-					dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-					(document.getElementsByTagName('head')[0] || document
-							.getElementsByTagName('body')[0]).appendChild(dsq);
-				})();
-			</script>
-			<noscript>
-				Please enable JavaScript to view the <a
-					href="https://disqus.com/?ref_noscript" rel="nofollow">comments
-					powered by Disqus.</a>
-			</noscript>
-		</section>
-
-		<footer>
-			<p>
-				<small>Hosted on GitHub Pages &mdash; Theme by <a
-					href="https://github.com/orderedlist">orderedlist</a></small>
-			</p>
-		</footer>
-	</div>
-	<script src="/web/javascript/scale.fix.js"></script>
+<div class="wrapper">
+	<header>
+		<!--include 'web/html/include/menu.html'-->
+	</header>
+	<section>
+		<!-- 상단 뒤로 돌아가기 버튼 -->
+		<a class="back_button" href="/"> _back </a>
+		<!-- 내용 넣기 -->
+		<div id="content"></div>
+		<!-- 하단 뒤로 돌아가기 버튼 -->
+		<a class="back_button" href="/"> _back </a>
+		<!-- 댓글 -->
+		<div id="disqus_thread"></div>
+	</section>
+	<footer>
+		<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+	</footer>
+</div>
 </body>
+<script src="../web/javascript/scale.fix.js"></script>
+<script src="../web/javascript/PostRead.js"></script>
+<script src="../web/javascript/Disqus.js"></script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </html>

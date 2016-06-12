@@ -1,173 +1,43 @@
 <!doctype html>
 <html>
 <head>
-<title>맨땅에 코딩</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="chrome=1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no">
-<link rel="stylesheet" href="/web/css/styles.css">
-<link rel="stylesheet" href="/web/css/pygment_trac.css">
+	<title>맨땅에 코딩</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="probitanima11.github.io" />
+	<meta property="og:title" content="맨땅에 코딩">
+	<meta property="og:image" content="https://avatars0.githubusercontent.com/u/4353846?v=3&s=140" />
+	<link rel="stylesheet" href="../web/css/styles.css">
+	<link rel="stylesheet" href="../web/css/pygment_trac.css">
+	<link rel="stylesheet" href="../web/css/github.css">
+	<script src="../web/lib/jquery-3.0.0.js"></script>
+	<script src="../web/lib/showdown.js"></script>
+	<script src="../web/lib/highlight.pack.js"></script>
 </head>
 <body>
-	<div class="wrapper">
-		<header>
-			<h1>맨땅에 코딩</h1>
-			<p class="menu">
-				<a href="/"> Home </a>
-			</p>
-			<p class="menu">
-				<a href="/web/html/post.html"> Post </a>
-			</p>
-			<p class="menu">
-				<a href="/web/html/dairy.html"> Dairy </a>
-			</p>
-			<p class="menu">
-				<a href="https://github.com/probitanima11"> GitHub </a>
-			</p>
-		</header>
-		<section>
-			<!-- 상단 뒤로 돌아가기 버튼 -->
-			<a class="back_button" href="/web/html/post.html"> _back </a>
-			<!-- 내용 넣기 -->
-			<div id="content">
-<h1 id="안드로이드-xfermode">안드로이드 Xfermode</h1>
-
-
-
-<h2 id="xfermode란">Xfermode란?</h2>
-
-<ul>
-<li>트랜스퍼모드의 줄임말이고, 두 이미지의 합성 하는 형태를 의미한다.</li>
-<li>Xfermode가 설정된 페인트로 그려진 객체는 트랜스퍼모드가 적용된다.</li>
-<li>안드로이드에는 Xfermode라는 베이스 클레스가 있고, 하위클래스로는 AvoidXfermode, PixelXorXfermode, PorterDuffXfermode가 있다.</li>
-</ul>
-
-
-
-<h2 id="xfermode의-하위-클래스">Xfermode의 하위 클래스</h2>
-
-<ul>
-<li>AvoidXfermode :  <br>
-소스 이미지에서 모드에 따라 특정 색만 그리던지, 특정 색만 제외한다.</li>
-<li>PixelXorXfermode :  <br>
-특정 색을 Image의 Pixel과 Xor 연산을 한다.</li>
-<li>PorterDuffXfermode :  <br>
-알파 합성 규칙에 따른 합성을 한다.</li>
-</ul>
-
-
-
-<h2 id="porterduffxfermode">PorterDuffXfermode</h2>
-
-<ul>
-<li>토머스 포터(Thomas Porter)와 톰 더프(Tom Duff)는 알파채널을 개발하였다.</li>
-<li>위와 같은 PorterDuff.Mode의 방식으로 PorterDuffXfermode의 객채를 만들어서 비트맵을 합성하는데 사용한다.</li>
-<li>알파 채널에는 포터-더프 규칙이 있는데 그 종류로는 다음과 같이 있다.</li>
-</ul>
-
-
-
-<h2 id="포터-더프-규칙">포터-더프 규칙</h2>
-
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Alpha_compositing.svg/1284px-Alpha_compositing.svg.png" alt="Porter-Duff" title=""></p>
-
-<table>
-<thead>
-<tr>
-  <th>규칙</th>
-  <th>설명</th>
-  <th>안드로이드 Mode 사용 시</th>
-</tr>
-</thead>
-<tbody><tr>
-  <td>SrcOver</td>
-  <td>대상 소스의 패턴을 배치</td>
-  <td>PorterDuff.Mode.SRC_OVER</td>
-</tr>
-<tr>
-  <td>DstOver</td>
-  <td>소스의 목적지</td>
-  <td>PorterDuff.Mode.DST_OVER</td>
-</tr>
-<tr>
-  <td>Clear</td>
-  <td>전원에서 대상을 삭제</td>
-  <td>PorterDuff.Mode.CLEAR</td>
-</tr>
-<tr>
-  <td>SRC</td>
-  <td>알파 채널없이 덮어 쓰기 대상에 글꼴</td>
-  <td>PorterDuff.Mode.SRC</td>
-</tr>
-<tr>
-  <td>SrcIn</td>
-  <td>알파 채널 이상 만과 동감</td>
-  <td>PorterDuff.Mode.SRC_IN</td>
-</tr>
-<tr>
-  <td>DstIn</td>
-  <td>소스와 일치하는 대상의 일부를 표시</td>
-  <td>PorterDuff.Mode.DST_IN</td>
-</tr>
-<tr>
-  <td>SrcOut</td>
-  <td>대상 이외의 분수의 일부</td>
-  <td>PorterDuff.Mode.SRC_OUT</td>
-</tr>
-<tr>
-  <td>DstOut</td>
-  <td>부품 대상 외부 소스</td>
-  <td>PorterDuff.Mode.DST_OUT</td>
-</tr>
-</tbody></table>
-
-
-<h2 id="예제-원형-크롭하기">예제) 원형 크롭하기</h2>
-
-<ul>
-<li>원형 크롭은 원본 비트맵에 원형 마스크 외부 영역을 투명으로 처리하는 방식으로 구현한다.</li>
-<li>원본 이미지와 투명으로 처리한 이미지간의 SRC_IN 규칙으로 처리한다.</li>
-<li>순서 <br>
-비트맵을 생성 <br>
-캔버스 생성 후 비트맵 연결 <br>
-캔버스 투명 처리  <br>
-패인트 생성 및 안티앨리어스 설정 <br>
-패인트에 합성 정보를 설정 <br>
-캔버스 드로우</li>
-</ul>
-			</div>
-			<!-- 하단 뒤로 돌아가기 버튼 -->
-			<a class="back_button" href="/web/html/post.html"> _back </a>
-			<!-- 댓글 -->
-			<div id="disqus_thread"></div>
-		</section>
-		<footer>
-			<p>
-				<small>Hosted on GitHub Pages &mdash; Theme by <a
-					href="https://github.com/orderedlist">orderedlist</a></small>
-			</p>
-		</footer>
-	</div>
-	<script src="/web/javascript/scale.fix.js"></script>
-	<script type="text/javascript">
-		/* * * CONFIGURATION VARIABLES * * */
-		var disqus_shortname = 'probitanima11';
-
-		/* * * DON'T EDIT BELOW THIS LINE * * */
-		(function() {
-			var dsq = document.createElement('script');
-			dsq.type = 'text/javascript';
-			dsq.async = true;
-			dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-			(document.getElementsByTagName('head')[0] || document
-					.getElementsByTagName('body')[0]).appendChild(dsq);
-		})();
-	</script>
-	<noscript>
-		Please enable JavaScript to view the <a
-			href="https://disqus.com/?ref_noscript" rel="nofollow">comments
-		powered by Disqus.</a>
-	</noscript>
+<div class="wrapper">
+	<header>
+		<!--include 'web/html/include/menu.html'-->
+	</header>
+	<section>
+		<!-- 상단 뒤로 돌아가기 버튼 -->
+		<a class="back_button" href="/"> _back </a>
+		<!-- 내용 넣기 -->
+		<div id="content"></div>
+		<!-- 하단 뒤로 돌아가기 버튼 -->
+		<a class="back_button" href="/"> _back </a>
+		<!-- 댓글 -->
+		<div id="disqus_thread"></div>
+	</section>
+	<footer>
+		<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+	</footer>
+</div>
 </body>
+<script src="../web/javascript/scale.fix.js"></script>
+<script src="../web/javascript/PostRead.js"></script>
+<script src="../web/javascript/Disqus.js"></script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </html>

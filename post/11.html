@@ -1,121 +1,43 @@
 <!doctype html>
 <html>
 <head>
-<title>맨땅에 코딩</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="chrome=1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no">
-<link rel="stylesheet" href="/web/css/styles.css">
-<link rel="stylesheet" href="/web/css/pygment_trac.css">
+	<title>맨땅에 코딩</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="probitanima11.github.io" />
+	<meta property="og:title" content="맨땅에 코딩">
+	<meta property="og:image" content="https://avatars0.githubusercontent.com/u/4353846?v=3&s=140" />
+	<link rel="stylesheet" href="../web/css/styles.css">
+	<link rel="stylesheet" href="../web/css/pygment_trac.css">
+	<link rel="stylesheet" href="../web/css/github.css">
+	<script src="../web/lib/jquery-3.0.0.js"></script>
+	<script src="../web/lib/showdown.js"></script>
+	<script src="../web/lib/highlight.pack.js"></script>
 </head>
 <body>
-	<div class="wrapper">
-		<header>
-			<h1>맨땅에 코딩</h1>
-			<p class="menu">
-				<a href="/"> Home </a>
-			</p>
-			<p class="menu">
-				<a href="/web/html/post.html"> Post </a>
-			</p>
-			<p class="menu">
-				<a href="/web/html/dairy.html"> Dairy </a>
-			</p>
-			<p class="menu">
-				<a href="https://github.com/probitanima11"> GitHub </a>
-			</p>
-		</header>
-		<section>
-			<!-- 상단 뒤로 돌아가기 버튼 -->
-			<a class="back_button" href="/web/html/post.html"> _back </a>
-			<!-- 내용 넣기 -->
-			<div id="content">
-				<h1>maven pom.xml 중복제거</h1>
-
-<p>dependency를 추가하다보면 아래와 같이 중복이 발생하는 경우가 생긴다. </p>
-
-<p><code>&gt;pom.xml</code></p>
-
-<pre><code>&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
-        &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;
-        &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-test&lt;/artifactId&gt;
-        &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
-    &lt;/dependency&gt;
-&lt;/dependencies&gt;
-</code></pre>
-
-<p>maven에서는 이러한 중복을 해결하기 위해 properties 태그를 제공한다. </p>
-
-<p><code>&gt;pom.xml</code></p>
-
-<pre><code>&lt;properties&gt;
-    &lt;org.springframework.version&gt;4.1.6.RELEASE&lt;/org.springframework.version&gt;
-&lt;/properties&gt;
-
-&lt;dependencies&gt;
-    &lt;!-- Spring Framework --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
-        &lt;version&gt;${org.springframework.version}&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;
-        &lt;version&gt;${org.springframework.version}&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-test&lt;/artifactId&gt;
-        &lt;version&gt;${org.springframework.version}&lt;/version&gt;
-    &lt;/dependency&gt;
-&lt;/dependencies&gt;
-</code></pre>
-			</div>
-			<!-- 하단 뒤로 돌아가기 버튼 -->
-			<a class="back_button" href="/web/html/post.html"> _back </a>
-			<!-- 댓글 -->
-			<div id="disqus_thread"></div>
-			<script type="text/javascript">
-				/* * * CONFIGURATION VARIABLES * * */
-				var disqus_shortname = 'probitanima11';
-
-				/* * * DON'T EDIT BELOW THIS LINE * * */
-				(function() {
-					var dsq = document.createElement('script');
-					dsq.type = 'text/javascript';
-					dsq.async = true;
-					dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-					(document.getElementsByTagName('head')[0] || document
-							.getElementsByTagName('body')[0]).appendChild(dsq);
-				})();
-			</script>
-			<noscript>
-				Please enable JavaScript to view the <a
-					href="https://disqus.com/?ref_noscript" rel="nofollow">comments
-					powered by Disqus.</a>
-			</noscript>
-		</section>
-
-		<footer>
-			<p>
-				<small>Hosted on GitHub Pages &mdash; Theme by <a
-					href="https://github.com/orderedlist">orderedlist</a></small>
-			</p>
-		</footer>
-	</div>
-	<script src="/web/javascript/scale.fix.js"></script>
+<div class="wrapper">
+	<header>
+		<!--include 'web/html/include/menu.html'-->
+	</header>
+	<section>
+		<!-- 상단 뒤로 돌아가기 버튼 -->
+		<a class="back_button" href="/"> _back </a>
+		<!-- 내용 넣기 -->
+		<div id="content"></div>
+		<!-- 하단 뒤로 돌아가기 버튼 -->
+		<a class="back_button" href="/"> _back </a>
+		<!-- 댓글 -->
+		<div id="disqus_thread"></div>
+	</section>
+	<footer>
+		<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+	</footer>
+</div>
 </body>
+<script src="../web/javascript/scale.fix.js"></script>
+<script src="../web/javascript/PostRead.js"></script>
+<script src="../web/javascript/Disqus.js"></script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </html>

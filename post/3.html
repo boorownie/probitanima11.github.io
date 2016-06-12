@@ -1,190 +1,43 @@
 <!doctype html>
 <html>
 <head>
-<title>맨땅에 코딩</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="chrome=1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no">
-<link rel="stylesheet" href="/web/css/styles.css">
-<link rel="stylesheet" href="/web/css/pygment_trac.css">
+	<title>맨땅에 코딩</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="probitanima11.github.io" />
+	<meta property="og:title" content="맨땅에 코딩">
+	<meta property="og:image" content="https://avatars0.githubusercontent.com/u/4353846?v=3&s=140" />
+	<link rel="stylesheet" href="../web/css/styles.css">
+	<link rel="stylesheet" href="../web/css/pygment_trac.css">
+	<link rel="stylesheet" href="../web/css/github.css">
+	<script src="../web/lib/jquery-3.0.0.js"></script>
+	<script src="../web/lib/showdown.js"></script>
+	<script src="../web/lib/highlight.pack.js"></script>
 </head>
 <body>
-	<div class="wrapper">
-		<header>
-			<h1>맨땅에 코딩</h1>
-			<p class="menu">
-				<a href="/"> Home </a>
-			</p>
-			<p class="menu">
-				<a href="/web/html/post.html"> Post </a>
-			</p>
-			<p class="menu">
-				<a href="/web/html/dairy.html"> Dairy </a>
-			</p>
-			<p class="menu">
-				<a href="https://github.com/probitanima11"> GitHub </a>
-			</p>
-		</header>
-		<section>
-			<!-- 상단 뒤로 돌아가기 버튼 -->
-			<a class="back_button" href="/web/html/post.html"> _back </a>
-			<!-- 내용 넣기 -->
-			<div id="content">
-				<h1>스프링 mvc 따라하기</h1>
-
-				<h3>> 스프링 프레임워크에서 제공하는 mvc이용하여 jsp 파일 응답하기</h3>
-
-				<h2>1. maven dependency 추가</h2>
-
-				<p>
-					<code>&gt;pom.xml</code>
-				</p>
-
-				<pre>
-<code>&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
-    &lt;version&gt;4.1.6.RELEASE&lt;/version&gt;
-&lt;/dependency&gt;
-</code>
-				</pre>
-
-				<h2>2. web.xml에 서블릿 추가</h2>
-
-				<p>/WEB-INF/web.xml에 모든 요청에 대해서 접근 가능하도록 DispatcherServlet을 추가하고
-					이름을 guinness으로 설정한다.</p>
-
-				<p>
-					<code>&gt;web.xml</code>
-				</p>
-
-				<pre>
-<code>&lt;servlet&gt;
-    &lt;servlet-name&gt;guinness&lt;/servlet-name&gt;
-    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
-    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
-&lt;/servlet&gt;
-
-&lt;servlet-mapping&gt;
-    &lt;servlet-name&gt;guinness&lt;/servlet-name&gt;
-    &lt;url-pattern&gt;/&lt;/url-pattern&gt;
-&lt;/servlet-mapping&gt;
-</code>
-				</pre>
-
-				<h2>3. 서블릿 설정파일 추가</h2>
-
-				<p>spring mvc에서 기본적으로 찾게 되는 설정파일. WEB-INF파일 아래에 서블릿이름이 포함된
-					xml파일을 통해 설정을 할 수 있다 (서블릿 명이 guinness라면
-					WEB-INF/guinness-servlet.xml).</p>
-
-				<p>
-					<code>&gt;guinness-servlet.xml</code>
-				</p>
-
-				<pre>
-<code>&lt;context:component-scan base-package="org.nhnnext.guinness.controller" /&gt;
-
-&lt;mvc:annotation-driven /&gt;
-
-&lt;bean id="viewResolver"
-    class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-    p:prefix="/WEB-INF/jsp/" 
-    p:suffix=".jsp" 
-/&gt;
-</code>
-				</pre>
-
-				<h3>3-1. 스캔할 Controller의 범위 지정</h3>
-
-				<p>경로에 있는 패키지에 있는 컨트롤러만 스캔한다.</p>
-
-				<p>
-					<code>&lt;context:component-scan base-package="경로" /&gt;</code>
-				</p>
-
-				<h3>3-2. 어노테이션 기반으로 개발 설정</h3>
-
-				<p>
-					<code>&lt;mvc:annotation-driven /&gt;</code>
-				</p>
-
-				<h3>3-3. viewResolver 설정</h3>
-
-				<p>프로젝트 내부에 있는 리소스들을 접근 할 때, prefix와 suffix가 붙여서 물리적인 파일경로에 접근하게
-					한다.</p>
-
-				<p>ex) /user/form -> /WEB-INF/jsp/user/form.jsp</p>
-
-				<h2>4. 컨트롤러 생성</h2>
-
-				<p>
-					<code>&gt;Controller.java</code>
-				</p>
-
-				<pre>
-<code>@Controller
-public class HomeController {
-    @RequestMapping("/")
-    public String home() {
-        return "home";
-    }
-}
-</code>
-				</pre>
-
-				<h2>5. JSP파일 생성</h2>
-
-				<p>
-					<code>&gt;index.jsp</code>
-				</p>
-
-				<pre>
-<code>&lt;!doctype html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;title&gt; 맨땅에 코딩 &lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt; 
-        Hello Spring!!
-    &lt;/body&gt;
-&lt;/html&gt;
-</code>
-				</pre>
-			</div>
-			<!-- 하단 뒤로 돌아가기 버튼 -->
-			<a class="back_button" href="/web/html/post.html"> _back </a>
-			<!-- 댓글 -->
-			<div id="disqus_thread"></div>
-			<script type="text/javascript">
-				/* * * CONFIGURATION VARIABLES * * */
-				var disqus_shortname = 'probitanima11';
-
-				/* * * DON'T EDIT BELOW THIS LINE * * */
-				(function() {
-					var dsq = document.createElement('script');
-					dsq.type = 'text/javascript';
-					dsq.async = true;
-					dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-					(document.getElementsByTagName('head')[0] || document
-							.getElementsByTagName('body')[0]).appendChild(dsq);
-				})();
-			</script>
-			<noscript>
-				Please enable JavaScript to view the <a
-					href="https://disqus.com/?ref_noscript" rel="nofollow">comments
-					powered by Disqus.</a>
-			</noscript>
-		</section>
-
-		<footer>
-			<p>
-				<small>Hosted on GitHub Pages &mdash; Theme by <a
-					href="https://github.com/orderedlist">orderedlist</a></small>
-			</p>
-		</footer>
-	</div>
-	<script src="/web/javascript/scale.fix.js"></script>
+<div class="wrapper">
+	<header>
+		<!--include 'web/html/include/menu.html'-->
+	</header>
+	<section>
+		<!-- 상단 뒤로 돌아가기 버튼 -->
+		<a class="back_button" href="/"> _back </a>
+		<!-- 내용 넣기 -->
+		<div id="content"></div>
+		<!-- 하단 뒤로 돌아가기 버튼 -->
+		<a class="back_button" href="/"> _back </a>
+		<!-- 댓글 -->
+		<div id="disqus_thread"></div>
+	</section>
+	<footer>
+		<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+	</footer>
+</div>
 </body>
+<script src="../web/javascript/scale.fix.js"></script>
+<script src="../web/javascript/PostRead.js"></script>
+<script src="../web/javascript/Disqus.js"></script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </html>
