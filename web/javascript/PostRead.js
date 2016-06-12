@@ -5,7 +5,7 @@
     $.ajax({
         method : "get",
         dataType : 'text',
-        url : "../resources/md/17.md",
+        url : "../resources"+location.pathname+".md",
         success : function(data) {
             // showdown.js 적용
             var converter = new showdown.Converter(),
