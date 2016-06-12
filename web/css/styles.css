@@ -1,6 +1,5 @@
 @import
-	url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700)
-	;
+	url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
 
 body {
 	padding: 50px;
@@ -190,32 +189,32 @@ hr {
 	font-size: 15px;
 }
 
-.sub_menu .all {
+.post_card .all,.sub_menu .all {
 	/* color: rgb(226, 225, 225); */
 	color: #185e60;
 }
 
-.sub_menu .webserver {
+.post_card .webserver,.sub_menu .webserver {
 	/* color: rgb(226, 225, 225); */
 	color: #6d9687;
 }
 
-.sub_menu .webui {
+.post_card .webui,.sub_menu .webui {
 	/* color: rgb(226, 225, 225); */
 	color: #afae8e;
 }
 
-.sub_menu .android {
+.post_card .android,.sub_menu .android {
 	/* color: rgb(247, 247, 247); */
 	color: #ebc68b;
 }
 
-.sub_menu .java {
+.post_card .java,.sub_menu .java {
 	/* color: rgb(226, 225, 225); */
 	color: #F87269;
 }
 
-.sub_menu .spring {
+.post_card .spring,.sub_menu .spring {
 	/* color: rgb(226, 225, 225); */
 	color: #eeba46;
 }
