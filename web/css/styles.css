@@ -190,32 +190,32 @@ hr {
 	font-size: 15px;
 }
 
-.all {
+.sub_menu .all {
 	/* color: rgb(226, 225, 225); */
 	color: #185e60;
 }
 
-.webserver {
+.sub_menu .webserver {
 	/* color: rgb(226, 225, 225); */
 	color: #6d9687;
 }
 
-.webui {
+.sub_menu .webui {
 	/* color: rgb(226, 225, 225); */
 	color: #afae8e;
 }
 
-.android {
+.sub_menu .android {
 	/* color: rgb(247, 247, 247); */
 	color: #ebc68b;
 }
 
-.java {
+.sub_menu .java {
 	/* color: rgb(226, 225, 225); */
 	color: #F87269;
 }
 
-.spring {
+.sub_menu .spring {
 	/* color: rgb(226, 225, 225); */
 	color: #eeba46;
 }
