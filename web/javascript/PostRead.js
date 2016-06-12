@@ -8,7 +8,7 @@
         url : "../resources"+location.pathname+".md",
         success : function(data) {
             // showdown.js 적용
-            var converter = new showdown.Converter(),
+            var converter = new showdown.Converter({extensions: ['table']}),
                 html = converter.makeHtml(data);
             document.querySelector('#content').innerHTML = html;
 
