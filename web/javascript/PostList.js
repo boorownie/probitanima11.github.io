@@ -38,7 +38,7 @@ PostList._appendPostList = function(postList) {
 	el.innerHTML = "";
 	for(var i=0; i<postList.length; i++) {
 		var aEl = document.createElement("a");
-		aEl.setAttribute("href", "/post/" + postList[i].idx);
+		aEl.setAttribute("href", "post/" + postList[i].idx);
 		var liEl = document.createElement("li");
 		var divEl = document.createElement("div");
 		divEl.setAttribute("class", "post_card");
