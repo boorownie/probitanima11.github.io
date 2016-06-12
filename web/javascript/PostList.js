@@ -13,16 +13,16 @@ PostList.init = function() {
 PostList.getPostList = function(type) {
 	$.ajax({
 		method : "get",
+		dataType : 'json',
 		url : "post/post_list.json",
-		success : function(req) {
-			var jsonArray = JSON.parse(req);
-			if (jsonArray === "" || jsonArray === undefined) {
+		success : function(data) {
+			if (data === "" || data === undefined) {
 				return;
 			}
 
 			var list = new Array();
-			for(var i=0; i<jsonArray.length; i++) {
-				var postObj = new Post(jsonArray[i]);
+			for(var i=0; i<data.length; i++) {
+				var postObj = new Post(data[i]);
 				if(type == "all" || postObj.checkIncludeTag(type)) {
 					list.push(postObj);
 				}
