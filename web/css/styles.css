@@ -181,39 +181,42 @@ hr {
 	padding-bottom: 20px;
 }
 
-.tag_all {
-	/* color: rgb(226, 225, 225); */
+.sub_menu li {
+	display: inline;
+	margin-right : 10px;
+}
+
+.tag {
 	font-size: 15px;
+}
+
+.all {
+	/* color: rgb(226, 225, 225); */
 	color: #185e60;
 }
 
-.tag_webserver {
+.webserver {
 	/* color: rgb(226, 225, 225); */
-	font-size: 15px;
 	color: #6d9687;
 }
 
-.tag_webui {
+.webui {
 	/* color: rgb(226, 225, 225); */
-	font-size: 15px;
 	color: #afae8e;
 }
 
-.tag_android {
+.android {
 	/* color: rgb(247, 247, 247); */
-	font-size: 15px;
 	color: #ebc68b;
 }
 
-.tag_java {
+.java {
 	/* color: rgb(226, 225, 225); */
-	font-size: 15px;
 	color: #F87269;
 }
 
-.tag_spring {
+.spring {
 	/* color: rgb(226, 225, 225); */
-	font-size: 15px;
 	color: #eeba46;
 }
 
