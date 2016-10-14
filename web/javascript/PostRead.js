@@ -7,6 +7,10 @@ var PostRead = PostRead || {};
  포스트의 내용 로드
  */
 PostRead.init = function() {
+    $('.back_button').on("click", function (e) {
+        location.href = location.pathname.substring(0, location.pathname.lastIndexOf('/'));
+    });
+
     $.ajax({
         method: "get",
         dataType: 'text',
