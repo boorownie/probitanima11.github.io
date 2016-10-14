@@ -1,20 +1,26 @@
 /**
- *
+ * post 목록을 나타낸다.
  */
 var PostList = PostList || {};
 
-PostList.init = function() {
+/*
+	포스트의 목록 버튼의 이벤트 설정
+ */
+PostList.initSubMenu = function() {
 	$('.sub_menu').on("click", "li", function (e) {
 		var type = e.target.getAttribute("class").split(" ")[1];
 		PostList.getPostList(type);
 	});
 };
 
+/*
+	포스트의 목록을 노출.
+ */
 PostList.getPostList = function(type) {
 	$.ajax({
 		method : "get",
 		dataType : 'json',
-		url : "post/post_list.json",
+		url : "/posts/post_list.json",
 		success : function(data) {
 			if (data === "" || data === undefined) {
 				return;
@@ -32,13 +38,16 @@ PostList.getPostList = function(type) {
 	});
 };
 
-//mustache로 변환 예정
+/*
+	포스트 목록 마크업을 만들어서 노출.
+	(mustache로 변환 예정)
+ */
 PostList._appendPostList = function(postList) {
 	var el = document.querySelector("#post_list");
 	el.innerHTML = "";
 	for(var i=0; i<postList.length; i++) {
 		var aEl = document.createElement("a");
-		aEl.setAttribute("href", "post/" + postList[i].idx);
+		aEl.setAttribute("href", "/posts/" + postList[i].idx);
 		var liEl = document.createElement("li");
 		var divEl = document.createElement("div");
 		divEl.setAttribute("class", "post_card");

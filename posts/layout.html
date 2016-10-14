@@ -11,7 +11,11 @@
 	<meta property="og:image" content="https://avatars0.githubusercontent.com/u/4353846?v=3&s=140" />
 	<link rel="stylesheet" href="/web/css/styles.css">
 	<link rel="stylesheet" href="/web/css/pygment_trac.css">
+	<link rel="stylesheet" href="/web/css/github.css">
 	<script src="/web/lib/jquery-3.0.0.js"></script>
+	<script src="/web/lib/showdown.js"></script>
+	<script src="/web/lib/showdown-table.js"></script>
+	<script src="/web/lib/highlight.pack.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -19,18 +23,22 @@
 		<!--include '/web/html/include/menu.html'-->
 	</header>
 	<section>
-		<!--최신글 목록 노출 예정 -->
+		<!-- 상단 뒤로 돌아가기 버튼 -->
+		<a class="back_button" href="/"> _back </a>
+		<!-- 내용 넣기 -->
+		<div id="content"></div>
+		<!-- 하단 뒤로 돌아가기 버튼 -->
+		<a class="back_button" href="/"> _back </a>
+		<!-- 댓글 -->
+		<div id="disqus_thread"></div>
 	</section>
 	<footer>
 		<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
 	</footer>
 </div>
-<script src="/web/lib/scale.fix.js"></script>
-<script>
-	// 좌측 메뉴 띄우기
-	($(document).ready(function () {
-		$('header').load('/web/html/include/menu.html');
-	}));
-</script>
 </body>
+<script src="/web/javascript/PostRead.js"></script>
+<script src="/web/lib/scale.fix.js"></script>
+<script src="/web/lib/Disqus.js"></script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </html>

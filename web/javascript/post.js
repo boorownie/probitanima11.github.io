@@ -1,5 +1,5 @@
 /**
- * 
+ * 포스트 객체
  */
 
 function Post(json) {
