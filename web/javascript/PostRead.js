@@ -10,7 +10,7 @@ PostRead.init = function() {
     $.ajax({
         method: "get",
         dataType: 'text',
-        url: _makeUrl(location.pathname),
+        url: this._makeUrl(location.pathname),
         success: function (data) {
             // showdown.js 적용
             var converter = new showdown.Converter({extensions: ['table']});
@@ -29,7 +29,7 @@ PostRead.init = function() {
     내용을 로드할 url을 추출한다
  */
 PostRead._makeUrl = function(path) {
-    $('.sub_menu').on("click", "li", function (e) {
-        return "/" + path.split('/')[1] + "/md/" + path.split('/')[2].split('.')[0] + ".md";
-    });
+    return "/" + path.split('/')[1] + "/md/" + path.split('/')[2].split('.')[0] + ".md";
 };
+
+"/" + location.pathname.split('/')[1] + "/md/" + location.pathname.split('/')[2].split('.')[0] + ".md";
