@@ -5,10 +5,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content="probitanima11.github.io" />
+	<meta property="og:type" content="website"/>
+	<meta property="og:url" content="probitanima11.github.io"/>
 	<meta property="og:title" content="맨땅에 코딩">
-	<meta property="og:image" content="https://avatars0.githubusercontent.com/u/4353846?v=3&s=140" />
+	<meta property="og:image" content="https://avatars0.githubusercontent.com/u/4353846?v=3&s=140"/>
 	<link rel="stylesheet" href="/web/css/styles.css">
 	<link rel="stylesheet" href="/web/css/pygment_trac.css">
 	<link rel="stylesheet" href="/web/css/github.css">
@@ -33,12 +33,23 @@
 		<div id="disqus_thread"></div>
 	</section>
 	<footer>
-		<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+		<p>
+			<small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small>
+		</p>
 	</footer>
 </div>
 </body>
 <script src="/web/javascript/PostRead.js"></script>
+<script>
+	($(document).ready(function () {
+		// 메뉴
+		$('header').load('/web/html/include/menu.html');
+		// 페이지 내용 로드
+		PostRead.init();
+	}));
+</script>
 <script src="/web/lib/scale.fix.js"></script>
 <script src="/web/lib/Disqus.js"></script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </html>
+
