@@ -14,7 +14,7 @@ function Article(json) {
 
 Article.prototype.getImageUrl = function() {
 	if (this.image === "" || this.image === undefined) {
-		return "/images/default_post" + (this.idx % 4) + ".jpg";
+		return "/images/default" + (this.idx % 4) + ".jpg";
 	}
 	return this.image;
 };
