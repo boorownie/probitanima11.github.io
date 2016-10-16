@@ -1,53 +1,83 @@
-<!doctype html>
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-<head>
-    <title>맨땅에 코딩</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta property="og:type" content="website"/>
-    <meta property="og:url" content="probitanima11.github.io"/>
-    <meta property="og:title" content="맨땅에 코딩">
-    <meta property="og:image" content="https://avatars0.githubusercontent.com/u/4353846?v=3&s=140"/>
-    <link rel="stylesheet" href="/web/css/styles.css">
-    <link rel="stylesheet" href="/web/css/pygment_trac.css">
-    <script src="/web/lib/jquery-3.0.0.js"></script>
-</head>
-<body>
-<div class="wrapper">
-    <header>
-        <!--include '/web/html/include/menu.html'-->
-    </header>
-    <section>
-        <div class="sub_menu">
-            <ul>
-                <li><a class="tag all" href="#"> #all </a></li>
-                <li><a class="tag webserver" href="#"> #webserver </a></li>
-                <li><a class="tag webui" href="#"> #webui </a></li>
-                <li><a class="tag android" href="#"> #android </a></li>
-                <li><a class="tag java" href="#"> #java </a></li>
-                <li><a class="tag spring" href="#"> #spring </a></li>
-            </ul>
-        </div>
-        <ul id="post_list"></ul>
-    </section>
-    <footer>
-        <p>
-            <small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small>
-        </p>
-    </footer>
-</div>
-<script src="/web/lib/scale.fix.js"></script>
-<script>
-    ($(document).ready(function () {
-        // 좌측 메뉴 띄우기
-        $('header').load('/web/html/include/menu.html');
+	<head>
+		<title>맨땅에 코딩</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="/assets/css/main.css" />
+		<link rel="stylesheet" href="/assets/css/custom.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
 
-        PostList.initSubMenu();
-        PostList.getPostList('all');
-    }));
-</script>
-<script src="/web/javascript/PostList.js"></script>
-<script src="/web/javascript/post.js"></script>
-</body>
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<!--include '/assets/html/header.html'-->
+					</header>
+
+				<!-- Menu -->
+					<section id="menu">
+						<!--include '/assets/html/sidemenu.html'-->
+					</section>
+
+				<!-- Sidebar -->
+					<section id="sidebar">
+
+						<!-- Intro -->
+						<div id="sub_menu">
+							<ul>
+								<li><a class="tag all" href="#"> #all </a></li>
+								<li><a class="tag webserver" href="#"> #webserver </a></li>
+								<li><a class="tag webui" href="#"> #webui </a></li>
+								<li><a class="tag android" href="#"> #android </a></li>
+								<li><a class="tag java" href="#"> #java </a></li>
+								<li><a class="tag spring" href="#"> #spring </a></li>
+							</ul>
+						</div>
+
+						<!-- Posts List -->
+							<section>
+								<ul class="posts"/>
+							</section>
+
+						<!-- Footer -->
+							<section id="footer">
+								<!--include '/assets/html/footer.html'-->
+							</section>
+
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="/assets/js/lib/jquery.min.js"></script>
+			<script src="/assets/js/lib/skel.min.js"></script>
+			<script src="/assets/js/lib/util.js"></script>
+			<!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="/assets/js/lib/main.js"></script>
+
+		<!--Customized-->
+			<script src="/assets/js/post/PostList.js"></script>
+			<script src="/assets/js/post/Article.js"></script>
+			<script>
+				($(document).ready(function () {
+					$('#header').load('/assets/html/header.html');
+					$('#menu').load('/assets/html/sidemenu.html');
+					$('#footer').load('/assets/html/footer.html');
+
+					PostList.initSubMenu();
+					PostList.getPostList('all');
+				}));
+			</script>
+	</body>
 </html>

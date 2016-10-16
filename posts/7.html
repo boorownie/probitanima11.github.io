@@ -1,55 +1,81 @@
-<!doctype html>
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-<head>
-	<title>맨땅에 코딩</title>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<meta property="og:type" content="website"/>
-	<meta property="og:url" content="probitanima11.github.io"/>
-	<meta property="og:title" content="맨땅에 코딩">
-	<meta property="og:image" content="https://avatars0.githubusercontent.com/u/4353846?v=3&s=140"/>
-	<link rel="stylesheet" href="/web/css/styles.css">
-	<link rel="stylesheet" href="/web/css/pygment_trac.css">
-	<link rel="stylesheet" href="/web/css/github.css">
-	<script src="/web/lib/jquery-3.0.0.js"></script>
-	<script src="/web/lib/showdown.js"></script>
-	<script src="/web/lib/showdown-table.js"></script>
-	<script src="/web/lib/highlight.pack.js"></script>
-</head>
-<body>
-<div class="wrapper">
-	<header>
-		<!--include '/web/html/include/menu.html'-->
-	</header>
-	<section>
-		<!-- 상단 뒤로 돌아가기 버튼 -->
-		<a class="back_button" href="#"> _back </a>
-		<!-- 내용 넣기 -->
-		<div id="content"></div>
-		<!-- 하단 뒤로 돌아가기 버튼 -->
-		<a class="back_button" href="#"> _back </a>
-		<!-- 댓글 -->
-		<div id="disqus_thread"></div>
-	</section>
-	<footer>
-		<p>
-			<small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small>
-		</p>
-	</footer>
-</div>
-</body>
-<script src="/web/javascript/PostRead.js"></script>
-<script>
-	($(document).ready(function () {
-		// 메뉴
-		$('header').load('/web/html/include/menu.html');
-		// 페이지 내용 로드
-		PostRead.init();
-	}));
-</script>
-<script src="/web/lib/scale.fix.js"></script>
-<script src="/web/lib/Disqus.js"></script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-</html>
+	<head>
+		<title>Single - Future Imperfect by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="/assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body class="single">
 
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<!--include '/web/html/include/header.html'-->
+					</header>
+
+				<!-- Menu -->
+					<section id="menu">
+						<!--include '/web/html/include/sidemenu.html'-->
+					</section>
+
+
+				<!-- Main -->
+					<div id="main">
+
+						 <!--Post-->
+
+							<article class="post">
+								<header>
+									<div class="title">
+										<h2></h2>
+										<p></p>
+									</div>
+									<div class="meta">
+										<time class="published"></time>
+										<a href="#" class="author"><span class="name">sunghuyn</span><img src="/images/avatar.jpg" alt="" /></a>
+									</div>
+								</header>
+							</article>
+					</div>
+
+				<!-- Footer -->
+					<section id="footer">
+						<!--include '/web/html/include/footer.html'-->
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="/assets/js/lib/jquery.min.js"></script>
+			<script src="/assets/js/lib/skel.min.js"></script>
+			<script src="/assets/js/lib/util.js"></script>
+			<!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="/assets/js/lib/main.js"></script>
+		<!--Customized-->
+			<script src="/assets/js/lib/showdown.js"></script>
+			<script src="/assets/js/lib/showdown-table.js"></script>
+			<script src="/assets/js/lib/highlight.pack.js"></script>
+			<script src="/assets/js/post/PostRead.js"></script>
+			<script>
+				($(document).ready(function () {
+					$('#header').load('/assets/html/header.html');
+					$('#menu').load('/assets/html/sidemenu.html');
+					$('#footer').load('/assets/html/footer.html');
+
+					// 페이지 내용 로드
+					PostRead.init();
+				}));
+			</script>
+	</body>
+</html>

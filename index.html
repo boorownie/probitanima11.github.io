@@ -1,36 +1,83 @@
-<!doctype html>
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-<head>
-	<title>맨땅에 코딩</title>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content="probitanima11.github.io" />
-	<meta property="og:title" content="맨땅에 코딩">
-	<meta property="og:image" content="https://avatars0.githubusercontent.com/u/4353846?v=3&s=140" />
-	<link rel="stylesheet" href="/web/css/styles.css">
-	<link rel="stylesheet" href="/web/css/pygment_trac.css">
-	<script src="/web/lib/jquery-3.0.0.js"></script>
-</head>
-<body>
-<div class="wrapper">
-	<header>
-		<!--include '/web/html/include/menu.html'-->
-	</header>
-	<section>
-		<!--최신글 목록 노출 예정 -->
-	</section>
-	<footer>
-		<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-	</footer>
-</div>
-<script src="/web/lib/scale.fix.js"></script>
-<script>
-	// 좌측 메뉴 띄우기
-	($(document).ready(function () {
-		$('header').load('/web/html/include/menu.html');
-	}));
-</script>
-</body>
+	<head>
+		<title>맨땅에 코딩</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="probitanima11.github.io" />
+		<meta property="og:title" content="맨땅에 코딩">
+		<meta property="og:image" content="/images/logo.png" />
+		<!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+        <link rel="stylesheet" href="/assets/css/main.css" />
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<!--include '/assets/html/header.html'-->
+					</header>
+
+				<!-- Menu -->
+					<section id="menu">
+						<!--include '/assets/html/sidemenu.html'-->
+					</section>
+
+				<!-- Sidebar -->
+					<section id="sidebar">
+
+						<section id="intro">
+							<a href="#" class="logo"><img src="/images/logo.png" alt=""></a>
+							<header>
+								<h2>맨땅에 코딩</h2>
+								<p>이렇게 기록을 남기면 조금 덜 까먹겠지...</p>
+							</header>
+						</section>
+
+						 <!--Mini Posts-->
+							<section>
+								<h2>Recent... </h2>
+								<div class="mini-posts"/>
+
+							</section>
+
+						<!-- Footer -->
+							<section id="footer">
+								<!--include '/assets/html/footer.html'-->
+							</section>
+
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="/assets/js/lib/jquery.min.js"></script>
+			<script src="/assets/js/lib/skel.min.js"></script>
+			<script src="/assets/js/lib/util.js"></script>
+			<!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="/assets/js/lib/main.js"></script>
+
+		<!--Customized-->
+			<script src="/assets/js/post/ArticleList.js"></script>
+			<script src="/assets/js/post/Article.js"></script>
+			<script>
+				($(document).ready(function () {
+					$('#header').load('/assets/html/header.html');
+					$('#menu').load('/assets/html/sidemenu.html');
+					$('#footer').load('/assets/html/footer.html');
+
+					ArticleList.getRecentArticleList(8);
+				}));
+			</script>
+	</body>
 </html>
