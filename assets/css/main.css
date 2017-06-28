@@ -529,7 +529,7 @@
 
 	/*}*/
 
-	@media screen and (max-width: 1680px) {
+	/*@media screen and (max-width: 1680px) {*/
 
 		.row > * {
 			padding: 0 0 0 1em;
@@ -742,7 +742,7 @@
 			margin-left: 8.33333%;
 		}
 
-	}
+	/*}*/
 
 	@media screen and (max-width: 980px) {
 
@@ -1440,13 +1440,13 @@
 
 		/*}*/
 
-		@media screen and (max-width: 1680px) {
+		/*@media screen and (max-width: 1680px) {*/
 
 			body, input, select, textarea {
 				font-size: 12pt;
 			}
 
-		}
+		/*}*/
 
 		@media screen and (max-width: 980px) {
 
@@ -2272,7 +2272,7 @@
 					content: '\f053';
 				}
 
-			@media screen and (max-width: 1680px) {
+			/*@media screen and (max-width: 1680px) {*/
 
 				ul.actions.pagination {
 					text-align: center;
@@ -2282,7 +2282,7 @@
 						min-width: 20em;
 					}
 
-			}
+			/*}*/
 
 			@media screen and (max-width: 736px) {
 
@@ -2529,7 +2529,7 @@
 		margin: 0 0 2em 0;
 	}
 
-		@media screen and (max-width: 1680px) {
+		/*@media screen and (max-width: 1680px) {*/
 
 			.mini-posts {
 				display: -moz-flex;
@@ -2552,7 +2552,7 @@
 					margin-top: 0;
 				}
 
-		}
+		/*}*/
 
 		@media screen and (max-width: 480px) {
 
@@ -3179,13 +3179,13 @@
 
 		/*}*/
 
-		@media screen and (max-width: 1680px) {
+		/*@media screen and (max-width: 1680px) {*/
 
 			#wrapper {
 				display: block;
 			}
 
-		}
+		/*}*/
 
 		@media screen and (max-width: 736px) {
 
@@ -3230,7 +3230,7 @@
 			padding-top: 0;
 		}
 
-		@media screen and (max-width: 1680px) {
+		/*@media screen and (max-width: 1680px) {*/
 
 			#sidebar {
 				border-top: solid 1px rgba(160, 160, 160, 0.3);
@@ -3241,7 +3241,7 @@
 				width: 100%;
 			}
 
-		}
+		/*}*/
 
 /* Intro */
 
@@ -3283,7 +3283,7 @@
 		font-size: 0.8em;
 	}
 
-	@media screen and (max-width: 1680px) {
+	/*@media screen and (max-width: 1680px) {*/
 
 		#intro {
 			margin: 0 0 3em 0;
@@ -3298,7 +3298,7 @@
 				font-size: 0.7em;
 			}
 
-	}
+	/*}*/
 
 	@media screen and (max-width: 736px) {
 
